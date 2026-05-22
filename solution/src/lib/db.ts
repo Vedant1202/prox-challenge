@@ -30,6 +30,14 @@ export function getDb(): DatabaseSync {
       created_at INTEGER NOT NULL
     );
 
+    CREATE TABLE IF NOT EXISTS rate_limit (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      client_key TEXT NOT NULL,
+      timestamp INTEGER NOT NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_rate_limit_key_time ON rate_limit(client_key, timestamp);
+
     PRAGMA foreign_keys = ON;
   `)
 

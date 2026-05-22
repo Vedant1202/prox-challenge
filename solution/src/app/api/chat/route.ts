@@ -1,9 +1,10 @@
-import { NextRequest } from 'next/server'
-import { anthropic, MODEL } from '@/lib/anthropic'
+import { NextRequest, NextResponse } from 'next/server'
+import { anthropic, resolveModel } from '@/lib/anthropic'
 import { searchCorpus, getPage, getPageImageUrl, formatPageForContext } from '@/lib/corpus'
 import { getDb } from '@/lib/db'
+import { checkRateLimit } from '@/lib/rate-limit'
 import Anthropic from '@anthropic-ai/sdk'
-import { randomUUID } from 'crypto'
+import { randomUUID, createHash } from 'crypto'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -190,8 +191,35 @@ function shouldShowByDefault(pageNum: number, text: string): boolean {
   return patterns.some(p => lower.includes(p))
 }
 
+function extractIp(req: NextRequest): string {
+  return (
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    req.headers.get('x-real-ip') ||
+    '127.0.0.1'
+  )
+}
+
 export async function POST(req: NextRequest) {
-  const { messages, chatId } = await req.json() as { messages: Message[]; chatId?: string }
+  const body = await req.json() as { messages: Message[]; chatId?: string; model?: string }
+  const { messages, chatId } = body
+  const requestedModel = body.model ?? null
+
+  // Rate limiting
+  const ip = extractIp(req)
+  const fingerprint = req.headers.get('x-client-fingerprint') ?? 'unknown'
+  const clientKey = createHash('sha256').update(`${ip}:${fingerprint}`).digest('hex')
+  const rl = checkRateLimit(clientKey)
+
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded', reset_at: rl.reset_at, retry_after_ms: rl.retry_after_ms, used: rl.used, limit: rl.limit },
+      { status: 429 }
+    )
+  }
+
+  const model = resolveModel(
+    process.env.MODEL_SWITCHING_ALLOWED === 'true' ? requestedModel : null
+  )
 
   // Identify the last user message for persistence
   const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')
@@ -216,7 +244,7 @@ export async function POST(req: NextRequest) {
         // Agentic loop: run until Claude stops calling tools
         while (true) {
           const response = await anthropic.messages.create({
-            model: MODEL,
+            model,
             max_tokens: 8192,
             system: SYSTEM_PROMPT,
             tools: TOOLS,
@@ -343,6 +371,9 @@ export async function POST(req: NextRequest) {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
+      'X-Rate-Limit-Used': String(rl.used),
+      'X-Rate-Limit-Limit': String(rl.limit),
+      'X-Rate-Limit-Reset': String(rl.reset_at),
     },
   })
 }

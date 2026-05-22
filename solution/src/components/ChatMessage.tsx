@@ -23,6 +23,8 @@ export interface Message {
   artifactTitle?: string
   isStreaming?: boolean
   steps?: Step[]
+  rateLimited?: boolean
+  resetAt?: number
 }
 
 function parseArtifact(text: string): { cleaned: string; html: string | null; title: string | null } {
@@ -76,8 +78,19 @@ export default function ChatMessage({ message }: { message: Message }) {
           <ActivitySteps steps={message.steps} />
         )}
 
+        {/* Rate-limited placeholder */}
+        {!message.isStreaming && message.rateLimited && (
+          <div className="flex items-center gap-2 text-sm text-base-content/50 py-1">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#ef4444" strokeWidth="1.5" style={{ flexShrink: 0 }}>
+              <circle cx="7" cy="7" r="6" />
+              <path d="M7 4.5v3L8.5 9" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span style={{ color: '#ef4444' }}>Rate limit reached — see the countdown above to know when you can send again.</span>
+          </div>
+        )}
+
         {/* Full response after stream completes */}
-        {!message.isStreaming && (
+        {!message.isStreaming && !message.rateLimited && (
           <div className="message-reveal">
             <div className="prose text-sm text-base-content">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
