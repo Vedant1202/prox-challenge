@@ -1,3 +1,4 @@
 .plans/
 .DS_Store
 repomix-output.xml
+solution/.env
