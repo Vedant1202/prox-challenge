@@ -463,7 +463,7 @@ function HomeInner() {
           </div>
           <div>
             <div className="font-semibold text-sm text-base-content">Vulcan OmniPro 220</div>
-            <div className="text-xs text-base-content/50">Welder Assistant</div>
+            <div className="text-xs text-base-content/50">Welder Assistant (made by @Vedant1202)</div>
           </div>
           <div className="flex-1" />
 
