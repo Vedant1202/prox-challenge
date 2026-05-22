@@ -79,9 +79,7 @@ function HomeInner() {
       .then((cfg: { modelSwitchingAllowed: boolean; defaultModel: string; rateLimit: { requests: number; windowMinutes: number } }) => {
         setModelSwitchingAllowed(cfg.modelSwitchingAllowed)
         setWindowMinutes(cfg.rateLimit.windowMinutes)
-        if (cfg.modelSwitchingAllowed) {
-          setModel(cfg.defaultModel as Model)
-        }
+        setModel(cfg.defaultModel as Model)
       })
       .catch(console.error)
   }, [])
@@ -395,9 +393,11 @@ function HomeInner() {
           </div>
           <div className="flex-1" />
 
-          {modelSwitchingAllowed && (
-            <ModelSelector value={model} onChange={handleModelChange} />
-          )}
+          <ModelSelector
+            value={model}
+            onChange={handleModelChange}
+            readOnly={!modelSwitchingAllowed}
+          />
 
           {rateLimit && (
             <RateLimitBadge
