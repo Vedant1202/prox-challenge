@@ -6,12 +6,38 @@ export interface ChatRecord {
   updated_at: number
 }
 
+type View = 'chat' | 'diagram' | 'manual'
+
 interface ChatSidebarProps {
   chats: ChatRecord[]
   activeChatId: string | null
   onSelectChat: (id: string) => void
   onNewChat: () => void
   onDeleteChat: (id: string) => void
+  view: View
+  onViewChange: (v: View) => void
+}
+
+function DiagramIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="1" width="12" height="12" rx="2" />
+      <circle cx="4.5" cy="4.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="4.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="4.5" cy="9.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="9.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="7" cy="7" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+function ManualIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 2h7l2 2v8a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" />
+      <path d="M4 5.5h5M4 7.5h5M4 9.5h3" />
+    </svg>
+  )
 }
 
 export default function ChatSidebar({
@@ -20,7 +46,13 @@ export default function ChatSidebar({
   onSelectChat,
   onNewChat,
   onDeleteChat,
+  view,
+  onViewChange,
 }: ChatSidebarProps) {
+  function handleViewItem(v: View) {
+    onViewChange(view === v ? 'chat' : v)
+  }
+
   return (
     <div
       className="glass border-r flex flex-col overflow-hidden flex-shrink-0"
@@ -43,11 +75,11 @@ export default function ChatSidebar({
           <div className="text-xs text-base-content/30 text-center mt-6">No chats yet</div>
         )}
         {chats.map(chat => {
-          const isActive = chat.id === activeChatId
+          const isActive = chat.id === activeChatId && view === 'chat'
           return (
             <div
               key={chat.id}
-              onClick={() => onSelectChat(chat.id)}
+              onClick={() => { onViewChange('chat'); onSelectChat(chat.id) }}
               className={`
                 group flex items-center gap-2 rounded-lg px-3 py-2 mb-1 cursor-pointer
                 transition-all duration-150 select-none
@@ -74,6 +106,47 @@ export default function ChatSidebar({
             </div>
           )
         })}
+      </div>
+
+      {/* Tools nav */}
+      <div className="flex-shrink-0 border-t border-base-content/10 px-2 py-2">
+        <p className="px-3 pb-1.5 text-[10px] font-semibold tracking-widest uppercase text-base-content/30">
+          Tools
+        </p>
+
+        <button
+          data-testid="nav-diagram"
+          onClick={() => handleViewItem('diagram')}
+          className={`
+            w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium
+            transition-all duration-150 select-none
+            ${view === 'diagram'
+              ? 'glass-card border-l-2 !border-l-primary text-base-content'
+              : 'text-base-content/55 hover:bg-base-content/5 border-l-2 border-l-transparent'
+            }
+          `}
+          aria-label="Machine Diagram"
+        >
+          <DiagramIcon />
+          Machine Diagram
+        </button>
+
+        <button
+          data-testid="nav-manual"
+          onClick={() => handleViewItem('manual')}
+          className={`
+            w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium
+            transition-all duration-150 select-none mt-0.5
+            ${view === 'manual'
+              ? 'glass-card border-l-2 !border-l-primary text-base-content'
+              : 'text-base-content/55 hover:bg-base-content/5 border-l-2 border-l-transparent'
+            }
+          `}
+          aria-label="Manual Pages"
+        >
+          <ManualIcon />
+          Manual Pages
+        </button>
       </div>
     </div>
   )
