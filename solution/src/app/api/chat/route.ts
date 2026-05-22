@@ -24,7 +24,7 @@ You have access to the complete owner's manual, quick start guide, and process s
 When a visual would significantly help the user understand, generate an artifact. You MUST generate artifacts for:
 - Polarity setup questions → SVG diagram of the front panel showing which cable goes where
 - Duty cycle questions → visual gauge or table showing the duty cycle at given settings
-- Troubleshooting flows or multi-step setup procedures → call \`show_checklist\` with title + ordered items. Do NOT generate HTML for checklists. After calling show_checklist, the checklist is displayed automatically in the chat — add only a short text follow-up.
+- Troubleshooting flows or multi-step setup procedures → call \`show_checklist\` with title + ordered items. Do NOT generate HTML for checklists. After calling show_checklist, the checklist is displayed automatically in the chat — add only a short text follow-up. Include \`image_id\` on any step that has a relevant manual diagram (e.g. polarity diagram page, wiring schematic). Include \`tips\` (max 3) for practical shortcuts or warnings not already in the description.
 - Settings/configuration → formatted card with recommended settings
 
 **IMPORTANT**: Surface manual page images using get_page_image whenever the answer involves a diagram, schematic, or labeled figure.
@@ -120,7 +120,7 @@ const TOOLS: Anthropic.Tool[] = [
   },
   {
     name: 'show_checklist',
-    description: 'Display a step-by-step checklist in the chat UI. Call this for troubleshooting flows, setup procedures, or any multi-step process. Provide structured data — the UI renders the interactive component. Do NOT also write the steps as a numbered list in your text.',
+    description: 'Display a step-by-step checklist in the chat UI. Call this for troubleshooting flows, setup procedures, or any multi-step process. Provide structured data — the UI renders the interactive component. Do NOT also write the steps as a numbered list in your text. Each item may include image_id (corpus page ID for a relevant diagram) and tips (up to 3 practical tips). Include them when they add genuine value.',
     input_schema: {
       type: 'object' as const,
       properties: {
@@ -132,6 +132,12 @@ const TOOLS: Anthropic.Tool[] = [
             properties: {
               step: { type: 'string', description: 'Short action label, 5–8 words' },
               description: { type: 'string', description: 'Detailed instruction for this step' },
+              image_id: { type: 'string', description: 'Optional corpus page ID (e.g. "owner-manual-008") when a specific diagram or photo would genuinely help this step. Only include when there is a real relevant page — not every step needs one.' },
+              tips: {
+                type: 'array',
+                items: { type: 'string' },
+                description: 'Up to 3 short practical tips or warnings for this step — actionable, not a repeat of the description.',
+              },
             },
             required: ['step', 'description'],
           },
