@@ -37,13 +37,12 @@ export default function Home() {
   useEffect(() => {
     fetch('/api/chats')
       .then(r => r.json())
-      .then(async ({ chats: list }: { chats: ChatRecord[] }) => {
+      .then(({ chats: list }: { chats: ChatRecord[] }) => {
         if (list.length > 0) {
           setChats(list)
           selectChat(list[0].id)
-        } else {
-          await createNewChat()
         }
+        // No chats yet → stay on welcome screen; chat is created on first message
       })
       .catch(console.error)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,23 +65,30 @@ export default function Home() {
       .catch(console.error)
   }
 
+  function handleNewChat() {
+    setActiveChatId(null)
+    setMessages([])
+    setInput('')
+  }
+
   function handleDeleteChat(id: string) {
     fetch(`/api/chats/${id}`, { method: 'DELETE' }).catch(console.error)
     setChats(prev => prev.filter(c => c.id !== id))
     if (activeChatId === id) {
       const remaining = chats.filter(c => c.id !== id)
       if (remaining.length > 0) selectChat(remaining[0].id)
-      else createNewChat()
+      else handleNewChat()
     }
   }
 
   const sendMessage = useCallback(async (text: string) => {
-    if (!text.trim() || isLoading) return
+    const trimmed = text.trim()
+    if (!trimmed || isLoading) return
 
     let chatId = activeChatId
     if (!chatId) chatId = await createNewChat()
 
-    const userMessage: Message = { role: 'user', content: text.trim() }
+    const userMessage: Message = { role: 'user', content: trimmed }
     const updatedMessages = [...messages, userMessage]
     setMessages(updatedMessages)
     setInput('')
@@ -210,7 +216,7 @@ export default function Home() {
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={selectChat}
-        onNewChat={createNewChat}
+        onNewChat={handleNewChat}
         onDeleteChat={handleDeleteChat}
       />
 
