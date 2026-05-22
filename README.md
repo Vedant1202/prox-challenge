@@ -180,6 +180,16 @@ solution/
 
 ---
 
+## Documentation
+
+| Doc | Contents |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | System design, agentic loop, retrieval, artifact pipeline, SSE protocol, key decisions |
+| [Configuration](docs/CONFIGURATION.md) | All env vars with types, defaults, and common configurations |
+| [Usage](docs/USAGE.md) | Feature guide — artifacts, page images, multi-turn troubleshooting, chat history |
+
+---
+
 ## Running Locally Without the Corpus
 
 If you want to re-extract the corpus from scratch:
