@@ -68,7 +68,10 @@ async function createSchema(sql: SqlClient): Promise<void> {
 
 export function ensureSchema(): Promise<void> {
   if (!schemaPromise) {
-    schemaPromise = createSchema(getSql())
+    schemaPromise = createSchema(getSql()).catch(err => {
+      schemaPromise = null
+      throw err
+    })
   }
 
   return schemaPromise
