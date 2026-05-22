@@ -37,28 +37,13 @@ function parseArtifact(text: string): { cleaned: string; html: string | null; ti
   return { cleaned, html, title }
 }
 
-interface ChatMessageProps {
-  message: Message
-}
-
-export default function ChatMessage({ message }: ChatMessageProps) {
+export default function ChatMessage({ message }: { message: Message }) {
   const isUser = message.role === 'user'
 
   if (isUser) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
-        <div
-          style={{
-            background: '#1f1f1f',
-            border: '1px solid #2a2a2a',
-            borderRadius: '16px 16px 4px 16px',
-            padding: '10px 14px',
-            maxWidth: '75%',
-            fontSize: '14px',
-            lineHeight: '1.5',
-            color: '#e5e5e5',
-          }}
-        >
+      <div className="chat chat-end mb-4">
+        <div className="chat-bubble text-sm leading-relaxed max-w-[75%]">
           {message.content}
         </div>
       </div>
@@ -70,68 +55,64 @@ export default function ChatMessage({ message }: ChatMessageProps) {
   const finalTitle = message.artifactTitle || title || 'Interactive Visual'
 
   return (
-    <div style={{ marginBottom: '24px', maxWidth: '100%' }}>
-      {/* Avatar + name row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+    <div className="chat chat-start mb-6">
+      <div className="chat-image">
         <div
+          className="flex items-center justify-center rounded-full text-white font-bold"
           style={{
-            width: '20px',
-            height: '20px',
-            borderRadius: '50%',
-            background: '#f59e0b',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '10px',
-            color: '#000',
-            fontWeight: 700,
+            width: 28,
+            height: 28,
+            fontSize: 11,
+            background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
             flexShrink: 0,
           }}
         >
           W
         </div>
-        <span style={{ fontSize: '12px', color: '#666', fontWeight: 500 }}>Welder Assistant</span>
       </div>
+      <div className="chat-bubble" style={{ maxWidth: '100%' }}>
+        {/* Show activity steps while streaming */}
+        {message.isStreaming && message.steps && message.steps.length > 0 && (
+          <ActivitySteps steps={message.steps} />
+        )}
 
-      {/* Activity steps — visible while streaming */}
-      {message.isStreaming && message.steps && message.steps.length > 0 && (
-        <ActivitySteps steps={message.steps} />
-      )}
-
-      {/* Full response — only visible after done */}
-      {!message.isStreaming && (
-        <div className="message-reveal">
-          <div className="prose" style={{ fontSize: '14px', lineHeight: '1.65' }}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {cleaned || message.content}
-            </ReactMarkdown>
-          </div>
-
-          {message.pageImages && message.pageImages.length > 0 && (
-            <div
-              style={{
-                marginTop: '12px',
-                display: 'grid',
-                gap: '8px',
-                gridTemplateColumns: message.pageImages.length > 1 ? '1fr 1fr' : '1fr',
-              }}
-            >
-              {message.pageImages.map(img => (
-                <PageImage
-                  key={img.page_id}
-                  url={img.url}
-                  pageNum={img.page_num}
-                  source={img.source}
-                  summary={img.summary}
-                  defaultExpanded={img.show_by_default ?? false}
-                />
-              ))}
+        {/* Full response after stream completes */}
+        {!message.isStreaming && (
+          <div className="message-reveal">
+            <div className="prose text-sm text-base-content">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {cleaned || message.content}
+              </ReactMarkdown>
             </div>
-          )}
 
-          {finalHtml && <ArtifactFrame html={finalHtml} title={finalTitle} defaultExpanded={false} />}
-        </div>
-      )}
+            {message.pageImages && message.pageImages.length > 0 && (
+              <div
+                className="mt-3"
+                style={{
+                  display: 'grid',
+                  gap: 8,
+                  gridTemplateColumns: message.pageImages.length > 1 ? '1fr 1fr' : '1fr',
+                }}
+              >
+                {message.pageImages.map(img => (
+                  <PageImage
+                    key={img.page_id}
+                    url={img.url}
+                    pageNum={img.page_num}
+                    source={img.source}
+                    summary={img.summary}
+                    defaultExpanded={img.show_by_default ?? false}
+                  />
+                ))}
+              </div>
+            )}
+
+            {finalHtml && (
+              <ArtifactFrame html={finalHtml} title={finalTitle} defaultExpanded={false} />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

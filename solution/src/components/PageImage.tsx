@@ -20,73 +20,38 @@ export default function PageImage({ url, pageNum, source, summary, defaultExpand
 
   return (
     <div
-      style={{
-        border: '1px solid #2a2a2a',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        marginTop: '8px',
-        transition: 'border-color 0.15s',
-      }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = '#3a3a3a')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = '#2a2a2a')}
+      className="glass-card rounded-xl overflow-hidden mt-2 transition-all duration-150"
+      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(129,140,248,0.2)')}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = '')}
     >
-      {/* Header — always visible */}
+      {/* Header */}
       <div
         onClick={() => setExpanded(e => !e)}
-        style={{
-          background: '#161616',
-          padding: '7px 10px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          cursor: 'pointer',
-          userSelect: 'none',
-        }}
+        className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none transition-colors duration-150 hover:bg-base-content/5"
       >
         <span
+          className="text-xs font-bold px-1.5 py-0.5 rounded flex-shrink-0"
           style={{
-            background: '#f59e0b22',
+            background: 'rgba(245,158,11,0.15)',
             color: '#f59e0b',
-            fontSize: '10px',
-            fontWeight: 700,
-            padding: '2px 6px',
-            borderRadius: '4px',
-            flexShrink: 0,
           }}
         >
           p.{pageNum}
         </span>
-        <span style={{ fontSize: '11px', color: '#888', flexShrink: 0 }}>
-          {sourceLabel}
-        </span>
+        <span className="text-xs text-base-content/55 flex-shrink-0">{sourceLabel}</span>
         {summary && (
-          <span
-            style={{
-              fontSize: '11px',
-              color: '#555',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              flex: 1,
-            }}
-          >
-            {summary}
-          </span>
+          <span className="text-xs text-base-content/35 flex-1 truncate">{summary}</span>
         )}
-        <span style={{ fontSize: '11px', color: '#555', flexShrink: 0, marginLeft: 'auto' }}>
+        <span className="text-xs text-base-content/30 flex-shrink-0 ml-auto">
           {expanded ? '▲' : '▼'}
         </span>
       </div>
 
-      {/* Content — collapsed by default */}
       {expanded && (
         <img
           src={url}
           alt={`${sourceLabel} page ${pageNum}`}
-          style={{
-            width: '100%',
-            display: 'block',
-          }}
+          className="w-full block"
         />
       )}
     </div>

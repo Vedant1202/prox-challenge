@@ -18,69 +18,29 @@ export default function ActivitySteps({ steps }: { steps: Step[] }) {
   }, [])
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
-        padding: '4px 0',
-      }}
-    >
+    <div className="flex flex-col gap-2 py-1">
       {steps.map((step, i) => {
         const isActive = step.status === 'active'
         return (
           <div
             key={i}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              opacity: isActive ? 1 : 0.4,
-              transition: 'opacity 0.3s',
-            }}
+            className="flex items-center gap-2.5 transition-opacity duration-300"
+            style={{ opacity: isActive ? 1 : 0.38 }}
           >
-            {/* Status indicator */}
-            <div
-              style={{
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                flexShrink: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '10px',
-                fontWeight: 700,
-                background: isActive ? '#f59e0b' : '#2a2a2a',
-                color: isActive ? '#000' : '#666',
-                border: isActive ? 'none' : '1px solid #333',
-                transition: 'all 0.3s',
-              }}
-            >
-              {isActive ? (
-                <span
-                  style={{
-                    display: 'block',
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#000',
-                    animation: 'pulse-scale 0.8s ease-in-out infinite',
-                  }}
-                />
-              ) : (
-                '✓'
-              )}
-            </div>
-
-            {/* Step label */}
+            {isActive ? (
+              <span className="loading loading-ring loading-xs text-primary flex-shrink-0" />
+            ) : (
+              <span
+                className="flex-shrink-0 flex items-center justify-center rounded-full text-success"
+                style={{ width: 16, height: 16, fontSize: 10, fontWeight: 700 }}
+              >
+                ✓
+              </span>
+            )}
             <span
-              style={{
-                fontSize: '13px',
-                color: isActive ? '#ccc' : '#555',
-                fontWeight: isActive ? 500 : 400,
-                transition: 'color 0.3s',
-              }}
+              className={`text-xs transition-colors duration-300 ${
+                isActive ? 'text-base-content/80 font-medium' : 'text-base-content/40'
+              }`}
             >
               {isActive
                 ? step.label.replace('…', '') + DOTS[dotIndex]

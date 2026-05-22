@@ -23,55 +23,24 @@ export default function ChatSidebar({
 }: ChatSidebarProps) {
   return (
     <div
-      style={{
-        width: '240px',
-        flexShrink: 0,
-        background: '#0d0d0d',
-        borderRight: '1px solid #1a1a1a',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        overflow: 'hidden',
-      }}
+      className="glass border-r flex flex-col overflow-hidden flex-shrink-0"
+      style={{ width: 240, height: '100vh', zIndex: 2 }}
     >
       {/* New chat button */}
-      <div style={{ padding: '12px 10px', borderBottom: '1px solid #1a1a1a' }}>
+      <div className="p-3 border-b border-inherit flex-shrink-0">
         <button
           onClick={onNewChat}
-          style={{
-            width: '100%',
-            background: '#1a1a1a',
-            border: '1px solid #2a2a2a',
-            borderRadius: '8px',
-            padding: '8px 12px',
-            color: '#ccc',
-            fontSize: '13px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            transition: 'all 0.15s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = '#222'
-            e.currentTarget.style.color = '#e5e5e5'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = '#1a1a1a'
-            e.currentTarget.style.color = '#ccc'
-          }}
+          className="btn btn-ghost btn-sm w-full justify-start gap-2 text-base-content/70 hover:text-base-content transition-colors"
         >
-          <span style={{ fontSize: '16px', lineHeight: 1 }}>+</span>
+          <span className="text-base leading-none text-primary">+</span>
           New Chat
         </button>
       </div>
 
       {/* Chat list */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '8px 6px' }}>
+      <div className="flex-1 overflow-y-auto p-2">
         {chats.length === 0 && (
-          <div style={{ fontSize: '12px', color: '#444', textAlign: 'center', marginTop: '24px' }}>
-            No chats yet
-          </div>
+          <div className="text-xs text-base-content/30 text-center mt-6">No chats yet</div>
         )}
         {chats.map(chat => {
           const isActive = chat.id === activeChatId
@@ -79,56 +48,25 @@ export default function ChatSidebar({
             <div
               key={chat.id}
               onClick={() => onSelectChat(chat.id)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                borderRadius: '8px',
-                padding: '7px 8px',
-                cursor: 'pointer',
-                marginBottom: '2px',
-                background: isActive ? '#1a1a1a' : 'transparent',
-                borderLeft: isActive ? '2px solid #f59e0b' : '2px solid transparent',
-                transition: 'all 0.15s',
-                gap: '6px',
-              }}
-              onMouseEnter={e => {
-                if (!isActive) e.currentTarget.style.background = '#141414'
-              }}
-              onMouseLeave={e => {
-                if (!isActive) e.currentTarget.style.background = 'transparent'
-              }}
+              className={`
+                group flex items-center gap-2 rounded-lg px-3 py-2 mb-1 cursor-pointer
+                transition-all duration-150 select-none
+                ${isActive
+                  ? 'glass-card border-l-2 !border-l-primary'
+                  : 'hover:bg-base-content/5 border-l-2 border-l-transparent'
+                }
+              `}
             >
               <span
-                style={{
-                  fontSize: '12px',
-                  color: isActive ? '#e5e5e5' : '#888',
-                  flex: 1,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  lineHeight: 1.4,
-                }}
+                className={`text-xs flex-1 truncate leading-snug transition-colors duration-150 ${
+                  isActive ? 'text-base-content' : 'text-base-content/55'
+                }`}
               >
                 {chat.title}
               </span>
               <button
-                onClick={e => {
-                  e.stopPropagation()
-                  onDeleteChat(chat.id)
-                }}
-                style={{
-                  flexShrink: 0,
-                  background: 'none',
-                  border: 'none',
-                  color: '#444',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  padding: '0 2px',
-                  lineHeight: 1,
-                  opacity: 0,
-                  transition: 'opacity 0.15s',
-                }}
-                className="delete-btn"
+                onClick={e => { e.stopPropagation(); onDeleteChat(chat.id) }}
+                className="opacity-0 group-hover:opacity-100 btn btn-ghost btn-xs btn-circle text-base-content/35 hover:text-error hover:bg-transparent transition-all flex-shrink-0"
                 aria-label="Delete chat"
               >
                 ×
@@ -137,10 +75,6 @@ export default function ChatSidebar({
           )
         })}
       </div>
-
-      <style>{`
-        div:hover .delete-btn { opacity: 1 !important; }
-      `}</style>
     </div>
   )
 }
