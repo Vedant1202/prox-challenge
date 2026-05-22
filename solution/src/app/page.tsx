@@ -10,6 +10,10 @@ import ModelSelector, { type Model } from '@/components/ModelSelector'
 import FingerprintProvider, { useFingerprintId } from '@/components/FingerprintProvider'
 import type { Step } from '@/components/ActivitySteps'
 
+// Per-chat message snapshot — persists in-flight streaming state across chat switches
+type MsgCache = Map<string, Message[]>
+type ModelCache = Map<string, Model>
+
 const STEP_LABELS: Record<string, string> = {
   search_corpus: 'Searching manual…',
   get_page_image: 'Loading page image…',
@@ -55,6 +59,18 @@ function HomeInner() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  // Per-chat caches (session-only, survive chat switching)
+  const chatMsgCache = useRef<MsgCache>(new Map())
+  const chatModelCache = useRef<ModelCache>(new Map())
+  // Ref mirrors of state for use inside async stream callbacks
+  const activeChatIdRef = useRef<string | null>(null)
+  const streamingChatId = useRef<string | null>(null)
+
+  // Keep ref mirror of activeChatId for use in async stream callbacks
+  useEffect(() => {
+    activeChatIdRef.current = activeChatId
+  }, [activeChatId])
 
   // Load config once
   useEffect(() => {
@@ -104,15 +120,37 @@ function HomeInner() {
     const { chat } = await res.json() as { chat: ChatRecord }
     setChats(prev => [chat, ...prev])
     setActiveChatId(chat.id)
+    activeChatIdRef.current = chat.id
+    chatMsgCache.current.set(chat.id, [])
     setMessages([])
     return chat.id
   }
 
   function selectChat(id: string) {
     setActiveChatId(id)
+    activeChatIdRef.current = id
+
+    // Show cached snapshot immediately — no blank flash for in-flight or visited chats
+    const cached = chatMsgCache.current.get(id)
+    setMessages(cached ?? [])
+
+    // Restore last-used model for this chat
+    if (modelSwitchingAllowed) {
+      const savedModel = chatModelCache.current.get(id)
+      if (savedModel) setModel(savedModel)
+    }
+
+    // Skip DB fetch while this chat is actively streaming (cache is authoritative)
+    if (streamingChatId.current === id) return
+
     fetch(`/api/chats/${id}/messages`)
       .then(r => r.json())
-      .then(({ messages: loaded }: { messages: Message[] }) => setMessages(loaded))
+      .then(({ messages: loaded }: { messages: Message[] }) => {
+        // Abort if we've switched away or if streaming started for this chat
+        if (activeChatIdRef.current !== id || streamingChatId.current === id) return
+        chatMsgCache.current.set(id, loaded)
+        setMessages(loaded)
+      })
       .catch(console.error)
   }
 
@@ -142,11 +180,22 @@ function HomeInner() {
     let chatId = activeChatId
     if (!chatId) chatId = await createNewChat()
 
+    // Record model for this chat
+    chatModelCache.current.set(chatId, model)
+
+    // Helper: update the per-chat cache AND the visible messages state only if this chat is active
+    const applyChatUpdate = (updater: (prev: Message[]) => Message[]) => {
+      const current = chatMsgCache.current.get(chatId!) ?? []
+      const next = updater(current)
+      chatMsgCache.current.set(chatId!, next)
+      if (activeChatIdRef.current === chatId) setMessages(next)
+    }
+
     const userMessage: Message = { role: 'user', content: trimmed }
-    const updatedMessages = [...messages, userMessage]
-    setMessages(updatedMessages)
+    applyChatUpdate(prev => [...prev, userMessage])
     setInput('')
     setIsLoading(true)
+    streamingChatId.current = chatId
 
     const assistantMsg: Message = {
       role: 'assistant',
@@ -155,7 +204,12 @@ function HomeInner() {
       isStreaming: true,
       steps: [{ label: 'Thinking…', status: 'active' }],
     }
-    setMessages(prev => [...prev, assistantMsg])
+    applyChatUpdate(prev => [...prev, assistantMsg])
+
+    // Build history from cache so it reflects the correct chat's messages
+    const historyForApi = (chatMsgCache.current.get(chatId) ?? [])
+      .filter(m => !m.isStreaming)
+      .map(m => ({ role: m.role, content: m.content }))
 
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
@@ -167,7 +221,7 @@ function HomeInner() {
         body: JSON.stringify({
           chatId,
           model,
-          messages: updatedMessages.map(m => ({ role: m.role, content: m.content })),
+          messages: historyForApi,
         }),
       })
 
@@ -175,7 +229,7 @@ function HomeInner() {
       if (res.status === 429) {
         const data = await res.json() as { reset_at: number; used: number; limit: number }
         setRateLimit({ used: data.used, limit: data.limit, resetAt: data.reset_at })
-        setMessages(prev => {
+        applyChatUpdate(prev => {
           const next = [...prev]
           next[next.length - 1] = {
             role: 'assistant',
@@ -210,7 +264,7 @@ function HomeInner() {
         const last = steps[steps.length - 1]
         if (last?.status === 'active') last.status = 'done'
         steps.push({ label: nextLabel, status: 'active' })
-        setMessages(prev => {
+        applyChatUpdate(prev => {
           const next = [...prev]
           next[next.length - 1] = { ...next[next.length - 1], steps: [...steps] }
           return next
@@ -247,7 +301,7 @@ function HomeInner() {
                 show_by_default: event.show_by_default ?? false,
               })
             } else if (event.type === 'done') {
-              setMessages(prev => {
+              applyChatUpdate(prev => {
                 const next = [...prev]
                 next[next.length - 1] = {
                   ...next[next.length - 1],
@@ -266,7 +320,7 @@ function HomeInner() {
         }
       }
     } catch (err) {
-      setMessages(prev => {
+      applyChatUpdate(prev => {
         const next = [...prev]
         next[next.length - 1] = {
           role: 'assistant',
@@ -277,9 +331,17 @@ function HomeInner() {
       })
     } finally {
       setIsLoading(false)
+      streamingChatId.current = null
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages, isLoading, activeChatId, fingerprintId, model, rateLimit])
+  }, [isLoading, activeChatId, fingerprintId, model, rateLimit])
+
+  function handleModelChange(newModel: Model) {
+    setModel(newModel)
+    if (activeChatIdRef.current) {
+      chatModelCache.current.set(activeChatIdRef.current, newModel)
+    }
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -308,8 +370,8 @@ function HomeInner() {
       {/* Main column */}
       <div className="flex flex-col flex-1 overflow-hidden relative" style={{ zIndex: 1 }}>
 
-        {/* Header */}
-        <header className="glass border-b flex items-center gap-3 px-5 py-3 flex-shrink-0">
+        {/* Header — z-index keeps it above chat bubbles (which create stacking contexts via backdrop-filter) */}
+        <header className="glass border-b flex items-center gap-3 px-5 py-3 flex-shrink-0 relative z-10">
           <div
             style={{
               width: 28,
@@ -334,7 +396,7 @@ function HomeInner() {
           <div className="flex-1" />
 
           {modelSwitchingAllowed && (
-            <ModelSelector value={model} onChange={setModel} />
+            <ModelSelector value={model} onChange={handleModelChange} />
           )}
 
           {rateLimit && (
@@ -349,54 +411,53 @@ function HomeInner() {
           <ThemeToggle />
         </header>
 
-        {/* Messages area */}
-        <div
-          className="flex-1 overflow-y-auto py-6 px-5"
-          style={{ maxWidth: 800, width: '100%', margin: '0 auto' }}
-        >
-          {isEmpty ? (
-            <div style={{ paddingTop: 48 }}>
-              {/* Siri orb hero */}
-              <div style={{ marginBottom: 32 }}>
-                <SiriOrb size={160} />
-              </div>
-              <div style={{ textAlign: 'center', marginBottom: 48 }}>
-                <h1 className="text-2xl font-bold text-base-content mb-2">
-                  Vulcan OmniPro 220 Assistant
-                </h1>
-                <p className="text-sm text-base-content/55 max-w-sm mx-auto" style={{ lineHeight: 1.65 }}>
-                  Ask anything about setup, settings, troubleshooting, or how to use your welder.
-                  I have the full manual and can show you diagrams and interactive visuals.
-                </p>
-              </div>
+        {/* Messages area — outer div spans full column width so wheel events fire everywhere */}
+        <div className="flex-1 overflow-y-auto" data-testid="scroll-container">
+          <div className="py-6 px-5" style={{ maxWidth: 800, width: '100%', margin: '0 auto' }}>
+            {isEmpty ? (
+              <div style={{ paddingTop: 48 }}>
+                {/* Siri orb hero */}
+                <div style={{ marginBottom: 32 }}>
+                  <SiriOrb size={160} />
+                </div>
+                <div style={{ textAlign: 'center', marginBottom: 48 }}>
+                  <h1 className="text-2xl font-bold text-base-content mb-2">
+                    Vulcan OmniPro 220 Assistant
+                  </h1>
+                  <p className="text-sm text-base-content/55 max-w-sm mx-auto" style={{ lineHeight: 1.65 }}>
+                    Ask anything about setup, settings, troubleshooting, or how to use your welder.
+                    I have the full manual and can show you diagrams and interactive visuals.
+                  </p>
+                </div>
 
-              {/* Suggested questions */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                  maxWidth: 560,
-                  margin: '0 auto',
-                }}
-              >
-                {SUGGESTED_QUESTIONS.map(q => (
-                  <button
-                    key={q}
-                    onClick={() => sendMessage(q)}
-                    className="glass-card text-left rounded-xl px-4 py-3 text-sm text-base-content/80 hover:text-base-content transition-colors duration-150 cursor-pointer w-full"
-                    style={{ lineHeight: 1.45 }}
-                    onMouseEnter={e => (e.currentTarget.style.background = '')}
-                  >
-                    {q}
-                  </button>
-                ))}
+                {/* Suggested questions */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 8,
+                    maxWidth: 560,
+                    margin: '0 auto',
+                  }}
+                >
+                  {SUGGESTED_QUESTIONS.map(q => (
+                    <button
+                      key={q}
+                      onClick={() => sendMessage(q)}
+                      className="glass-card text-left rounded-xl px-4 py-3 text-sm text-base-content/80 hover:text-base-content transition-colors duration-150 cursor-pointer w-full"
+                      style={{ lineHeight: 1.45 }}
+                      onMouseEnter={e => (e.currentTarget.style.background = '')}
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : (
-            messages.map((msg, i) => <ChatMessage key={i} message={msg} />)
-          )}
-          <div ref={messagesEndRef} />
+            ) : (
+              messages.map((msg, i) => <ChatMessage key={i} message={msg} />)
+            )}
+            <div ref={messagesEndRef} />
+          </div>
         </div>
 
         {/* Rate limit countdown card */}
