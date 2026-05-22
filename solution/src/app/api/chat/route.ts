@@ -36,9 +36,18 @@ Emit artifacts inline in your response using this exact format:
 <html>
 <head>
 <style>
-  /* All CSS must be inline — no external stylesheets */
-  body { background: #1a1a1a; color: #e5e5e5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 16px; box-sizing: border-box; }
-  /* Dark theme: bg #1a1a1a, text #e5e5e5, accent #f59e0b */
+  /* ── Theme tokens — the host app overrides these for light/dark switching ── */
+  :root {
+    --color-bg:      #0a0a1a;
+    --color-surface: #1a1a2e;
+    --color-border:  rgba(129,140,248,0.15);
+    --color-text:    #e2e8f0;
+    --color-muted:   #94a3b8;
+    --color-accent:  #f59e0b;
+  }
+  /* ── Always use var(--color-*) — NEVER hardcode hex colors ── */
+  * { box-sizing: border-box; }
+  body { background: var(--color-bg); color: var(--color-text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 16px; }
 </style>
 </head>
 <body>
@@ -51,7 +60,7 @@ Artifact rules:
 - ALL CSS inline in <style> tags — never reference external stylesheets
 - No external JS libraries — use only vanilla JS
 - Only use data values confirmed in the manual (no invented specs)
-- Dark theme: background #1a1a1a, text #e5e5e5, accent #f59e0b
+- ALWAYS use CSS custom properties (var(--color-bg), var(--color-text), var(--color-accent), var(--color-surface), var(--color-border), var(--color-muted)) for ALL color values — NEVER hardcode hex colors. The host app injects theme overrides.
 - Make it interactive where appropriate (clickable flowcharts, hover states, sliders)
 - The artifact replaces an explanation, not supplements it — make it self-explanatory
 
