@@ -17,6 +17,8 @@ npm run dev                # app runs at http://localhost:3000
 
 No database. No vector store. No Python. The corpus is committed — the reviewer never re-runs extraction.
 
+The `.env.example` includes inline comments for every variable. Key defaults: **10 requests / 60-minute rolling window** per client. See [Configuration](docs/CONFIGURATION.md) for all options and common presets.
+
 ---
 
 ## Demo
@@ -60,6 +62,8 @@ Client: accumulates text, parses <artifact>…</artifact> blocks,
 
 **No server-side state.** Full `messages[]` array sent with every request — Claude sees the entire conversation each turn for free.
 
+→ Deep dive: [Architecture](docs/ARCHITECTURE.md) — agentic loop, SSE protocol, prompt caching, retrieval scoring, persistence layer, UI view routing.
+
 ---
 
 ## How Knowledge Extraction Works
@@ -84,6 +88,8 @@ Steps:
 4. Merged into `corpus/corpus.json`; PNGs copied to `public/corpus/pages/`
 
 **Why not a vector DB?** 51 pages — a linear keyword scan takes <5ms and the quality is better. Semantic similarity would rank a page about "MIG gas shielding" higher for the query "duty cycle" than the page that actually has the duty cycle table. Key-fact scoring beats embeddings for this corpus size.
+
+→ Deep dive: [Architecture — Corpus & Retrieval](docs/ARCHITECTURE.md#corpus--retrieval) — per-page schema, scoring weights, `formatPageForContext()` serialisation.
 
 ---
 
@@ -125,6 +131,8 @@ Artifacts generated in testing:
 - **TIG polarity question** → Front panel SVG with sockets labeled, cables with arrows
 - **Wire settings** → Formatted settings card from the selection chart
 
+→ Deep dive: [Architecture — Artifact Pipeline](docs/ARCHITECTURE.md#artifact-pipeline) · [Usage — Features](docs/USAGE.md)
+
 ---
 
 ## Conversational Troubleshooting
@@ -139,6 +147,8 @@ The system prompt instructs Claude to follow a diagnostic loop:
 
 This makes multi-turn troubleshooting feel like talking to a knowledgeable friend, not querying a FAQ.
 
+→ See also: [Usage — Multi-turn Troubleshooting](docs/USAGE.md#multi-turn-troubleshooting)
+
 ---
 
 ## Design Decisions
@@ -152,6 +162,8 @@ This makes multi-turn troubleshooting feel like talking to a knowledgeable frien
 **Why keyword scoring over vector search?** 51 pages. Linear scan is 5ms. Key-fact scoring retrieves "the page with the duty cycle table" more reliably than semantic similarity for this domain.
 
 **Why a single centralized agent?** Multi-agent routing adds latency and complexity without accuracy gain for a 51-page corpus. Claude decides which tools to call and in what order — that is the orchestration layer.
+
+→ Full rationale: [Architecture — Key Design Decisions](docs/ARCHITECTURE.md#key-design-decisions)
 
 ---
 
@@ -226,3 +238,5 @@ npm run extract-corpus       # requires ANTHROPIC_API_KEY, ~$1, ~15 min
 ```
 
 The script caches per-page results in `corpus/extracted/` — safe to re-run if interrupted.
+
+→ See [Architecture — Corpus & Retrieval](docs/ARCHITECTURE.md#corpus--retrieval) for the full extraction schema and scoring logic.
