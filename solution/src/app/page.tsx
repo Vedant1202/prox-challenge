@@ -2,6 +2,13 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ChatMessage, { Message, PageImageData } from '@/components/ChatMessage'
+import type { Step } from '@/components/ActivitySteps'
+
+const STEP_LABELS: Record<string, string> = {
+  search_corpus: 'Searching manual…',
+  get_page_image: 'Loading page image…',
+  show_artifact: 'Building visual…',
+}
 
 const SUGGESTED_QUESTIONS = [
   "What's the duty cycle for MIG at 200A on 240V?",
@@ -31,12 +38,13 @@ export default function Home() {
     setInput('')
     setIsLoading(true)
 
-    // Add streaming assistant placeholder
+    // Add streaming placeholder with initial "Thinking…" step
     const assistantMsg: Message = {
       role: 'assistant',
       content: '',
       pageImages: [],
       isStreaming: true,
+      steps: [{ label: 'Thinking…', status: 'active' }],
     }
     setMessages(prev => [...prev, assistantMsg])
 
@@ -59,6 +67,21 @@ export default function Home() {
       let buffer = ''
       let fullText = ''
       const pageImages: PageImageData[] = []
+      // Local mutable steps array — only pushed to state on tool_call + done
+      const steps: Step[] = [{ label: 'Thinking…', status: 'active' }]
+
+      const advanceStep = (nextLabel: string) => {
+        // Mark current active step as done
+        const last = steps[steps.length - 1]
+        if (last && last.status === 'active') last.status = 'done'
+        // Push new active step
+        steps.push({ label: nextLabel, status: 'active' })
+        setMessages(prev => {
+          const next = [...prev]
+          next[next.length - 1] = { ...next[next.length - 1], steps: [...steps] }
+          return next
+        })
+      }
 
       while (true) {
         const { done, value } = await reader.read()
@@ -77,16 +100,11 @@ export default function Home() {
             const event = JSON.parse(raw)
 
             if (event.type === 'text') {
+              // Buffer silently — revealed only on done
               fullText += event.text
-              setMessages(prev => {
-                const next = [...prev]
-                next[next.length - 1] = {
-                  ...next[next.length - 1],
-                  content: fullText,
-                  isStreaming: true,
-                }
-                return next
-              })
+            } else if (event.type === 'tool_call') {
+              const label = STEP_LABELS[event.name] ?? `${event.name}…`
+              advanceStep(label)
             } else if (event.type === 'page_image') {
               pageImages.push({
                 page_id: event.page_id,
@@ -95,15 +113,8 @@ export default function Home() {
                 source: event.source,
                 summary: event.summary,
               })
-              setMessages(prev => {
-                const next = [...prev]
-                next[next.length - 1] = {
-                  ...next[next.length - 1],
-                  pageImages: [...pageImages],
-                }
-                return next
-              })
             } else if (event.type === 'done') {
+              // Reveal full response all at once
               setMessages(prev => {
                 const next = [...prev]
                 next[next.length - 1] = {

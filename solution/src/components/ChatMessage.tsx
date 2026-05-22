@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ArtifactFrame from './ArtifactFrame'
 import PageImage from './PageImage'
+import ActivitySteps, { Step } from './ActivitySteps'
 
 export interface PageImageData {
   page_id: string
@@ -20,19 +21,16 @@ export interface Message {
   artifactHtml?: string
   artifactTitle?: string
   isStreaming?: boolean
+  steps?: Step[]
 }
 
 function parseArtifact(text: string): { cleaned: string; html: string | null; title: string | null } {
   const artifactRegex = /<artifact[^>]*type="html"[^>]*>([\s\S]*?)<\/artifact>/i
   const match = text.match(artifactRegex)
-  if (!match) {
-    return { cleaned: text, html: null, title: null }
-  }
+  if (!match) return { cleaned: text, html: null, title: null }
 
-  // Extract optional title attribute
   const titleMatch = text.match(/<artifact[^>]*title="([^"]*)"/)
   const title = titleMatch ? titleMatch[1] : 'Interactive Component'
-
   const html = match[1].trim()
   const cleaned = text.replace(match[0], '').trim()
   return { cleaned, html, title }
@@ -66,24 +64,14 @@ export default function ChatMessage({ message }: ChatMessageProps) {
     )
   }
 
-  // Parse artifact from content
   const { cleaned, html, title } = parseArtifact(message.content)
-
-  // Merge artifact from content parsing or from explicit artifactHtml prop
   const finalHtml = message.artifactHtml || html
   const finalTitle = message.artifactTitle || title || 'Interactive Component'
 
   return (
     <div style={{ marginBottom: '24px', maxWidth: '100%' }}>
-      {/* Assistant label */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-          marginBottom: '6px',
-        }}
-      >
+      {/* Avatar + name row */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
         <div
           style={{
             width: '20px',
@@ -102,36 +90,45 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           W
         </div>
         <span style={{ fontSize: '12px', color: '#666', fontWeight: 500 }}>Welder Assistant</span>
-        {message.isStreaming && (
-          <span style={{ fontSize: '11px', color: '#555' }}>thinking…</span>
-        )}
       </div>
 
-      {/* Text content */}
-      <div className="prose" style={{ fontSize: '14px', lineHeight: '1.65' }}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {cleaned || message.content}
-        </ReactMarkdown>
-      </div>
-
-      {/* Manual page images */}
-      {message.pageImages && message.pageImages.length > 0 && (
-        <div style={{ marginTop: '12px', display: 'grid', gap: '8px', gridTemplateColumns: message.pageImages.length > 1 ? '1fr 1fr' : '1fr' }}>
-          {message.pageImages.map(img => (
-            <PageImage
-              key={img.page_id}
-              url={img.url}
-              pageNum={img.page_num}
-              source={img.source}
-              summary={img.summary}
-            />
-          ))}
-        </div>
+      {/* Activity steps — visible while streaming */}
+      {message.isStreaming && message.steps && message.steps.length > 0 && (
+        <ActivitySteps steps={message.steps} />
       )}
 
-      {/* Artifact iframe */}
-      {finalHtml && (
-        <ArtifactFrame html={finalHtml} title={finalTitle} />
+      {/* Full response — only visible after done */}
+      {!message.isStreaming && (
+        <div className="message-reveal">
+          <div className="prose" style={{ fontSize: '14px', lineHeight: '1.65' }}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {cleaned || message.content}
+            </ReactMarkdown>
+          </div>
+
+          {message.pageImages && message.pageImages.length > 0 && (
+            <div
+              style={{
+                marginTop: '12px',
+                display: 'grid',
+                gap: '8px',
+                gridTemplateColumns: message.pageImages.length > 1 ? '1fr 1fr' : '1fr',
+              }}
+            >
+              {message.pageImages.map(img => (
+                <PageImage
+                  key={img.page_id}
+                  url={img.url}
+                  pageNum={img.page_num}
+                  source={img.source}
+                  summary={img.summary}
+                />
+              ))}
+            </div>
+          )}
+
+          {finalHtml && <ArtifactFrame html={finalHtml} title={finalTitle} />}
+        </div>
       )}
     </div>
   )
