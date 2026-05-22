@@ -12,6 +12,7 @@ export interface PageImageData {
   page_num: number
   source: string
   summary?: string
+  show_by_default?: boolean
 }
 
 export interface Message {
@@ -66,7 +67,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
 
   const { cleaned, html, title } = parseArtifact(message.content)
   const finalHtml = message.artifactHtml || html
-  const finalTitle = message.artifactTitle || title || 'Interactive Component'
+  const finalTitle = message.artifactTitle || title || 'Interactive Visual'
 
   return (
     <div style={{ marginBottom: '24px', maxWidth: '100%' }}>
@@ -122,12 +123,13 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                   pageNum={img.page_num}
                   source={img.source}
                   summary={img.summary}
+                  defaultExpanded={img.show_by_default ?? false}
                 />
               ))}
             </div>
           )}
 
-          {finalHtml && <ArtifactFrame html={finalHtml} title={finalTitle} />}
+          {finalHtml && <ArtifactFrame html={finalHtml} title={finalTitle} defaultExpanded={false} />}
         </div>
       )}
     </div>

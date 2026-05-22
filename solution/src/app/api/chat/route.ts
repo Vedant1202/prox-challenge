@@ -1,7 +1,9 @@
 import { NextRequest } from 'next/server'
 import { anthropic, MODEL } from '@/lib/anthropic'
 import { searchCorpus, getPage, getPageImageUrl, formatPageForContext } from '@/lib/corpus'
+import { getDb } from '@/lib/db'
 import Anthropic from '@anthropic-ai/sdk'
+import { randomUUID } from 'crypto'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -159,8 +161,31 @@ function handleToolCall(
   return 'Unknown tool'
 }
 
+interface CollectedPageImage {
+  page_id: string
+  url: string
+  page_num: number
+  source: string
+  summary?: string
+}
+
+function shouldShowByDefault(pageNum: number, text: string): boolean {
+  const lower = text.toLowerCase()
+  const patterns = [
+    `p. ${pageNum}`,
+    `page ${pageNum}`,
+    `pg ${pageNum}`,
+    `p${pageNum}`,
+    `p.${pageNum}`,
+  ]
+  return patterns.some(p => lower.includes(p))
+}
+
 export async function POST(req: NextRequest) {
-  const { messages } = await req.json() as { messages: Message[] }
+  const { messages, chatId } = await req.json() as { messages: Message[]; chatId?: string }
+
+  // Identify the last user message for persistence
+  const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')
 
   const encoder = new TextEncoder()
 
@@ -176,6 +201,9 @@ export async function POST(req: NextRequest) {
           content: typeof m.content === 'string' ? m.content : m.content,
         })) as Anthropic.MessageParam[]
 
+        let fullText = ''
+        const collectedPageImages: CollectedPageImage[] = []
+
         // Agentic loop: run until Claude stops calling tools
         while (true) {
           const response = await anthropic.messages.create({
@@ -186,13 +214,11 @@ export async function POST(req: NextRequest) {
             messages: currentMessages,
           })
 
-          // Collect all content blocks
-          const textBlocks: string[] = []
           const toolUses: Array<{ id: string; name: string; input: Record<string, string> }> = []
 
           for (const block of response.content) {
             if (block.type === 'text') {
-              textBlocks.push(block.text)
+              fullText += block.text
               send({ type: 'text', text: block.text })
             } else if (block.type === 'tool_use') {
               toolUses.push({
@@ -204,22 +230,19 @@ export async function POST(req: NextRequest) {
             }
           }
 
-          // If no tool calls, we're done
           if (toolUses.length === 0 || response.stop_reason === 'end_turn') {
             break
           }
 
-          // Process tool calls and build results
           const toolResults: Anthropic.ToolResultBlockParam[] = []
           for (const tool of toolUses) {
             const result = handleToolCall(tool.name, tool.input)
 
-            // For get_page_image, parse and send the image URL to the client
             if (tool.name === 'get_page_image') {
               try {
-                const parsed = JSON.parse(result)
-                send({ type: 'page_image', ...parsed })
-              } catch { /* ignore parse errors */ }
+                const parsed = JSON.parse(result) as CollectedPageImage
+                collectedPageImages.push(parsed)
+              } catch { /* ignore */ }
             }
 
             toolResults.push({
@@ -229,7 +252,6 @@ export async function POST(req: NextRequest) {
             })
           }
 
-          // Add assistant turn + tool results to message history
           currentMessages = [
             ...currentMessages,
             { role: 'assistant', content: response.content },
@@ -237,7 +259,68 @@ export async function POST(req: NextRequest) {
           ]
         }
 
+        // Orchestration pass: emit page_image events with show_by_default computed from final text
+        for (const img of collectedPageImages) {
+          send({
+            type: 'page_image',
+            ...img,
+            show_by_default: shouldShowByDefault(img.page_num, fullText),
+          })
+        }
+
         send({ type: 'done' })
+
+        // Persist to SQLite if chatId provided
+        if (chatId) {
+          try {
+            const db = getDb()
+            const now = Date.now()
+
+            // Auto-create chat row if missing
+            const existing = db.prepare('SELECT id, title FROM chats WHERE id = ?').get(chatId) as { id: string; title: string } | undefined
+            if (!existing) {
+              const title = (typeof lastUserMessage?.content === 'string'
+                ? lastUserMessage.content
+                : 'New Chat'
+              ).slice(0, 60)
+              db.prepare('INSERT INTO chats (id, title, created_at, updated_at) VALUES (?, ?, ?, ?)').run(chatId, title, now, now)
+            } else if (existing.title === 'New Chat' && lastUserMessage) {
+              const title = (typeof lastUserMessage.content === 'string'
+                ? lastUserMessage.content
+                : 'New Chat'
+              ).slice(0, 60)
+              db.prepare('UPDATE chats SET title = ?, updated_at = ? WHERE id = ?').run(title, now, chatId)
+            } else {
+              db.prepare('UPDATE chats SET updated_at = ? WHERE id = ?').run(now, chatId)
+            }
+
+            // Save user message (only the last one — prior turns were already saved)
+            if (lastUserMessage && typeof lastUserMessage.content === 'string') {
+              db.prepare(
+                'INSERT OR IGNORE INTO messages (id, chat_id, role, content, created_at) VALUES (?, ?, ?, ?, ?)'
+              ).run(randomUUID(), chatId, 'user', lastUserMessage.content, now - 1)
+            }
+
+            // Save assistant message
+            db.prepare(
+              'INSERT INTO messages (id, chat_id, role, content, page_images, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+            ).run(
+              randomUUID(),
+              chatId,
+              'assistant',
+              fullText,
+              collectedPageImages.length > 0 ? JSON.stringify(
+                collectedPageImages.map(img => ({
+                  ...img,
+                  show_by_default: shouldShowByDefault(img.page_num, fullText),
+                }))
+              ) : null,
+              now,
+            )
+          } catch (dbErr) {
+            console.error('DB persist error:', dbErr)
+          }
+        }
       } catch (err) {
         send({ type: 'error', message: String(err) })
       } finally {

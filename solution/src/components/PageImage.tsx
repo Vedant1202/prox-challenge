@@ -7,10 +7,11 @@ interface PageImageProps {
   pageNum: number
   source: string
   summary?: string
+  defaultExpanded?: boolean
 }
 
-export default function PageImage({ url, pageNum, source, summary }: PageImageProps) {
-  const [expanded, setExpanded] = useState(false)
+export default function PageImage({ url, pageNum, source, summary, defaultExpanded = false }: PageImageProps) {
+  const [expanded, setExpanded] = useState(defaultExpanded)
 
   const sourceLabel = source
     .replace('owner-manual', 'Owner Manual')
@@ -24,57 +25,70 @@ export default function PageImage({ url, pageNum, source, summary }: PageImagePr
         borderRadius: '10px',
         overflow: 'hidden',
         marginTop: '8px',
-        cursor: 'pointer',
         transition: 'border-color 0.15s',
       }}
-      onClick={() => setExpanded(e => !e)}
       onMouseEnter={e => (e.currentTarget.style.borderColor = '#3a3a3a')}
       onMouseLeave={e => (e.currentTarget.style.borderColor = '#2a2a2a')}
     >
-      <img
-        src={url}
-        alt={`${sourceLabel} page ${pageNum}`}
-        style={{
-          width: '100%',
-          display: 'block',
-          maxHeight: expanded ? 'none' : '220px',
-          objectFit: 'cover',
-          objectPosition: 'top',
-        }}
-      />
+      {/* Header — always visible */}
       <div
+        onClick={() => setExpanded(e => !e)}
         style={{
           background: '#161616',
-          borderTop: '1px solid #2a2a2a',
-          padding: '6px 10px',
+          padding: '7px 10px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
           gap: '8px',
+          cursor: 'pointer',
+          userSelect: 'none',
         }}
       >
-        <span style={{ fontSize: '11px', color: '#888' }}>
-          {sourceLabel} · Page {pageNum}
+        <span
+          style={{
+            background: '#f59e0b22',
+            color: '#f59e0b',
+            fontSize: '10px',
+            fontWeight: 700,
+            padding: '2px 6px',
+            borderRadius: '4px',
+            flexShrink: 0,
+          }}
+        >
+          p.{pageNum}
+        </span>
+        <span style={{ fontSize: '11px', color: '#888', flexShrink: 0 }}>
+          {sourceLabel}
         </span>
         {summary && (
           <span
             style={{
               fontSize: '11px',
-              color: '#666',
+              color: '#555',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
               flex: 1,
-              textAlign: 'right',
             }}
           >
             {summary}
           </span>
         )}
-        <span style={{ fontSize: '11px', color: '#555', flexShrink: 0 }}>
+        <span style={{ fontSize: '11px', color: '#555', flexShrink: 0, marginLeft: 'auto' }}>
           {expanded ? '▲' : '▼'}
         </span>
       </div>
+
+      {/* Content — collapsed by default */}
+      {expanded && (
+        <img
+          src={url}
+          alt={`${sourceLabel} page ${pageNum}`}
+          style={{
+            width: '100%',
+            display: 'block',
+          }}
+        />
+      )}
     </div>
   )
 }
