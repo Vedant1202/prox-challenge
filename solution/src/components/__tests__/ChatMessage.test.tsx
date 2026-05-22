@@ -1,13 +1,21 @@
 // @vitest-environment jsdom
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import ChatMessage, { type Message } from '../ChatMessage'
 import { ThemeProvider } from '@/lib/theme-context'
 
-function renderMsg(message: Message) {
+const CHECKLIST = {
+  title: 'TIG Setup Checklist',
+  items: [
+    { step: 'Set polarity to DCEN', description: 'Move cables to the correct terminals.' },
+    { step: 'Connect gas line', description: 'Use 100% Argon at 15–20 CFH.' },
+  ],
+}
+
+function renderMsg(message: Message, checklistChecked?: boolean[], onChecklistToggle?: (i: number) => void) {
   return render(
     <ThemeProvider>
-      <ChatMessage message={message} />
+      <ChatMessage message={message} checklistChecked={checklistChecked} onChecklistToggle={onChecklistToggle} />
     </ThemeProvider>
   )
 }
@@ -89,5 +97,31 @@ describe('ChatMessage — assistant messages', () => {
     renderMsg({ role: 'assistant', content: 'No images.', isStreaming: false })
     // No image badges rendered
     expect(screen.queryByText(/p\.\d+/)).not.toBeInTheDocument()
+  })
+
+  it('renders ChecklistCard when message.checklist is set', () => {
+    renderMsg(
+      { role: 'assistant', content: 'Here are the steps.', isStreaming: false, checklist: CHECKLIST },
+      [false, false]
+    )
+    expect(screen.getByTestId('checklist-card')).toBeInTheDocument()
+    expect(screen.getByText('TIG Setup Checklist')).toBeInTheDocument()
+    expect(screen.getByText('Set polarity to DCEN')).toBeInTheDocument()
+  })
+
+  it('does not render ChecklistCard when message.checklist is not set', () => {
+    renderMsg({ role: 'assistant', content: 'No checklist here.', isStreaming: false })
+    expect(screen.queryByTestId('checklist-card')).not.toBeInTheDocument()
+  })
+
+  it('calls onChecklistToggle when a checklist item is toggled', () => {
+    const onToggle = vi.fn()
+    renderMsg(
+      { role: 'assistant', content: '', isStreaming: false, checklist: CHECKLIST },
+      [false, false],
+      onToggle
+    )
+    fireEvent.click(screen.getByTestId('checklist-item-0'))
+    expect(onToggle).toHaveBeenCalledWith(0)
   })
 })

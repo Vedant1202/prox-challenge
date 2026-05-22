@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import ArtifactFrame from './ArtifactFrame'
 import PageImage from './PageImage'
 import ActivitySteps, { Step } from './ActivitySteps'
+import ChecklistCard, { ChecklistItem } from './ChecklistCard'
 
 export interface PageImageData {
   page_id: string
@@ -25,6 +26,7 @@ export interface Message {
   steps?: Step[]
   rateLimited?: boolean
   resetAt?: number
+  checklist?: { title: string; items: ChecklistItem[] }
 }
 
 function parseArtifact(text: string): { cleaned: string; html: string | null; title: string | null } {
@@ -39,7 +41,13 @@ function parseArtifact(text: string): { cleaned: string; html: string | null; ti
   return { cleaned, html, title }
 }
 
-export default function ChatMessage({ message }: { message: Message }) {
+interface ChatMessageProps {
+  message: Message
+  checklistChecked?: boolean[]
+  onChecklistToggle?: (index: number) => void
+}
+
+export default function ChatMessage({ message, checklistChecked, onChecklistToggle }: ChatMessageProps) {
   const isUser = message.role === 'user'
 
   if (isUser) {
@@ -118,6 +126,15 @@ export default function ChatMessage({ message }: { message: Message }) {
                   />
                 ))}
               </div>
+            )}
+
+            {message.checklist && (
+              <ChecklistCard
+                title={message.checklist.title}
+                items={message.checklist.items}
+                checked={checklistChecked ?? message.checklist.items.map(() => false)}
+                onToggle={onChecklistToggle ?? (() => {})}
+              />
             )}
 
             {finalHtml && (
