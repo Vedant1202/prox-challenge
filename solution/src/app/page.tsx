@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ChatMessage, { Message, PageImageData } from '@/components/ChatMessage'
 import ChatSidebar, { ChatRecord } from '@/components/ChatSidebar'
+import { MachineDiagramPage } from '@/components/MachineDiagram'
+import ManualViewer from '@/components/ManualViewer'
 import SiriOrb from '@/components/SiriOrb'
 import ThemeToggle from '@/components/ThemeToggle'
 import RateLimitBadge from '@/components/RateLimitBadge'
@@ -18,6 +20,7 @@ const STEP_LABELS: Record<string, string> = {
   search_corpus: 'Searching manual…',
   get_page_image: 'Loading page image…',
   show_artifact: 'Building visual…',
+  show_checklist: 'Building checklist…',
 }
 
 const SUGGESTED_QUESTIONS = [
@@ -42,6 +45,23 @@ function formatCountdown(resetAt: number): string {
   return `${secs}s`
 }
 
+function buildChecklistContext(msgs: Message[], state: Map<string, boolean[]>, cId: string): string {
+  const parts: string[] = []
+  msgs.forEach((msg, i) => {
+    if (!msg.checklist) return
+    const key = `${cId}:${i}`
+    const checked = state.get(key) ?? []
+    const checkedCount = checked.filter(Boolean).length
+    if (checkedCount === 0) return
+    const checkedSteps = checked
+      .map((c, j) => (c ? `step ${j + 1}` : null))
+      .filter(Boolean)
+      .join(', ')
+    parts.push(`[Checklist "${msg.checklist.title}": ${checkedCount}/${msg.checklist.items.length} steps done (${checkedSteps} completed)]`)
+  })
+  return parts.length > 0 ? '\n\n' + parts.join('\n') : ''
+}
+
 function HomeInner() {
   const fingerprintId = useFingerprintId()
 
@@ -50,6 +70,9 @@ function HomeInner() {
   const [isLoading, setIsLoading] = useState(false)
   const [chats, setChats] = useState<ChatRecord[]>([])
   const [activeChatId, setActiveChatId] = useState<string | null>(null)
+
+  const [view, setView] = useState<'chat' | 'diagram' | 'manual'>('chat')
+  const [checklistState, setChecklistState] = useState<Map<string, boolean[]>>(new Map())
 
   const [rateLimit, setRateLimit] = useState<RateLimitState | null>(null)
   const [windowMinutes, setWindowMinutes] = useState(60)
@@ -178,6 +201,14 @@ function HomeInner() {
     let chatId = activeChatId
     if (!chatId) chatId = await createNewChat()
 
+    // Append checklist context if any items are checked
+    const checklistCtx = buildChecklistContext(
+      chatMsgCache.current.get(chatId!) ?? [],
+      checklistState,
+      chatId!
+    )
+    const messageContent = trimmed + checklistCtx
+
     // Record model for this chat
     chatModelCache.current.set(chatId, model)
 
@@ -202,12 +233,17 @@ function HomeInner() {
       isStreaming: true,
       steps: [{ label: 'Thinking…', status: 'active' }],
     }
+    // Capture assistant index before adding it (cache already has user message)
+    const assistantIdx = (chatMsgCache.current.get(chatId!) ?? []).length
     applyChatUpdate(prev => [...prev, assistantMsg])
 
-    // Build history from cache so it reflects the correct chat's messages
+    // Build history from cache — replace last user message content with checklist-augmented version
     const historyForApi = (chatMsgCache.current.get(chatId) ?? [])
       .filter(m => !m.isStreaming)
-      .map(m => ({ role: m.role, content: m.content }))
+      .map((m, i, arr) => {
+        if (m.role === 'user' && i === arr.length - 1) return { role: m.role, content: messageContent }
+        return { role: m.role, content: m.content }
+      })
 
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
@@ -298,6 +334,22 @@ function HomeInner() {
                 summary: event.summary,
                 show_by_default: event.show_by_default ?? false,
               })
+            } else if (event.type === 'checklist') {
+              setChecklistState(prev => {
+                const key = `${chatId}:${assistantIdx}`
+                if (prev.has(key)) return prev
+                const m = new Map(prev)
+                m.set(key, new Array(event.items.length).fill(false))
+                return m
+              })
+              applyChatUpdate(prev => {
+                const next = [...prev]
+                next[assistantIdx] = {
+                  ...next[assistantIdx],
+                  checklist: { title: event.title, items: event.items },
+                }
+                return next
+              })
             } else if (event.type === 'done') {
               applyChatUpdate(prev => {
                 const next = [...prev]
@@ -332,7 +384,18 @@ function HomeInner() {
       streamingChatId.current = null
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, activeChatId, fingerprintId, model, rateLimit])
+  }, [isLoading, activeChatId, fingerprintId, model, rateLimit, checklistState])
+
+  function handleChecklistToggle(cId: string, msgIdx: number, itemIdx: number) {
+    const key = `${cId}:${msgIdx}`
+    setChecklistState(prev => {
+      const m = new Map(prev)
+      const current = m.get(key) ?? []
+      const next = [...current]
+      next[itemIdx] = !next[itemIdx]
+      return new Map(m).set(key, next)
+    })
+  }
 
   function handleModelChange(newModel: Model) {
     setModel(newModel)
@@ -363,10 +426,15 @@ function HomeInner() {
         onSelectChat={selectChat}
         onNewChat={handleNewChat}
         onDeleteChat={handleDeleteChat}
+        view={view}
+        onViewChange={setView}
       />
 
       {/* Main column */}
       <div className="flex flex-col flex-1 overflow-hidden relative" style={{ zIndex: 1 }}>
+        {view === 'diagram' && <MachineDiagramPage onClose={() => setView('chat')} />}
+        {view === 'manual' && <ManualViewer onClose={() => setView('chat')} />}
+        {view !== 'chat' ? null : (<>
 
         {/* Header — z-index keeps it above chat bubbles (which create stacking contexts via backdrop-filter) */}
         <header className="glass border-b flex items-center gap-3 px-5 py-3 flex-shrink-0 relative z-10">
@@ -454,7 +522,14 @@ function HomeInner() {
                 </div>
               </div>
             ) : (
-              messages.map((msg, i) => <ChatMessage key={i} message={msg} />)
+              messages.map((msg, i) => (
+                <ChatMessage
+                  key={i}
+                  message={msg}
+                  checklistChecked={activeChatId ? checklistState.get(`${activeChatId}:${i}`) : undefined}
+                  onChecklistToggle={activeChatId ? (itemIdx) => handleChecklistToggle(activeChatId, i, itemIdx) : undefined}
+                />
+              ))
             )}
             <div ref={messagesEndRef} />
           </div>
@@ -540,6 +615,7 @@ function HomeInner() {
           )}
         </div>
 
+        </>)}
       </div>
     </div>
   )
