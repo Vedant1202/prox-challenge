@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import ChatMessage, { Message, PageImageData } from '@/components/ChatMessage'
 import ChatSidebar, { ChatRecord } from '@/components/ChatSidebar'
+import SiriOrb from '@/components/SiriOrb'
+import ThemeToggle from '@/components/ThemeToggle'
 import type { Step } from '@/components/ActivitySteps'
 
 const STEP_LABELS: Record<string, string> = {
@@ -28,12 +30,10 @@ export default function Home() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
-  // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  // Load chats on mount; auto-select the most recent (or create one)
   useEffect(() => {
     fetch('/api/chats')
       .then(r => r.json())
@@ -62,14 +62,8 @@ export default function Home() {
     setActiveChatId(id)
     fetch(`/api/chats/${id}/messages`)
       .then(r => r.json())
-      .then(({ messages: loaded }: { messages: Message[] }) => {
-        setMessages(loaded)
-      })
+      .then(({ messages: loaded }: { messages: Message[] }) => setMessages(loaded))
       .catch(console.error)
-  }
-
-  async function handleNewChat() {
-    await createNewChat()
   }
 
   function handleDeleteChat(id: string) {
@@ -77,11 +71,8 @@ export default function Home() {
     setChats(prev => prev.filter(c => c.id !== id))
     if (activeChatId === id) {
       const remaining = chats.filter(c => c.id !== id)
-      if (remaining.length > 0) {
-        selectChat(remaining[0].id)
-      } else {
-        createNewChat()
-      }
+      if (remaining.length > 0) selectChat(remaining[0].id)
+      else createNewChat()
     }
   }
 
@@ -89,9 +80,7 @@ export default function Home() {
     if (!text.trim() || isLoading) return
 
     let chatId = activeChatId
-    if (!chatId) {
-      chatId = await createNewChat()
-    }
+    if (!chatId) chatId = await createNewChat()
 
     const userMessage: Message = { role: 'user', content: text.trim() }
     const updatedMessages = [...messages, userMessage]
@@ -99,7 +88,6 @@ export default function Home() {
     setInput('')
     setIsLoading(true)
 
-    // Add streaming placeholder
     const assistantMsg: Message = {
       role: 'assistant',
       content: '',
@@ -115,10 +103,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chatId,
-          messages: updatedMessages.map(m => ({
-            role: m.role,
-            content: m.content,
-          })),
+          messages: updatedMessages.map(m => ({ role: m.role, content: m.content })),
         }),
       })
 
@@ -133,7 +118,7 @@ export default function Home() {
 
       const advanceStep = (nextLabel: string) => {
         const last = steps[steps.length - 1]
-        if (last && last.status === 'active') last.status = 'done'
+        if (last?.status === 'active') last.status = 'done'
         steps.push({ label: nextLabel, status: 'active' })
         setMessages(prev => {
           const next = [...prev]
@@ -161,8 +146,7 @@ export default function Home() {
             if (event.type === 'text') {
               fullText += event.text
             } else if (event.type === 'tool_call') {
-              const label = STEP_LABELS[event.name] ?? `${event.name}…`
-              advanceStep(label)
+              advanceStep(STEP_LABELS[event.name] ?? `${event.name}…`)
             } else if (event.type === 'page_image') {
               pageImages.push({
                 page_id: event.page_id,
@@ -183,13 +167,12 @@ export default function Home() {
                 }
                 return next
               })
-              // Refresh chat list to pick up title update
               fetch('/api/chats')
                 .then(r => r.json())
                 .then(({ chats: list }: { chats: ChatRecord[] }) => setChats(list))
                 .catch(console.error)
             }
-          } catch { /* ignore malformed SSE lines */ }
+          } catch { /* ignore malformed SSE */ }
         }
       }
     } catch (err) {
@@ -218,129 +201,87 @@ export default function Home() {
   const isEmpty = messages.length === 0
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '100vh',
-        background: '#111111',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="flex h-screen overflow-hidden relative">
+      {/* Aurora background */}
+      <div className="aurora-bg" aria-hidden="true" />
+
       {/* Sidebar */}
       <ChatSidebar
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={selectChat}
-        onNewChat={handleNewChat}
+        onNewChat={createNewChat}
         onDeleteChat={handleDeleteChat}
       />
 
-      {/* Main chat area */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      {/* Main column */}
+      <div className="flex flex-col flex-1 overflow-hidden relative" style={{ zIndex: 1 }}>
+
         {/* Header */}
-        <div
-          style={{
-            padding: '12px 20px',
-            borderBottom: '1px solid #1e1e1e',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            flexShrink: 0,
-          }}
-        >
+        <header className="glass border-b flex items-center gap-3 px-5 py-3 flex-shrink-0">
           <div
             style={{
-              width: '28px',
-              height: '28px',
-              borderRadius: '6px',
-              background: '#f59e0b',
+              width: 28,
+              height: 28,
+              borderRadius: 6,
+              background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: 800,
-              fontSize: '13px',
-              color: '#000',
+              fontSize: 13,
+              color: '#fff',
+              flexShrink: 0,
             }}
           >
             V
           </div>
           <div>
-            <div style={{ fontWeight: 600, fontSize: '14px', color: '#e5e5e5' }}>
-              Vulcan OmniPro 220
-            </div>
-            <div style={{ fontSize: '11px', color: '#666' }}>Welder Assistant</div>
+            <div className="font-semibold text-sm text-base-content">Vulcan OmniPro 220</div>
+            <div className="text-xs text-base-content/50">Welder Assistant</div>
           </div>
-        </div>
+          <div className="flex-1" />
+          <ThemeToggle />
+        </header>
 
         {/* Messages area */}
         <div
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: '24px 20px',
-            maxWidth: '800px',
-            width: '100%',
-            margin: '0 auto',
-          }}
+          className="flex-1 overflow-y-auto py-6 px-5"
+          style={{ maxWidth: 800, width: '100%', margin: '0 auto' }}
         >
           {isEmpty ? (
-            <div style={{ paddingTop: '60px' }}>
-              {/* Hero */}
-              <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                <div
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '14px',
-                    background: '#f59e0b',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 900,
-                    fontSize: '24px',
-                    color: '#000',
-                    margin: '0 auto 16px',
-                  }}
-                >
-                  V
-                </div>
-                <h1 style={{ fontSize: '22px', fontWeight: 700, color: '#e5e5e5', margin: '0 0 8px' }}>
+            <div style={{ paddingTop: 48 }}>
+              {/* Siri orb hero */}
+              <div style={{ marginBottom: 32 }}>
+                <SiriOrb size={160} />
+              </div>
+              <div style={{ textAlign: 'center', marginBottom: 48 }}>
+                <h1 className="text-2xl font-bold text-base-content mb-2">
                   Vulcan OmniPro 220 Assistant
                 </h1>
-                <p style={{ fontSize: '14px', color: '#888', maxWidth: '420px', margin: '0 auto', lineHeight: 1.6 }}>
+                <p className="text-sm text-base-content/55 max-w-sm mx-auto" style={{ lineHeight: 1.65 }}>
                   Ask anything about setup, settings, troubleshooting, or how to use your welder.
-                  I have the full manual and can show you diagrams, tables, and interactive visuals.
+                  I have the full manual and can show you diagrams and interactive visuals.
                 </p>
               </div>
 
               {/* Suggested questions */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '560px', margin: '0 auto' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                  maxWidth: 560,
+                  margin: '0 auto',
+                }}
+              >
                 {SUGGESTED_QUESTIONS.map(q => (
                   <button
                     key={q}
                     onClick={() => sendMessage(q)}
-                    style={{
-                      background: '#1a1a1a',
-                      border: '1px solid #2a2a2a',
-                      borderRadius: '10px',
-                      padding: '10px 14px',
-                      textAlign: 'left',
-                      color: '#ccc',
-                      fontSize: '13px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s',
-                      lineHeight: 1.4,
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.background = '#1f1f1f'
-                      e.currentTarget.style.borderColor = '#3a3a3a'
-                      e.currentTarget.style.color = '#e5e5e5'
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.background = '#1a1a1a'
-                      e.currentTarget.style.borderColor = '#2a2a2a'
-                      e.currentTarget.style.color = '#ccc'
-                    }}
+                    className="glass-card text-left rounded-xl px-4 py-3 text-sm text-base-content/80 hover:text-base-content transition-colors duration-150 cursor-pointer w-full"
+                    style={{ lineHeight: 1.45 }}
+                    onMouseEnter={e => (e.currentTarget.style.background = '')}
                   >
                     {q}
                   </button>
@@ -348,96 +289,57 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <>
-              {messages.map((msg, i) => (
-                <ChatMessage key={i} message={msg} />
-              ))}
-            </>
+            messages.map((msg, i) => <ChatMessage key={i} message={msg} />)
           )}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input area */}
         <div
-          style={{
-            padding: '12px 20px 20px',
-            borderTop: '1px solid #1a1a1a',
-            flexShrink: 0,
-            maxWidth: '800px',
-            width: '100%',
-            margin: '0 auto',
-          }}
+          className="flex-shrink-0 px-5 pb-5 pt-3"
+          style={{ maxWidth: 800, width: '100%', margin: '0 auto' }}
         >
-          <div
-            style={{
-              display: 'flex',
-              gap: '8px',
-              background: '#1a1a1a',
-              border: '1px solid #2a2a2a',
-              borderRadius: '12px',
-              padding: '8px 8px 8px 14px',
-              alignItems: 'flex-end',
-            }}
-          >
-            <textarea
-              ref={inputRef}
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Ask about settings, troubleshooting, polarity, duty cycle…"
-              rows={1}
-              style={{
-                flex: 1,
-                background: 'transparent',
-                border: 'none',
-                outline: 'none',
-                color: '#e5e5e5',
-                fontSize: '14px',
-                resize: 'none',
-                lineHeight: '1.5',
-                maxHeight: '120px',
-                overflow: 'auto',
-                paddingTop: '4px',
-                paddingBottom: '4px',
-              }}
-              onInput={e => {
-                const el = e.currentTarget
-                el.style.height = 'auto'
-                el.style.height = Math.min(el.scrollHeight, 120) + 'px'
-              }}
-              disabled={isLoading}
-            />
-            <button
-              onClick={() => sendMessage(input)}
-              disabled={!input.trim() || isLoading}
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                border: 'none',
-                background: !input.trim() || isLoading ? '#2a2a2a' : '#f59e0b',
-                color: !input.trim() || isLoading ? '#555' : '#000',
-                cursor: !input.trim() || isLoading ? 'not-allowed' : 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-                transition: 'all 0.15s',
-                fontSize: '14px',
-              }}
-              aria-label="Send"
-            >
-              ↑
-            </button>
+          <div className="input-glow">
+            <div className="glass-card rounded-2xl px-4 py-2 flex items-end gap-2">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask about settings, troubleshooting, polarity, duty cycle…"
+                rows={1}
+                className="flex-1 bg-transparent border-none outline-none text-sm text-base-content placeholder:text-base-content/35 resize-none leading-relaxed"
+                style={{ maxHeight: 120, overflow: 'auto', paddingTop: 4, paddingBottom: 4 }}
+                onInput={e => {
+                  const el = e.currentTarget
+                  el.style.height = 'auto'
+                  el.style.height = Math.min(el.scrollHeight, 120) + 'px'
+                }}
+                disabled={isLoading}
+              />
+              <button
+                onClick={() => sendMessage(input)}
+                disabled={!input.trim() || isLoading}
+                className="btn btn-sm btn-circle flex-shrink-0 border-none transition-all duration-150"
+                style={{
+                  background: !input.trim() || isLoading
+                    ? 'rgba(129,140,248,0.12)'
+                    : 'linear-gradient(135deg, #7c3aed, #06b6d4)',
+                  color: !input.trim() || isLoading ? 'rgba(129,140,248,0.4)' : '#fff',
+                }}
+                aria-label="Send"
+              >
+                ↑
+              </button>
+            </div>
           </div>
           {!isEmpty && (
-            <div style={{ textAlign: 'center', marginTop: '6px' }}>
-              <span style={{ fontSize: '11px', color: '#444' }}>
-                Press Enter to send · Shift+Enter for new line
-              </span>
+            <div className="text-center mt-2">
+              <span className="text-xs text-base-content/30">Press Enter to send · Shift+Enter for new line</span>
             </div>
           )}
         </div>
+
       </div>
     </div>
   )
