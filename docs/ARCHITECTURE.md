@@ -11,7 +11,7 @@ Browser
   └─ POST /api/chat            → streaming SSE  ←── the main path
               │
               ▼
-      Rate limit check (SQLite sliding window, keyed on SHA256(ip:fingerprint))
+      Rate limit check (Neon Postgres sliding window, keyed on SHA256(ip:fingerprint))
               │
               ▼
       Claude Sonnet 4.6  —  agentic tool loop  (prompt-cached: system → tools → history)
@@ -45,7 +45,7 @@ Browser
        shows PageImage cards, renders ChecklistCard for checklist events
               │
               ▼
-       On done: persist to SQLite (chats + messages tables, including checklist JSON)
+       On done: persist to Neon Postgres (chats + messages tables, including checklist JSON)
 ```
 
 ---
@@ -209,30 +209,30 @@ The sidebar is always visible; only the main column content switches. All three 
 
 ## Persistence Layer
 
-SQLite via Node.js built-in `node:sqlite` (no native module, no binary dependency).
+Neon Postgres via `@neondatabase/serverless`. `DATABASE_URL` should point at the pooled Neon connection string for Vercel/serverless deployments.
 
 ```sql
-chats      (id, title, created_at, updated_at)
+chats      (id, client_key, title, created_at, updated_at)
 messages   (id, chat_id, role, content, page_images JSON, checklist JSON, created_at)
 rate_limit (client_key, timestamp)   ← sliding window log
 ```
 
-`checklist` is a nullable JSON column added via migration-safe `ALTER TABLE … ADD COLUMN` on startup — safe to run against an existing database from an older version.
+The canonical schema is in `solution/db/schema.sql`. The runtime also calls an idempotent schema initializer on first database access so a fresh Neon database can boot without a separate migration command for the demo.
 
 Database is written **after** the stream completes (inside the `finally`-equivalent path after `send({ type: 'done' })`). The client sees the response immediately; persistence is fire-and-forget with error logging.
 
-The chat row is auto-created from the first message if it doesn't exist yet — no separate "create chat" API call is required before the first message.
+The chat row is scoped by `client_key` and auto-created from the first message if it doesn't exist yet — no separate "create chat" API call is required before the first message.
 
 ---
 
 ## Rate Limiting
 
-Sliding window, stored in SQLite. Per request:
+Sliding window, stored in Neon Postgres. Per request:
 1. Delete all entries for this `client_key` older than `windowMs`
 2. Count remaining entries — if `>= limit`, return 429
 3. Insert a new row, return allowed
 
-`client_key` is `SHA256(ip + ":" + browser_fingerprint)`. The fingerprint is a `localStorage` UUID generated on first visit, sent as `X-Client-Fingerprint` header. Combined with IP it prevents trivially bypassing the limit by refreshing.
+`client_key` is `SHA256(ip + ":" + browser_fingerprint)`. The browser sends `X-Client-Fingerprint` on chat and history requests. The fingerprint is supplied by FingerprintJS when available, with a stable `localStorage` UUID fallback so Vercel-deployed chat history stays per visitor even if the library fails to load.
 
 Reset time is computed as `oldest_entry.timestamp + windowMs` — the exact moment the window slides enough to allow another request.
 
@@ -246,7 +246,7 @@ Reset time is computed as `oldest_entry.timestamp + windowMs` — the exact mome
 
 **Corpus committed to the repo.** Extraction costs ~$1 and 15 minutes. Requiring the reviewer to run it would break the 2-minute setup goal and introduce a failure point. The PNGs add ~8MB to the repo, which is acceptable.
 
-**Node.js built-in SQLite.** No native binary dependency (better-sqlite3 requires compilation). Node 22+ ships `node:sqlite`. Simpler cold-start, no installation friction.
+**Neon Postgres for deployment.** Vercel functions do not provide durable local disk, so chat history and the rate-limit ledger live in Neon. The storage boundary is isolated in `lib/storage.ts`, keeping route handlers independent of SQL details.
 
 **Artifact HTML in streaming text.** Claude generates artifact HTML inline as a text block, not as a separate API call or tool result. This keeps the response atomic — if the stream fails mid-artifact, the client has partial text to show rather than nothing. The client strips and renders it only on `done`.
 

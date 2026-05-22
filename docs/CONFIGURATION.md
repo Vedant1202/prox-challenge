@@ -14,6 +14,20 @@ The key is used server-side only — never sent to the client. If missing, the a
 
 ---
 
+### `DATABASE_URL` *(required)*
+
+Your Neon pooled Postgres connection string. Use the pooler URL for Vercel/serverless deployments.
+
+Example:
+
+```env
+DATABASE_URL=postgres://user:password@ep-example-pooler.region.aws.neon.tech/dbname?sslmode=require
+```
+
+The app uses this database for chat history and rate limiting. Schema creation is lazy and idempotent: the first database access creates the `chats`, `messages`, and `rate_limit` tables if they do not already exist. The canonical schema is also checked in at `solution/db/schema.sql`.
+
+---
+
 ### `DEFAULT_MODEL`
 
 **Type:** string  
@@ -70,6 +84,7 @@ Rolling window duration in minutes. The window slides — it's not a fixed hourl
 
 ```env
 ANTHROPIC_API_KEY=sk-ant-...
+DATABASE_URL=postgres://...
 DEFAULT_MODEL=claude-sonnet-4-6
 MODEL_SWITCHING_ALLOWED=true
 RATE_LIMIT_REQUESTS=100
@@ -80,6 +95,7 @@ RATE_LIMIT_WINDOW_MINUTES=60
 
 ```env
 ANTHROPIC_API_KEY=sk-ant-...
+DATABASE_URL=postgres://...
 DEFAULT_MODEL=claude-sonnet-4-6
 MODEL_SWITCHING_ALLOWED=false
 RATE_LIMIT_REQUESTS=15
@@ -90,6 +106,7 @@ RATE_LIMIT_WINDOW_MINUTES=60
 
 ```env
 ANTHROPIC_API_KEY=sk-ant-...
+DATABASE_URL=postgres://...
 DEFAULT_MODEL=claude-haiku-4-5
 MODEL_SWITCHING_ALLOWED=false
 RATE_LIMIT_REQUESTS=20
@@ -98,12 +115,15 @@ RATE_LIMIT_WINDOW_MINUTES=60
 
 ---
 
-## Data Directory
+## Vercel + Neon
 
-The app writes a SQLite database to `solution/data/chats.db` on first use. This directory is created automatically — no manual setup needed. It is gitignored.
+In Vercel, set the project root directory to `solution` and configure these environment variables for Production and Preview:
 
-To reset all chat history:
+- `ANTHROPIC_API_KEY`
+- `DATABASE_URL`
+- `DEFAULT_MODEL`
+- `MODEL_SWITCHING_ALLOWED`
+- `RATE_LIMIT_REQUESTS`
+- `RATE_LIMIT_WINDOW_MINUTES`
 
-```bash
-rm solution/data/chats.db
-```
+Use Neon's pooled connection string for `DATABASE_URL`. If you connect Neon through the Vercel integration, confirm the injected variable name is exactly `DATABASE_URL`.

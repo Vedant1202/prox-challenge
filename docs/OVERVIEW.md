@@ -32,7 +32,7 @@ The sidebar also exposes two standalone tools: a **Machine Diagram** (annotated 
 - **Framework:** Next.js 15 App Router
 - **AI:** Anthropic Claude API (`claude-sonnet-4-6`) — streaming, tool use, agentic loop
 - **Corpus:** 51 pages extracted offline via Claude vision, committed to repo
-- **Persistence:** Node.js built-in `node:sqlite` — no native module, no external DB
+- **Persistence:** Neon Postgres via `@neondatabase/serverless`
 - **Styling:** Tailwind CSS + DaisyUI, dark/light theme
 - **Tests:** Vitest — lib, API routes, components
 
@@ -93,7 +93,7 @@ The system prompt instructs a diagnostic conversation loop: suggest a fix → as
 
 **Corpus committed to repo.** Extraction is $1, 15 minutes. Requiring the reviewer to run it breaks 2-minute setup. PNGs add ~8MB — acceptable.
 
-**Node built-in SQLite.** `node:sqlite` (Node 22+) has no native binary. Zero compilation, zero friction on clone.
+**Neon Postgres.** Chat history and rate limiting use a pooled Neon `DATABASE_URL`, which works on Vercel without relying on local disk.
 
 **Artifacts in streaming text, not a separate call.** If the stream fails mid-artifact, there's partial text to show. The client strips and renders artifact HTML only on `done`.
 
@@ -135,7 +135,8 @@ solution/
     lib/
       corpus.ts               ← searchCorpus, getPage, formatPageForContext
       anthropic.ts            ← client + model allowlist
-      db.ts                   ← SQLite init + migration-safe schema
+      db.ts                   ← Neon client + idempotent schema init
+      storage.ts              ← chat/message/rate-limit data access
       rate-limit.ts           ← sliding window rate limiter
       theme-context.tsx       ← dark/light theme provider
     components/
@@ -171,7 +172,7 @@ npm install
 npm run dev                   # http://localhost:3000
 ```
 
-No database setup. No vector store. No Python. The corpus is committed.
+No vector store. No Python. The corpus is committed. A Neon `DATABASE_URL` is required for deployed chat history and rate limiting.
 
 ---
 

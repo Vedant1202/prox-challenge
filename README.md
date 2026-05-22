@@ -11,11 +11,12 @@ A multimodal AI assistant for the Vulcan OmniPro 220 built for the Prox Founding
 ```bash
 cd solution
 cp .env.example .env       # add your ANTHROPIC_API_KEY
+# add DATABASE_URL from Neon for chat history + rate limiting
 npm install
 npm run dev                # app runs at http://localhost:3000
 ```
 
-No database. No vector store. No Python. The corpus is committed — the reviewer never re-runs extraction.
+No vector store. No Python. The corpus is committed — the reviewer never re-runs extraction. Chat history and rate limiting use Neon Postgres through `DATABASE_URL`.
 
 The `.env.example` includes inline comments for every variable. Key defaults: **10 requests / 60-minute rolling window** per client. See [Configuration](docs/CONFIGURATION.md) for all options and common presets.
 
@@ -60,7 +61,7 @@ Client: accumulates text, parses <artifact>…</artifact> blocks,
         renders ArtifactFrame (sandboxed iframe) + PageImage cards + ChecklistCard
 ```
 
-**No server-side state.** Full `messages[]` array sent with every request — Claude sees the entire conversation each turn for free.
+**No server-side conversation state required for generation.** Full `messages[]` array is sent with every request so Claude sees the entire conversation each turn. Neon stores chat history and the rate-limit ledger for reloads/deployment.
 
 → Deep dive: [Architecture](docs/ARCHITECTURE.md) — agentic loop, SSE protocol, prompt caching, retrieval scoring, persistence layer, UI view routing.
 
@@ -187,7 +188,9 @@ solution/
     lib/
       corpus.ts              ← searchCorpus(), getPage(), formatPageForContext()
       anthropic.ts           ← client + model allowlist
-      db.ts                  ← SQLite init + migrations
+      db.ts                  ← Neon Postgres client + schema init
+      storage.ts             ← chat/message/rate-limit data access
+      client-key.ts          ← SHA256(ip:fingerprint) request ownership
       rate-limit.ts          ← sliding window rate limiter
       theme-context.tsx      ← dark/light theme provider
     components/

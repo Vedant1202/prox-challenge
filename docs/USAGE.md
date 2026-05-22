@@ -92,7 +92,7 @@ Previous conversations appear in the left sidebar, titled by the first message. 
 
 - **New Chat** button (top of sidebar) starts a fresh conversation
 - Hover a chat row to reveal the delete button
-- History persists across page reloads (stored in SQLite locally)
+- History persists across page reloads (stored in Neon Postgres and scoped to the visitor fingerprint)
 - Each chat remembers which model was selected when you return to it
 
 ---
