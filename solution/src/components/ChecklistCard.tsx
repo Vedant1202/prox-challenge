@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 export interface ChecklistItem {
   step: string
@@ -67,7 +68,7 @@ function ZoomModal({ src, label, onClose }: { src: string; label: string; onClos
     }
   }, [onClose])
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.85)' }}
@@ -115,7 +116,8 @@ function ZoomModal({ src, label, onClose }: { src: string; label: string; onClos
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

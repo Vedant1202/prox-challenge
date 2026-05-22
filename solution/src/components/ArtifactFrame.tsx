@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useTheme } from '@/lib/theme-context'
 
 interface ArtifactFrameProps {
@@ -86,8 +87,8 @@ export default function ArtifactFrame({ html, title, defaultExpanded = false }: 
         )}
       </div>
 
-      {/* Zoom modal */}
-      {zoomed && (
+      {/* Zoom modal — portalled to document.body to escape backdrop-filter stacking contexts */}
+      {zoomed && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           style={{ background: 'rgba(0,0,0,0.85)' }}
@@ -118,7 +119,8 @@ export default function ArtifactFrame({ html, title, defaultExpanded = false }: 
               title={title || 'Interactive artifact fullscreen'}
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

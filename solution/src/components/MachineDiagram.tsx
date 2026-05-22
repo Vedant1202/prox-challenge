@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -424,7 +425,7 @@ function ZoomModal({ src, alt, onClose }: { src: string; alt: string; onClose: (
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" data-testid="zoom-modal" onClick={onClose}>
       {/* Backdrop */}
       <div
@@ -451,7 +452,8 @@ function ZoomModal({ src, alt, onClose }: { src: string; alt: string; onClose: (
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} className="w-full h-full object-contain bg-white" />
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 
