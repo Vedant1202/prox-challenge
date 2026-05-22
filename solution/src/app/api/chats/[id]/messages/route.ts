@@ -10,6 +10,7 @@ interface DbMessage {
   content: string
   page_images: string | null
   artifact_html: string | null
+  checklist: string | null
   created_at: number
 }
 
@@ -25,6 +26,7 @@ export function GET(_req: NextRequest, { params }: { params: Promise<{ id: strin
       content: row.content,
       pageImages: row.page_images ? JSON.parse(row.page_images) : undefined,
       artifactHtml: row.artifact_html || undefined,
+      checklist: row.checklist ? JSON.parse(row.checklist as string) : undefined,
     }))
 
     return NextResponse.json({ messages })

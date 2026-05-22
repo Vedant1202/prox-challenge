@@ -41,5 +41,7 @@ export function getDb(): DatabaseSync {
     PRAGMA foreign_keys = ON;
   `)
 
+  try { db.exec('ALTER TABLE messages ADD COLUMN checklist TEXT') } catch { /* already exists */ }
+
   return db
 }
