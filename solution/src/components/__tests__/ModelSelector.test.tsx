@@ -15,12 +15,12 @@ describe('ModelSelector', () => {
     const onChange = vi.fn()
     render(<ModelSelector value="claude-sonnet-4-6" onChange={onChange} />)
     await userEvent.click(screen.getByText('Haiku'))
-    expect(onChange).toHaveBeenCalledWith('claude-haiku-4-5-20251001')
+    expect(onChange).toHaveBeenCalledWith('claude-haiku-4-5')
   })
 
   it('calls onChange with sonnet model when Sonnet is clicked', async () => {
     const onChange = vi.fn()
-    render(<ModelSelector value="claude-haiku-4-5-20251001" onChange={onChange} />)
+    render(<ModelSelector value="claude-haiku-4-5" onChange={onChange} />)
     await userEvent.click(screen.getByText('Sonnet'))
     expect(onChange).toHaveBeenCalledWith('claude-sonnet-4-6')
   })

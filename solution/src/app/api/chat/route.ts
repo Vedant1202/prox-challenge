@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { anthropic, resolveModel } from '@/lib/anthropic'
 import { searchCorpus, getPage, getPageImageUrl, formatPageForContext } from '@/lib/corpus'
-import { getDb } from '@/lib/db'
 import { checkRateLimit } from '@/lib/rate-limit'
+import { getClientKey } from '@/lib/client-key'
+import { persistChatTurn } from '@/lib/storage'
 import Anthropic from '@anthropic-ai/sdk'
-import { randomUUID, createHash } from 'crypto'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -263,24 +263,14 @@ function shouldShowByDefault(pageNum: number, text: string): boolean {
   return patterns.some(p => lower.includes(p))
 }
 
-function extractIp(req: NextRequest): string {
-  return (
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-    req.headers.get('x-real-ip') ||
-    '127.0.0.1'
-  )
-}
-
 export async function POST(req: NextRequest) {
   const body = await req.json() as { messages: Message[]; chatId?: string; model?: string }
   const { messages, chatId } = body
   const requestedModel = body.model ?? null
 
   // Rate limiting
-  const ip = extractIp(req)
-  const fingerprint = req.headers.get('x-client-fingerprint') ?? 'unknown'
-  const clientKey = createHash('sha256').update(`${ip}:${fingerprint}`).digest('hex')
-  const rl = checkRateLimit(clientKey)
+  const clientKey = getClientKey(req)
+  const rl = await checkRateLimit(clientKey)
 
   if (!rl.allowed) {
     return NextResponse.json(
@@ -316,7 +306,10 @@ export async function POST(req: NextRequest) {
 
         let fullText = ''
         const collectedPageImages: CollectedPageImage[] = []
-        let collectedChecklist: { title: string; items: Array<{ step: string; description: string }> } | null = null
+        let collectedChecklist: {
+          title: string
+          items: Array<{ step: string; description: string; image_id?: string; tips?: string[] }>
+        } | null = null
 
         // Accumulate token usage across all agentic loop iterations
         let cacheCreationTokens = 0
@@ -407,54 +400,20 @@ export async function POST(req: NextRequest) {
           usage: { cache_creation: cacheCreationTokens, cache_read: cacheReadTokens, input: inputTokens, output: outputTokens },
         })
 
-        // Persist to SQLite if chatId provided
+        // Persist the completed turn if chatId was provided.
         if (chatId) {
           try {
-            const db = getDb()
-            const now = Date.now()
-
-            // Auto-create chat row if missing
-            const existing = db.prepare('SELECT id, title FROM chats WHERE id = ?').get(chatId) as { id: string; title: string } | undefined
-            if (!existing) {
-              const title = (typeof lastUserMessage?.content === 'string'
-                ? lastUserMessage.content
-                : 'New Chat'
-              ).slice(0, 60)
-              db.prepare('INSERT INTO chats (id, title, created_at, updated_at) VALUES (?, ?, ?, ?)').run(chatId, title, now, now)
-            } else if (existing.title === 'New Chat' && lastUserMessage) {
-              const title = (typeof lastUserMessage.content === 'string'
-                ? lastUserMessage.content
-                : 'New Chat'
-              ).slice(0, 60)
-              db.prepare('UPDATE chats SET title = ?, updated_at = ? WHERE id = ?').run(title, now, chatId)
-            } else {
-              db.prepare('UPDATE chats SET updated_at = ? WHERE id = ?').run(now, chatId)
-            }
-
-            // Save user message (only the last one — prior turns were already saved)
-            if (lastUserMessage && typeof lastUserMessage.content === 'string') {
-              db.prepare(
-                'INSERT OR IGNORE INTO messages (id, chat_id, role, content, created_at) VALUES (?, ?, ?, ?, ?)'
-              ).run(randomUUID(), chatId, 'user', lastUserMessage.content, now - 1)
-            }
-
-            // Save assistant message
-            db.prepare(
-              'INSERT INTO messages (id, chat_id, role, content, page_images, checklist, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
-            ).run(
-              randomUUID(),
+            await persistChatTurn({
+              clientKey,
               chatId,
-              'assistant',
-              fullText,
-              collectedPageImages.length > 0 ? JSON.stringify(
-                collectedPageImages.map(img => ({
-                  ...img,
-                  show_by_default: shouldShowByDefault(img.page_num, fullText),
-                }))
-              ) : null,
-              collectedChecklist ? JSON.stringify(collectedChecklist) : null,
-              now,
-            )
+              userContent: typeof lastUserMessage?.content === 'string' ? lastUserMessage.content : undefined,
+              assistantContent: fullText,
+              pageImages: collectedPageImages.map(img => ({
+                ...img,
+                show_by_default: shouldShowByDefault(img.page_num, fullText),
+              })),
+              checklist: collectedChecklist,
+            })
           } catch (dbErr) {
             console.error('DB persist error:', dbErr)
           }

@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getDb } from '@/lib/db'
+import { getClientKey } from '@/lib/client-key'
+import { deleteChat } from '@/lib/storage'
 
 export const runtime = 'nodejs'
 
-export function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  return params.then(({ id }) => {
-    const db = getDb()
-    db.prepare('DELETE FROM chats WHERE id = ?').run(id)
-    return NextResponse.json({ ok: true })
-  })
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  await deleteChat(getClientKey(req), id)
+  return NextResponse.json({ ok: true })
 }

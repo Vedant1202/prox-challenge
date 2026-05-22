@@ -12,11 +12,25 @@ export default function FingerprintProvider({ children }: { children: React.Reac
   const [visitorId, setVisitorId] = useState<string | null>(null)
 
   useEffect(() => {
-    import('@fingerprintjs/fingerprintjs').then(FingerprintJS => {
-      FingerprintJS.load().then(fp => fp.get()).then(result => {
-        setVisitorId(result.visitorId)
+    const fallbackKey = 'prox-client-id'
+    const getFallbackId = () => {
+      const existing = window.localStorage.getItem(fallbackKey)
+      if (existing) return existing
+
+      const generated = window.crypto.randomUUID()
+      window.localStorage.setItem(fallbackKey, generated)
+      return generated
+    }
+
+    setVisitorId(getFallbackId())
+
+    import('@fingerprintjs/fingerprintjs')
+      .then(FingerprintJS => FingerprintJS.load())
+      .then(fp => fp.get())
+      .then(result => setVisitorId(result.visitorId))
+      .catch(() => {
+        setVisitorId(getFallbackId())
       })
-    })
   }, [])
 
   return (

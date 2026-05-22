@@ -27,7 +27,7 @@ describe('resolveModel', () => {
 
   it('returns a valid requested model if it is in ALLOWED_MODELS', () => {
     vi.stubEnv('DEFAULT_MODEL', 'claude-sonnet-4-6')
-    expect(resolveModel('claude-haiku-4-5-20251001')).toBe('claude-haiku-4-5-20251001')
+    expect(resolveModel('claude-haiku-4-5')).toBe('claude-haiku-4-5')
   })
 
   it('falls back to default for an unknown model string', () => {
@@ -45,6 +45,6 @@ describe('resolveModel', () => {
 
   it('ALLOWED_MODELS contains at least sonnet and haiku', () => {
     expect(ALLOWED_MODELS).toContain('claude-sonnet-4-6')
-    expect(ALLOWED_MODELS).toContain('claude-haiku-4-5-20251001')
+    expect(ALLOWED_MODELS).toContain('claude-haiku-4-5')
   })
 })

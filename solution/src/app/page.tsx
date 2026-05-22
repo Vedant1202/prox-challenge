@@ -90,6 +90,13 @@ function HomeInner() {
   const activeChatIdRef = useRef<string | null>(null)
   const streamingChatId = useRef<string | null>(null)
 
+  const requestHeaders = useCallback((withJson = false): Record<string, string> => {
+    const headers: Record<string, string> = {}
+    if (withJson) headers['Content-Type'] = 'application/json'
+    if (fingerprintId) headers['X-Client-Fingerprint'] = fingerprintId
+    return headers
+  }, [fingerprintId])
+
   // Keep ref mirror of activeChatId for use in async stream callbacks
   useEffect(() => {
     activeChatIdRef.current = activeChatId
@@ -124,7 +131,9 @@ function HomeInner() {
   }, [messages])
 
   useEffect(() => {
-    fetch('/api/chats')
+    if (!fingerprintId) return
+
+    fetch('/api/chats', { headers: requestHeaders() })
       .then(r => r.json())
       .then(({ chats: list }: { chats: ChatRecord[] }) => {
         if (list.length > 0) {
@@ -134,10 +143,10 @@ function HomeInner() {
       })
       .catch(console.error)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [fingerprintId, requestHeaders])
 
   async function createNewChat(): Promise<string> {
-    const res = await fetch('/api/chats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) })
+    const res = await fetch('/api/chats', { method: 'POST', headers: requestHeaders(true), body: JSON.stringify({}) })
     const { chat } = await res.json() as { chat: ChatRecord }
     setChats(prev => [chat, ...prev])
     setActiveChatId(chat.id)
@@ -164,7 +173,7 @@ function HomeInner() {
     // Skip DB fetch while this chat is actively streaming (cache is authoritative)
     if (streamingChatId.current === id) return
 
-    fetch(`/api/chats/${id}/messages`)
+    fetch(`/api/chats/${id}/messages`, { headers: requestHeaders() })
       .then(r => r.json())
       .then(({ messages: loaded }: { messages: Message[] }) => {
         // Abort if we've switched away or if streaming started for this chat
@@ -182,7 +191,7 @@ function HomeInner() {
   }
 
   function handleDeleteChat(id: string) {
-    fetch(`/api/chats/${id}`, { method: 'DELETE' }).catch(console.error)
+    fetch(`/api/chats/${id}`, { method: 'DELETE', headers: requestHeaders() }).catch(console.error)
     setChats(prev => prev.filter(c => c.id !== id))
     if (activeChatId === id) {
       const remaining = chats.filter(c => c.id !== id)
@@ -246,12 +255,9 @@ function HomeInner() {
       })
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-      if (fingerprintId) headers['X-Client-Fingerprint'] = fingerprintId
-
       const res = await fetch('/api/chat', {
         method: 'POST',
-        headers,
+        headers: requestHeaders(true),
         body: JSON.stringify({
           chatId,
           model,
@@ -361,7 +367,7 @@ function HomeInner() {
                 }
                 return next
               })
-              fetch('/api/chats')
+              fetch('/api/chats', { headers: requestHeaders() })
                 .then(r => r.json())
                 .then(({ chats: list }: { chats: ChatRecord[] }) => setChats(list))
                 .catch(console.error)
@@ -384,7 +390,7 @@ function HomeInner() {
       streamingChatId.current = null
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, activeChatId, fingerprintId, model, rateLimit, checklistState])
+  }, [isLoading, activeChatId, model, rateLimit, checklistState, requestHeaders])
 
   function handleChecklistToggle(cId: string, msgIdx: number, itemIdx: number) {
     const key = `${cId}:${msgIdx}`

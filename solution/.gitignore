@@ -14,6 +14,7 @@ out/
 # Misc
 .DS_Store
 *.pem
+.tmp/
 
 # SQLite database
 data/

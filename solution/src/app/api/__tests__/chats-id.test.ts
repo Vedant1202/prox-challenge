@@ -1,38 +1,48 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { DatabaseSync } from 'node:sqlite'
 import { NextRequest } from 'next/server'
 
-let testDb: DatabaseSync
+interface TestChat {
+  id: string
+  client_key: string
+  title: string
+}
 
-vi.mock('@/lib/db', () => ({
-  getDb: () => testDb,
+interface TestMessage {
+  chat_id: string
+  role: 'user' | 'assistant'
+  content: string
+  pageImages?: Array<{ page_id: string; url: string; page_num: number; source: string }>
+}
+
+const state = vi.hoisted(() => ({
+  chats: [] as TestChat[],
+  messages: [] as TestMessage[],
 }))
 
-const SCHEMA = `
-  CREATE TABLE IF NOT EXISTS chats (
-    id TEXT PRIMARY KEY,
-    title TEXT NOT NULL DEFAULT 'New Chat',
-    created_at INTEGER NOT NULL,
-    updated_at INTEGER NOT NULL
-  );
-  CREATE TABLE IF NOT EXISTS messages (
-    id TEXT PRIMARY KEY,
-    chat_id TEXT NOT NULL REFERENCES chats(id) ON DELETE CASCADE,
-    role TEXT NOT NULL CHECK(role IN ('user','assistant')),
-    content TEXT NOT NULL,
-    page_images TEXT,
-    artifact_html TEXT,
-    created_at INTEGER NOT NULL
-  );
-  PRAGMA foreign_keys = ON;
-`
+vi.mock('@/lib/client-key', () => ({
+  getClientKey: () => 'client-a',
+}))
+
+vi.mock('@/lib/storage', () => ({
+  deleteChat: vi.fn(async (clientKey: string, chatId: string) => {
+    state.chats = state.chats.filter(chat => !(chat.id === chatId && chat.client_key === clientKey))
+    state.messages = state.messages.filter(message => message.chat_id !== chatId)
+  }),
+  getChatMessages: vi.fn(async (clientKey: string, chatId: string) => {
+    const ownsChat = state.chats.some(chat => chat.id === chatId && chat.client_key === clientKey)
+    if (!ownsChat) return []
+    return state.messages
+      .filter(message => message.chat_id === chatId)
+      .map(({ chat_id: _chatId, ...message }) => message)
+  }),
+}))
 
 beforeEach(() => {
-  testDb = new DatabaseSync(':memory:')
-  testDb.exec(SCHEMA)
-  testDb.prepare("INSERT INTO chats (id, title, created_at, updated_at) VALUES ('chat-1', 'Test Chat', 1000, 1000)").run()
-  testDb.prepare("INSERT INTO messages (id, chat_id, role, content, created_at) VALUES ('msg-1', 'chat-1', 'user', 'Hello', 1001)").run()
-  testDb.prepare("INSERT INTO messages (id, chat_id, role, content, created_at) VALUES ('msg-2', 'chat-1', 'assistant', 'Hi there!', 1002)").run()
+  state.chats = [{ id: 'chat-1', client_key: 'client-a', title: 'Test Chat' }]
+  state.messages = [
+    { chat_id: 'chat-1', role: 'user', content: 'Hello' },
+    { chat_id: 'chat-1', role: 'assistant', content: 'Hi there!' },
+  ]
 })
 
 async function deleteChat(id: string) {
@@ -59,10 +69,9 @@ describe('DELETE /api/chats/[id]', () => {
     expect(data.ok).toBe(true)
   })
 
-  it('removes the chat from the database', async () => {
+  it('removes the chat from storage', async () => {
     await deleteChat('chat-1')
-    const row = testDb.prepare("SELECT COUNT(*) as count FROM chats WHERE id = 'chat-1'").get() as { count: number }
-    expect(row.count).toBe(0)
+    expect(state.chats).toEqual([])
   })
 
   it('returns ok even for a nonexistent chat (no-op delete)', async () => {
@@ -85,15 +94,28 @@ describe('GET /api/chats/[id]/messages', () => {
   })
 
   it('returns empty messages for a chat with no messages', async () => {
-    testDb.prepare("INSERT INTO chats (id, title, created_at, updated_at) VALUES ('chat-empty', 'Empty', 1000, 1000)").run()
+    state.chats.push({ id: 'chat-empty', client_key: 'client-a', title: 'Empty' })
     const res = await getMessages('chat-empty')
     const data = await res.json()
     expect(data.messages).toEqual([])
   })
 
-  it('parses page_images JSON when present', async () => {
-    const images = JSON.stringify([{ page_id: 'owner-manual-007', url: '/corpus/pages/owner-manual-007.png', page_num: 7, source: 'owner-manual' }])
-    testDb.prepare("INSERT INTO messages (id, chat_id, role, content, page_images, created_at) VALUES ('msg-3', 'chat-1', 'assistant', 'See page 7', ?, 1003)").run(images)
+  it('does not return messages from another client', async () => {
+    state.chats.push({ id: 'chat-private', client_key: 'client-b', title: 'Private' })
+    state.messages.push({ chat_id: 'chat-private', role: 'user', content: 'Secret' })
+
+    const res = await getMessages('chat-private')
+    const data = await res.json()
+    expect(data.messages).toEqual([])
+  })
+
+  it('returns page images when present', async () => {
+    state.messages.push({
+      chat_id: 'chat-1',
+      role: 'assistant',
+      content: 'See page 7',
+      pageImages: [{ page_id: 'owner-manual-007', url: '/corpus/pages/owner-manual-007.png', page_num: 7, source: 'owner-manual' }],
+    })
 
     const res = await getMessages('chat-1')
     const data = await res.json()
