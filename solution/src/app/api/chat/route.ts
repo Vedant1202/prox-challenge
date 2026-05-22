@@ -78,6 +78,17 @@ After providing a diagnosis or fix:
 - Always cite page numbers when giving technical specs
 - If you're unsure, say so — don't guess on safety-critical info`
 
+// ── Prompt caching ────────────────────────────────────────────────────────────
+// The system prompt and tool definitions are static across every request.
+// Marking them with cache_control tells the API to store the KV computation
+// so subsequent calls reuse it instead of reprocessing those tokens.
+
+const CACHED_SYSTEM: Anthropic.TextBlockParam[] = [
+  { type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } },
+]
+
+// cache_control on the last tool creates a second cache breakpoint covering
+// system + all tools together.
 const TOOLS: Anthropic.Tool[] = [
   {
     name: 'search_corpus',
@@ -147,8 +158,36 @@ const TOOLS: Anthropic.Tool[] = [
       },
       required: ['type', 'title'],
     },
+    cache_control: { type: 'ephemeral' as const },
   },
 ]
+
+// ── History caching helper ────────────────────────────────────────────────────
+// Marks the last content block of the message just before the current user turn
+// so the full prior conversation is cached as a third breakpoint. Each new turn
+// only pays for the two new messages (user + assistant), not the whole history.
+function withHistoryCacheMarker(msgs: Anthropic.MessageParam[]): Anthropic.MessageParam[] {
+  // Need at least 2 messages to have history worth caching
+  if (msgs.length < 2) return msgs
+
+  return msgs.map((m, i) => {
+    if (i !== msgs.length - 2) return m  // only mark the penultimate message
+
+    const content = m.content
+    if (typeof content === 'string') {
+      return { ...m, content: [{ type: 'text' as const, text: content, cache_control: { type: 'ephemeral' as const } }] }
+    }
+    if (Array.isArray(content) && content.length > 0) {
+      const blocks = [...content]
+      const last = blocks[blocks.length - 1]
+      if (last.type === 'text' || last.type === 'tool_result') {
+        blocks[blocks.length - 1] = { ...last, cache_control: { type: 'ephemeral' as const } }
+      }
+      return { ...m, content: blocks }
+    }
+    return m
+  })
+}
 
 type Message = {
   role: 'user' | 'assistant'
@@ -260,24 +299,41 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        let currentMessages: Anthropic.MessageParam[] = messages.map(m => ({
-          role: m.role,
-          content: typeof m.content === 'string' ? m.content : m.content,
-        })) as Anthropic.MessageParam[]
+        // Apply history cache marker: marks the message just before the current
+        // user turn so the prior conversation is cached as a third breakpoint.
+        let currentMessages = withHistoryCacheMarker(
+          messages.map(m => ({
+            role: m.role,
+            content: typeof m.content === 'string' ? m.content : m.content,
+          })) as Anthropic.MessageParam[]
+        )
 
         let fullText = ''
         const collectedPageImages: CollectedPageImage[] = []
         let collectedChecklist: { title: string; items: Array<{ step: string; description: string }> } | null = null
+
+        // Accumulate token usage across all agentic loop iterations
+        let cacheCreationTokens = 0
+        let cacheReadTokens = 0
+        let inputTokens = 0
+        let outputTokens = 0
 
         // Agentic loop: run until Claude stops calling tools
         while (true) {
           const response = await anthropic.messages.create({
             model,
             max_tokens: 8192,
-            system: SYSTEM_PROMPT,
+            system: CACHED_SYSTEM,
             tools: TOOLS,
             messages: currentMessages,
           })
+
+          // Accumulate usage (cache_creation/cache_read available when caching fires)
+          const u = response.usage as Anthropic.Usage & { cache_creation_input_tokens?: number; cache_read_input_tokens?: number }
+          cacheCreationTokens += u.cache_creation_input_tokens ?? 0
+          cacheReadTokens     += u.cache_read_input_tokens     ?? 0
+          inputTokens         += u.input_tokens
+          outputTokens        += u.output_tokens
 
           const toolUses: Array<{ id: string; name: string; input: Record<string, string> }> = []
 
@@ -340,7 +396,10 @@ export async function POST(req: NextRequest) {
           })
         }
 
-        send({ type: 'done' })
+        send({
+          type: 'done',
+          usage: { cache_creation: cacheCreationTokens, cache_read: cacheReadTokens, input: inputTokens, output: outputTokens },
+        })
 
         // Persist to SQLite if chatId provided
         if (chatId) {
