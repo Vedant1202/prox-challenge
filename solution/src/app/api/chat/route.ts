@@ -24,7 +24,7 @@ You have access to the complete owner's manual, quick start guide, and process s
 When a visual would significantly help the user understand, generate an artifact. You MUST generate artifacts for:
 - Polarity setup questions → SVG diagram of the front panel showing which cable goes where
 - Duty cycle questions → visual gauge or table showing the duty cycle at given settings
-- Troubleshooting flows → interactive decision tree the user can click through
+- Troubleshooting flows or multi-step setup procedures → call \`show_checklist\` with title + ordered items. Do NOT generate HTML for checklists. After calling show_checklist, the checklist is displayed automatically in the chat — add only a short text follow-up.
 - Settings/configuration → formatted card with recommended settings
 
 **IMPORTANT**: Surface manual page images using get_page_image whenever the answer involves a diagram, schematic, or labeled figure.
@@ -108,6 +108,28 @@ const TOOLS: Anthropic.Tool[] = [
     },
   },
   {
+    name: 'show_checklist',
+    description: 'Display a step-by-step checklist in the chat UI. Call this for troubleshooting flows, setup procedures, or any multi-step process. Provide structured data — the UI renders the interactive component. Do NOT also write the steps as a numbered list in your text.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        title: { type: 'string', description: 'Title for the checklist, e.g. "MIG Setup Checklist"' },
+        items: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              step: { type: 'string', description: 'Short action label, 5–8 words' },
+              description: { type: 'string', description: 'Detailed instruction for this step' },
+            },
+            required: ['step', 'description'],
+          },
+        },
+      },
+      required: ['title', 'items'],
+    },
+  },
+  {
     name: 'show_artifact',
     description: 'Signal to the frontend to render an interactive HTML artifact. Use this to trigger the display of a visual component like a polarity diagram, duty cycle gauge, or troubleshooting flowchart. The artifact HTML should also be emitted inline in your text response using <artifact> tags.',
     input_schema: {
@@ -135,7 +157,8 @@ type Message = {
 
 function handleToolCall(
   toolName: string,
-  toolInput: Record<string, string>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  toolInput: Record<string, any>
 ): string {
   if (toolName === 'search_corpus') {
     const pages = searchCorpus(toolInput.query, 5)
@@ -158,6 +181,10 @@ function handleToolCall(
       source: page.source,
       summary: page.summary,
     })
+  }
+
+  if (toolName === 'show_checklist') {
+    return JSON.stringify({ rendered: true, item_count: (toolInput.items as unknown[]).length })
   }
 
   if (toolName === 'show_artifact') {
@@ -240,6 +267,7 @@ export async function POST(req: NextRequest) {
 
         let fullText = ''
         const collectedPageImages: CollectedPageImage[] = []
+        let collectedChecklist: { title: string; items: Array<{ step: string; description: string }> } | null = null
 
         // Agentic loop: run until Claude stops calling tools
         while (true) {
@@ -280,6 +308,13 @@ export async function POST(req: NextRequest) {
                 const parsed = JSON.parse(result) as CollectedPageImage
                 collectedPageImages.push(parsed)
               } catch { /* ignore */ }
+            }
+
+            if (tool.name === 'show_checklist') {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const inp = tool.input as any
+              collectedChecklist = { title: inp.title, items: inp.items }
+              send({ type: 'checklist', title: inp.title, items: inp.items })
             }
 
             toolResults.push({
@@ -340,7 +375,7 @@ export async function POST(req: NextRequest) {
 
             // Save assistant message
             db.prepare(
-              'INSERT INTO messages (id, chat_id, role, content, page_images, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+              'INSERT INTO messages (id, chat_id, role, content, page_images, checklist, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
             ).run(
               randomUUID(),
               chatId,
@@ -352,6 +387,7 @@ export async function POST(req: NextRequest) {
                   show_by_default: shouldShowByDefault(img.page_num, fullText),
                 }))
               ) : null,
+              collectedChecklist ? JSON.stringify(collectedChecklist) : null,
               now,
             )
           } catch (dbErr) {
