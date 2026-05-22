@@ -1,0 +1,114 @@
+{
+  "id": "owner-manual-021",
+  "source": "owner-manual",
+  "page": 21,
+  "image_path": "/corpus/pages/owner-manual-021.png",
+  "summary": "This page covers optional welding settings (Run-In WFS, Inductance, Spot Timer, Recall Setting, Save Setting) for wire welding mode, plus gas shielded solid-core wire safety warnings and setup steps.",
+  "text_content": "d. Optional Settings:\n\n• Press Main Control Knob to enter Optional Settings.\n• Turn Main Control Knob until desired setting appears on screen.\n• Press Main Control Knob to select desired setting.\n• Turn Main Control Knob to adjust setting.\n\nAvailable Optional Settings:\n\n• Run-In WFS–Adjust wire speed before it contacts workpiece. This setting represents a % of the pre-set wire feed speed (WFS).\n• Inductance–Adjust length of arc. Increase for more fluid puddle and flatter bead. Decrease for colder puddle.\n• Spot Timer–Set timer for spot welding.\n• Recall Setting–Retrieve saved settings.\n• Save Setting–Program up to 5 different configurations. Turn Main Control Knob to scroll between 5 available slots. Press Main Control Knob to access OVERWRITE MEMORY SETTING screen and turn Main Control Knob to choose YES selection. Press Main Control Knob to save current Welder settings.\n\nNote: The initial settings may need to be adjusted after stopping and carefully inspecting the weld. Proper welding takes experience.\n\nGas Shielded, Solid-Core Wire Only\n\nDANGER! TO PREVENT DEATH FROM ASPHYXIATION:\nDo not open gas without proper ventilation. Fix gas leaks immediately.\nShielding gas can displace air and cause rapid loss of consciousness and death.\nShielding gas without carbon dioxide can be even more hazardous because asphyxiation can start without feeling shortness of breath.\n\n1. Open gas cylinder valve all the way.\n2. Set Flow Gauge to SCFH value indicated on Settings Chart.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 21",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Run-In WFS Screen",
+      "spatial": "Display screen showing 'Run-In WFS' as title at top, a percentage/number icon in the center, and control icons along the bottom",
+      "callouts": [
+        "Run-In WFS"
+      ]
+    },
+    {
+      "label": "Inductance Screen",
+      "spatial": "Display screen showing 'Inductance' as title at top, an inductor/coil symbol in the center, and control icons along the bottom",
+      "callouts": [
+        "Inductance"
+      ]
+    },
+    {
+      "label": "Spot Timer Screen",
+      "spatial": "Display screen showing 'Spot Timer' as title at top, a timer/clock icon in the center, and control icons along the bottom",
+      "callouts": [
+        "Spot Timer"
+      ]
+    },
+    {
+      "label": "Recall Setting Screen",
+      "spatial": "Display screen showing 'Recall Setting' as title at top, an upload/retrieve arrow icon in the center, and control icons along the bottom",
+      "callouts": [
+        "Recall Setting"
+      ]
+    },
+    {
+      "label": "Save Setting Screen",
+      "spatial": "Display screen showing 'Save Setting' as title at top, a download/save arrow icon in the center, and control icons along the bottom",
+      "callouts": [
+        "Save Setting"
+      ]
+    },
+    {
+      "label": "Asphyxiation Danger Warning Triangle",
+      "spatial": "Large yellow/black warning triangle on the right side of the page under the Gas Shielded section, showing a person with breathing apparatus icon inside the triangle",
+      "callouts": [
+        "DANGER",
+        "asphyxiation warning symbol"
+      ]
+    },
+    {
+      "label": "Gas Cylinder and Flow Gauge Illustration",
+      "spatial": "Illustration on the right side showing a gas cylinder with a regulator/flow gauge attached at the top",
+      "callouts": [
+        "gas cylinder",
+        "flow gauge",
+        "regulator"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Run-In WFS adjusts wire speed before it contacts the workpiece and is expressed as a percentage of the pre-set wire feed speed (WFS)",
+    "Inductance adjusts length of arc; increasing inductance creates a more fluid puddle and flatter bead; decreasing creates a colder puddle",
+    "Spot Timer sets a timer for spot welding",
+    "Recall Setting retrieves previously saved settings",
+    "Save Setting allows programming up to 5 different configurations",
+    "Save Setting uses 5 available slots selectable by turning the Main Control Knob",
+    "To save settings, press Main Control Knob to access OVERWRITE MEMORY SETTING screen, turn knob to choose YES, then press to save",
+    "Initial settings may need adjustment after stopping and inspecting the weld",
+    "Shielding gas can displace air and cause rapid loss of consciousness and death",
+    "Shielding gas without carbon dioxide can be even more hazardous because asphyxiation can start without feeling shortness of breath",
+    "Gas cylinder valve should be opened all the way",
+    "Flow Gauge should be set to SCFH value indicated on the Settings Chart",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 21"
+  ],
+  "topics": [
+    "settings",
+    "wire_feed",
+    "mig",
+    "safety"
+  ],
+  "keywords": [
+    "Run-In WFS",
+    "Inductance",
+    "Spot Timer",
+    "Recall Setting",
+    "Save Setting",
+    "Main Control Knob",
+    "OVERWRITE MEMORY SETTING",
+    "wire feed speed",
+    "WFS",
+    "arc length",
+    "fluid puddle",
+    "spot welding",
+    "shielding gas",
+    "asphyxiation",
+    "carbon dioxide",
+    "SCFH",
+    "flow gauge",
+    "gas cylinder",
+    "ventilation",
+    "gas shielded",
+    "solid-core wire"
+  ],
+  "content_types": [
+    "text",
+    "diagram",
+    "photo"
+  ]
+}

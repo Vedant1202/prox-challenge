@@ -1,0 +1,100 @@
+{
+  "id": "owner-manual-014",
+  "source": "owner-manual",
+  "page": 14,
+  "image_path": "/corpus/pages/owner-manual-014.png",
+  "summary": "This page covers DCEP (Direct Current Electrode Positive) polarity setup for solid core gas shielded MIG welding, including cable connections, shielding gas cylinder setup, regulator installation, and gas hose connection.",
+  "text_content": "DCEP\nSolid Core (Gas Shielded)\nPolarity Setup\n\n17. DCEP Direct Current Electrode Positive Wire Setup for Solid Core (gas shielded) welding:\n\na. Plug Ground Clamp Cable into Negative (–) Socket. Plug Wire Feed Power Cable into Positive (+) Socket. Twist cables clockwise all the way to lock in place.\n\nb. Determine which type of shielding gas would be appropriate for the welding you will do. Refer to the Settings Chart on the inside of the Welder door.\n\nc. With assistance, set the cylinder (not included) onto a cabinet or cart near the Welder and secure the cylinder in place with two straps (not included) to prevent tipping.\n\nd. Remove the cylinder's cap. Stand to the side of the valve opening, then open the valve briefly to blow dust and dirt from the valve opening. Close the cylinder valve.\n\ne. Locate the Regulator (included) and close its valve until it is loose, then thread Regulator onto cylinder and wrench-tighten connection.\n\nNote: When using C100 shielding gas, connect the enclosed CGA 580/320 adapter to the inlet connection of the Regulator and wrench-tighten. Thread the adapter onto the gas cylinder and wrench-tighten.\n\nf. Attach the Gas Hose (included) to the Regulator's outlet and the Welder's gas inlet. Wrench-tighten both connections.\n\nPage 14     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "DCEP Solid Core (Gas Shielded) Polarity Setup - Welder Cable Connection",
+      "spatial": "Top-right of page shows the Vulcan welder unit with cables connected; ground clamp cable shown connecting to the negative socket on left side of welder, wire feed power cable connecting to positive socket on right side of welder; MIG gun/torch shown on left",
+      "callouts": [
+        "DCEP",
+        "Solid Core (Gas Shielded) Polarity Setup",
+        "Ground Clamp Cable in Negative Socket",
+        "Wire Feed Power Cable in Positive Socket"
+      ]
+    },
+    {
+      "label": "Step c - Cylinder Securing Diagram",
+      "spatial": "Center-right of page shows a gas cylinder secured with two straps; arrows indicate securing method; labeled with letter 'c'",
+      "callouts": [
+        "c"
+      ]
+    },
+    {
+      "label": "Step d - Cylinder Valve Cleaning Diagram",
+      "spatial": "Right side of page shows a close-up of a cylinder valve with arrows indicating brief opening; labeled with letter 'd'",
+      "callouts": [
+        "d",
+        "Briefly open valve to clean, then close valve."
+      ]
+    },
+    {
+      "label": "Steps e and f - Regulator and Gas Hose Connection Diagram",
+      "spatial": "Bottom-center of page shows regulator mounted on cylinder connected to welder via gas hose; welder shown at bottom-left; cylinder shown at center-right; letters 'e' and 'f' label respective connections",
+      "callouts": [
+        "e",
+        "f"
+      ]
+    }
+  ],
+  "key_facts": [
+    "DCEP stands for Direct Current Electrode Positive",
+    "For DCEP solid core gas shielded welding, Ground Clamp Cable plugs into Negative (–) Socket",
+    "For DCEP solid core gas shielded welding, Wire Feed Power Cable plugs into Positive (+) Socket",
+    "Cables must be twisted clockwise all the way to lock in place",
+    "Shielding gas type should be determined by referring to the Settings Chart on the inside of the Welder door",
+    "Cylinder is not included with the welder",
+    "Two straps (not included) are required to secure the gas cylinder to prevent tipping",
+    "Cylinder should be placed on a cabinet or cart near the welder",
+    "Cylinder valve should be opened briefly to blow dust and dirt from the valve opening before attaching regulator",
+    "Operator should stand to the side of the valve opening when purging the cylinder valve",
+    "Regulator is included with the welder",
+    "Regulator valve should be closed until loose before threading onto cylinder",
+    "Regulator connection to cylinder must be wrench-tightened",
+    "When using C100 shielding gas, the enclosed CGA 580/320 adapter must be used at the regulator inlet connection",
+    "CGA 580/320 adapter must be wrench-tightened at both the regulator inlet and the gas cylinder",
+    "Gas Hose is included with the welder",
+    "Gas Hose connects from the Regulator's outlet to the Welder's gas inlet",
+    "Both gas hose connections must be wrench-tightened",
+    "Item number for this welder is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "polarity",
+    "wire_feed",
+    "mig",
+    "settings",
+    "quick_start",
+    "safety"
+  ],
+  "keywords": [
+    "DCEP",
+    "Direct Current Electrode Positive",
+    "solid core",
+    "gas shielded",
+    "polarity",
+    "Ground Clamp Cable",
+    "Negative Socket",
+    "Wire Feed Power Cable",
+    "Positive Socket",
+    "shielding gas",
+    "cylinder",
+    "regulator",
+    "CGA 580/320",
+    "C100",
+    "gas hose",
+    "gas inlet",
+    "wrench-tighten",
+    "MIG",
+    "Settings Chart",
+    "Item 57812"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

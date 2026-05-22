@@ -1,0 +1,73 @@
+{
+  "id": "owner-manual-024",
+  "source": "owner-manual",
+  "page": 24,
+  "image_path": "/corpus/pages/owner-manual-024.png",
+  "summary": "This page covers TIG/Stick welding setup for the Vulcan OmniPro 220, specifically the TIG Setup cable connection procedure including torch, ground clamp, foot pedal, and shielding gas hose connections.",
+  "text_content": "TIG/Stick Welding\n\nRead the ENTIRE IMPORTANT SAFETY INFORMATION section at the beginning of this manual including all text under subheadings therein before set up or use of this product.\n\nWARNING TO PREVENT SERIOUS INJURY FROM ACCIDENTAL OPERATION:\nTurn the Power Switch off and unplug the Welder before setup.\n\nNote: Remove the protective foam and cardboard from the Welder before setup. Place the Welder on a level surface that can bear its weight near the work area. Leave space around the Welder for proper air flow.\n\nTIG Setup\n\nConnect Cables\n\n1. Plug Ground Clamp Cable into Positive Socket. Twist clockwise all the way to lock in place.\n\n2. Plug TIG Torch Cable (TIG Torch sold separately) into Negative Socket. Twist clockwise all the way to lock in place.\n\n3. Insert the Foot Pedal Cable (Foot Pedal sold separately) through hole on Welder front and connect to the Foot Pedal Socket inside the machine. Secure by turning collar clockwise until tight.\n\n4. For connecting Shielding Gas Hose, refer to Connect Shielding Gas section on next page.\n\nPage 24     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "TIG Setup - Connect Cables diagram",
+      "spatial": "Center of page shows the Vulcan OmniPro 220 welder unit on the right side with cables running to the left and lower-left. The TIG Torch is at the far lower-left. The Ground Clamp is at the lower-center. The Foot Pedal is at the upper-left area. Cables connect from the welder front panel sockets to the peripherals.",
+      "callouts": [
+        "Foot Pedal Socket (inside Welder)",
+        "Foot Pedal (sold separately)",
+        "Foot Pedal Cable",
+        "Shielding Gas Hose",
+        "TIG Torch Cable in Negative Socket",
+        "Ground Clamp Cable in Positive Socket",
+        "TIG Torch (sold separately)",
+        "Ground Clamp"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Turn the Power Switch off and unplug the Welder before setup",
+    "Remove protective foam and cardboard from the Welder before setup",
+    "Place the Welder on a level surface that can bear its weight near the work area",
+    "Leave space around the Welder for proper air flow",
+    "Ground Clamp Cable connects into Positive Socket for TIG welding",
+    "TIG Torch Cable connects into Negative Socket (DCEN polarity for TIG)",
+    "Ground Clamp Cable must be twisted clockwise all the way to lock in place",
+    "TIG Torch Cable must be twisted clockwise all the way to lock in place",
+    "TIG Torch is sold separately",
+    "Foot Pedal is sold separately",
+    "Foot Pedal Cable is inserted through hole on Welder front",
+    "Foot Pedal Cable connects to Foot Pedal Socket inside the machine",
+    "Foot Pedal Cable collar must be turned clockwise until tight to secure",
+    "Shielding Gas Hose connection is covered in Connect Shielding Gas section on next page",
+    "Item number for this welder is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "tig",
+    "stick",
+    "safety",
+    "quick_start",
+    "polarity",
+    "settings"
+  ],
+  "keywords": [
+    "TIG",
+    "Stick",
+    "Welding",
+    "Negative Socket",
+    "Positive Socket",
+    "Ground Clamp",
+    "TIG Torch",
+    "Foot Pedal",
+    "Foot Pedal Socket",
+    "Foot Pedal Cable",
+    "Shielding Gas Hose",
+    "DCEN",
+    "setup",
+    "cable connection",
+    "OmniPro 220",
+    "Vulcan"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

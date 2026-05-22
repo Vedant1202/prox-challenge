@@ -1,0 +1,150 @@
+{
+  "id": "owner-manual-029",
+  "source": "owner-manual",
+  "page": 29,
+  "image_path": "/corpus/pages/owner-manual-029.png",
+  "summary": "This page covers duty cycle definitions and ratings for TIG and Stick welding modes, plus initial weld setup procedures for the Vulcan OmniPro 220 welder.",
+  "text_content": "Duty Cycle (Duration of Use)\n\nAvoid damage to the Welder by not welding for more than the prescribed duty cycle time. The Duty Cycle defines the number of minutes, within a 10 minute period, during which a given welder can produce a particular welding current without overheating.\n\nFor example, a welder with a 40% duty cycle at 125A welding current must be allowed to rest for at least 6 minutes after every 4 minutes of continuous welding.\n\nFailure to carefully observe duty cycle limitations can easily over-stress a welder's power generation system contributing to premature welder failure.\n\nThis Welder has an internal thermal protection system to help prevent this sort of over-stress. When the Welder overheats, it automatically shuts down and a warning screen appears in the LCD Display window. The Welder automatically returns to service after cooling off. Should this occur, rest the Tig Torch or Electrode Holder on an electrically non-conductive, heat-proof surface, such as a concrete slab, well clear of the ground clamp.\n\nAllow the Welder to cool with the Power Switch on, so that the internal Fan will help cool the Welder.\n\nWhen normal operation resumes, use shorter welding periods and longer rest periods to prevent needless wear.\n\nTIG Rated Duty Cycles\n240VAC\n30% Use at 175A\nFor 10 Continuous Minutes\n3 Minutes Welding | 7 Minutes Resting\n100% Continuous Use at 105A\n\n120VAC\n40% Use at 125A\nFor 10 Continuous Minutes\n4 Minutes Welding | 6 Minutes Resting\n100% Continuous Use at 90A\n\nStick Rated Duty Cycles\n240VAC\n25% Use at 175A\nFor 10 Continuous Minutes\n2-1/2 Minutes Welding | 7-1/2 Minutes Resting\n100% Continuous Use at 100A\n\n120VAC\n40% Use at 80A\nFor 10 Continuous Minutes\n4 Minutes Welding | 6 Minutes Resting\n100% Continuous Use at 60A\n\nSetting up the Weld\n\n1. Make practice welds on pieces of scrap the same thickness as your intended workpiece to practice technique before welding anything of value. Clean the weld surfaces thoroughly with a wire brush or angle grinder; there must be no rust, paint, oil, or other materials on the weld surfaces, only bare metal.\n\n2. Use clamps (not included) to hold the workpieces in position so that you can concentrate on proper welding technique. The distance (if any) between the two workpieces must be controlled properly to allow the weld to hold both sides securely while allowing the weld to penetrate fully into the joint. The edges of thicker workpieces may need to be chamfered (or beveled) to allow proper weld penetration.\n\nNOTICE: When welding equipment on a vehicle, disconnect the vehicle battery power from both the positive connection and the ground before welding. This prevents damage to some vehicle electrical systems and electronics due to the high voltage and high frequency bursts common in welding.\n\n3. Clamp Ground Cable to bare metal on the workpiece near the weld area, or to metal work bench where the workpiece is clamped.\n\nGround connection depends on desired welding polarity\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 29",
+  "tables": [
+    {
+      "title": "TIG Rated Duty Cycles",
+      "rows": [
+        [
+          "240VAC",
+          "120VAC"
+        ],
+        [
+          "30% Use at 175A",
+          "40% Use at 125A"
+        ],
+        [
+          "For 10 Continuous Minutes",
+          "For 10 Continuous Minutes"
+        ],
+        [
+          "3 Minutes Welding / 7 Minutes Resting",
+          "4 Minutes Welding / 6 Minutes Resting"
+        ],
+        [
+          "100% Continuous Use at 105A",
+          "100% Continuous Use at 90A"
+        ]
+      ]
+    },
+    {
+      "title": "Stick Rated Duty Cycles",
+      "rows": [
+        [
+          "240VAC",
+          "120VAC"
+        ],
+        [
+          "25% Use at 175A",
+          "40% Use at 80A"
+        ],
+        [
+          "For 10 Continuous Minutes",
+          "For 10 Continuous Minutes"
+        ],
+        [
+          "2-1/2 Minutes Welding / 7-1/2 Minutes Resting",
+          "4 Minutes Welding / 6 Minutes Resting"
+        ],
+        [
+          "100% Continuous Use at 100A",
+          "100% Continuous Use at 60A"
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Weld Setup - Workpiece Clamping Diagram",
+      "spatial": "Center shows two workpieces side by side with clamps on top left and top right. Labels point to clamps at top, workpieces in center, clean surfaces annotation below workpieces, and chamfer note at bottom.",
+      "callouts": [
+        "clamps",
+        "workpieces",
+        "Clean surfaces to bare metal.",
+        "Chamfer thick workpieces."
+      ]
+    },
+    {
+      "label": "Ground Clamp Connection Diagram",
+      "spatial": "Left side shows the Vulcan OmniPro 220 welder unit. Right side shows the workpiece with ground clamp connected. Callouts point to workpiece at top right, clean surface to bare metal at middle right, and ground clamp at bottom right.",
+      "callouts": [
+        "Workpiece",
+        "Clean surface to bare metal.",
+        "Ground Clamp",
+        "Ground connection depends on desired welding polarity"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Duty cycle is defined within a 10 minute period",
+    "TIG at 240V has 30% duty cycle at 175A",
+    "TIG at 240V: 3 minutes welding, 7 minutes resting per 10 minute period",
+    "TIG at 240V supports 100% continuous use at 105A",
+    "TIG at 120V has 40% duty cycle at 125A",
+    "TIG at 120V: 4 minutes welding, 6 minutes resting per 10 minute period",
+    "TIG at 120V supports 100% continuous use at 90A",
+    "Stick at 240V has 25% duty cycle at 175A",
+    "Stick at 240V: 2-1/2 minutes welding, 7-1/2 minutes resting per 10 minute period",
+    "Stick at 240V supports 100% continuous use at 100A",
+    "Stick at 120V has 40% duty cycle at 80A",
+    "Stick at 120V: 4 minutes welding, 6 minutes resting per 10 minute period",
+    "Stick at 120V supports 100% continuous use at 60A",
+    "A 40% duty cycle at 125A requires at least 6 minutes rest after every 4 minutes of welding",
+    "Welder has internal thermal protection that automatically shuts down when overheated",
+    "Warning screen appears in LCD Display window when welder overheats",
+    "Welder automatically returns to service after cooling off",
+    "Cool welder with Power Switch ON so internal fan helps cooling",
+    "When overheated, rest TIG Torch or Electrode Holder on electrically non-conductive, heat-proof surface such as concrete slab",
+    "Keep torch/electrode holder well clear of ground clamp when cooling",
+    "Weld surfaces must be cleaned with wire brush or angle grinder to bare metal",
+    "No rust, paint, oil, or other materials allowed on weld surfaces",
+    "Thicker workpieces may need to be chamfered or beveled for proper weld penetration",
+    "When welding on a vehicle, disconnect battery from both positive and ground before welding",
+    "Ground Cable must be clamped to bare metal on workpiece near weld area or to metal work bench",
+    "Ground connection polarity depends on desired welding polarity",
+    "Item number: 57812",
+    "Technical support phone: 1-800-444-3353"
+  ],
+  "topics": [
+    "duty_cycle",
+    "tig",
+    "stick",
+    "safety",
+    "settings",
+    "quick_start"
+  ],
+  "keywords": [
+    "duty cycle",
+    "TIG",
+    "Stick",
+    "240VAC",
+    "120VAC",
+    "thermal protection",
+    "LCD Display",
+    "cooling",
+    "fan",
+    "ground clamp",
+    "bare metal",
+    "chamfer",
+    "bevel",
+    "workpiece",
+    "clamps",
+    "weld penetration",
+    "polarity",
+    "continuous use",
+    "welding current",
+    "overheating",
+    "10 minute period",
+    "wire brush",
+    "angle grinder"
+  ],
+  "content_types": [
+    "text",
+    "table",
+    "diagram"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "id": "owner-manual-035",
+  "source": "owner-manual",
+  "page": 35,
+  "image_path": "/corpus/pages/owner-manual-035.png",
+  "summary": "This page covers wire weld diagnosis for workpiece heat control and weld penetration, including how to correct common weld defects shown in example wire weld diagrams.",
+  "text_content": "Wire Weld Diagnosis–Workpiece Heat Control / Weld Penetration\n\nINADEQUATE PENETRATION    PROPER PENETRATION    EXCESS PENETRATION OR BURN-THROUGH\n\nNot hot enough    Ideal heat    Too hot\n\nHow to increase workpiece heat and increase penetration:\n(to weld THICKER workpieces properly)\na. Increase weld current    c. Use faster wire feed\nb. Decrease travel speed    d. Use shorter CTWD\n\nHow to reduce workpiece heat and limit penetration:\n(to weld THINNER workpieces properly)\ne. Decrease weld current    g. Use slower wire feed\nf. Increase travel speed    h. Use longer CTWD\n\nExample Wire Weld Diagrams\n\nGood Weld\n\nVoltage Too Low or Wire Feed Too Slow\nTO CORRECT: Increase Output Voltage or Increase Wire Feed Speed\n\nVoltage Too High or Wire Feed Too Fast\nTO CORRECT: Decrease Output Voltage or Decrease Wire Feed Speed\n\nTravel Speed Too Fast\nTO CORRECT: travel slower\n\nTravel Speed Too Slow\nTO CORRECT: travel faster\n\nCTWD Too Long or Wrong Polarity\nTO CORRECT: Check Polarity and maintain less than 1/2\" CTWD\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 35",
+  "tables": [
+    {
+      "title": "How to Increase vs Reduce Workpiece Heat",
+      "rows": [
+        [
+          "Increase Heat / Increase Penetration (Thicker workpieces)",
+          "Reduce Heat / Limit Penetration (Thinner workpieces)"
+        ],
+        [
+          "a. Increase weld current",
+          "e. Decrease weld current"
+        ],
+        [
+          "b. Decrease travel speed",
+          "f. Increase travel speed"
+        ],
+        [
+          "c. Use faster wire feed",
+          "g. Use slower wire feed"
+        ],
+        [
+          "d. Use shorter CTWD",
+          "h. Use longer CTWD"
+        ]
+      ]
+    },
+    {
+      "title": "Example Wire Weld Diagrams – Problems and Corrections",
+      "rows": [
+        [
+          "Condition",
+          "Problem",
+          "Correction"
+        ],
+        [
+          "Good Weld",
+          "N/A",
+          "N/A"
+        ],
+        [
+          "Voltage Too Low or Wire Feed Too Slow",
+          "Insufficient heat/penetration",
+          "Increase Output Voltage or Increase Wire Feed Speed"
+        ],
+        [
+          "Voltage Too High or Wire Feed Too Fast",
+          "Excess heat/penetration or burn-through",
+          "Decrease Output Voltage or Decrease Wire Feed Speed"
+        ],
+        [
+          "Travel Speed Too Fast",
+          "Inadequate penetration",
+          "Travel slower"
+        ],
+        [
+          "Travel Speed Too Slow",
+          "Excess penetration or burn-through",
+          "Travel faster"
+        ],
+        [
+          "CTWD Too Long or Wrong Polarity",
+          "Poor weld quality, porosity",
+          "Check Polarity and maintain less than 1/2\" CTWD"
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Wire Weld Diagnosis – Workpiece Heat Control / Weld Penetration",
+      "spatial": "Top row shows three cross-section diagrams left to right: Inadequate Penetration (shallow bead, not hot enough), Proper Penetration (deep rounded bead, ideal heat), Excess Penetration or Burn-Through (bead penetrates fully through workpiece, too hot). An arrow below spans from 'Not hot enough' on the left to 'Too hot' on the right with 'Ideal heat' in the center. Below the arrow, left side lists steps to increase heat; right side lists steps to reduce heat.",
+      "callouts": [
+        "INADEQUATE PENETRATION",
+        "PROPER PENETRATION",
+        "EXCESS PENETRATION OR BURN-THROUGH",
+        "Not hot enough",
+        "Ideal heat",
+        "Too hot",
+        "How to increase workpiece heat and increase penetration:",
+        "(to weld THICKER workpieces properly)",
+        "a. Increase weld current",
+        "b. Decrease travel speed",
+        "c. Use faster wire feed",
+        "d. Use shorter CTWD",
+        "How to reduce workpiece heat and limit penetration:",
+        "(to weld THINNER workpieces properly)",
+        "e. Decrease weld current",
+        "f. Increase travel speed",
+        "g. Use slower wire feed",
+        "h. Use longer CTWD"
+      ]
+    },
+    {
+      "label": "Example Wire Weld Diagrams – Six Side-by-Side Cross-Section Views",
+      "spatial": "Six vertical panels arranged left to right, each showing a top-down bead cross-section and side profile. Panel 1: Good Weld (smooth even bead). Panel 2: Voltage Too Low or Wire Feed Too Slow (narrow tall bead, convex). Panel 3: Voltage Too High or Wire Feed Too Fast (wide flat bead with porosity/spatter). Panel 4: Travel Speed Too Fast (narrow thin bead, shallow). Panel 5: Travel Speed Too Slow (wide deep bead, excess penetration). Panel 6: CTWD Too Long or Wrong Polarity (wide bead with heavy spatter/porosity). Each panel has a label, problem description, and correction with illustrative icons where applicable.",
+      "callouts": [
+        "Good Weld",
+        "Voltage Too Low or Wire Feed Too Slow",
+        "TO CORRECT: Increase Output Voltage or Increase Wire Feed Speed",
+        "Voltage Too High or Wire Feed Too Fast",
+        "TO CORRECT: Decrease Output Voltage or Decrease Wire Feed Speed",
+        "Travel Speed Too Fast",
+        "TO CORRECT: travel slower",
+        "Travel Speed Too Slow",
+        "TO CORRECT: travel faster",
+        "CTWD Too Long or Wrong Polarity",
+        "TO CORRECT: Check Polarity and maintain less than 1/2\" CTWD"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Inadequate penetration is caused by not enough heat",
+    "Excess penetration or burn-through is caused by too much heat",
+    "To increase workpiece heat and penetration: increase weld current, decrease travel speed, use faster wire feed, use shorter CTWD",
+    "To reduce workpiece heat and limit penetration: decrease weld current, increase travel speed, use slower wire feed, use longer CTWD",
+    "Voltage too low or wire feed too slow results in a convex, poorly penetrated bead",
+    "Correction for voltage too low: increase output voltage or increase wire feed speed",
+    "Voltage too high or wire feed too fast results in excessive penetration or burn-through with spatter",
+    "Correction for voltage too high: decrease output voltage or decrease wire feed speed",
+    "Travel speed too fast results in a narrow, shallow bead with inadequate penetration",
+    "Correction for travel speed too fast: travel slower",
+    "Travel speed too slow results in a wide, deep bead with excess penetration",
+    "Correction for travel speed too slow: travel faster",
+    "CTWD too long or wrong polarity results in wide bead with heavy spatter and porosity",
+    "Correction for CTWD too long or wrong polarity: check polarity and maintain less than 1/2 inch CTWD",
+    "Maximum recommended CTWD is less than 1/2 inch (0.5 inches)",
+    "Shorter CTWD increases heat input; longer CTWD decreases heat input",
+    "Faster wire feed increases heat input; slower wire feed decreases heat input",
+    "Lower travel speed increases heat input; higher travel speed decreases heat input",
+    "Higher weld current increases penetration; lower weld current decreases penetration"
+  ],
+  "topics": [
+    "weld_diagnosis",
+    "troubleshooting",
+    "wire_feed",
+    "mig",
+    "flux_cored",
+    "settings"
+  ],
+  "keywords": [
+    "CTWD",
+    "contact tip to work distance",
+    "penetration",
+    "burn-through",
+    "travel speed",
+    "wire feed speed",
+    "output voltage",
+    "weld current",
+    "heat control",
+    "inadequate penetration",
+    "excess penetration",
+    "proper penetration",
+    "polarity",
+    "spatter",
+    "porosity",
+    "bead profile",
+    "wire weld diagnosis"
+  ],
+  "content_types": [
+    "text",
+    "diagram",
+    "table",
+    "chart"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "owner-manual-012",
+  "source": "owner-manual",
+  "page": 12,
+  "image_path": "/corpus/pages/owner-manual-012.png",
+  "summary": "This page provides step-by-step Feed Roller instructions for the Vulcan OmniPro 220 welder, detailing how to check, remove, flip/replace, and reinstall the Feed Roller to match the wire type and size.",
+  "text_content": "12. Feed Roller Instructions:\nCheck that the Feed Roller is correct for the type of wire being used (solid core or flux-cored) and that it is turned to properly match the wire size marked on the Wire Spool:\n\na. Unscrew the Feed Roller Knob counterclockwise.\n\nb. Remove the Feed Roller Knob to expose the Feed Roller.\n\nc. Flip or replace the Feed Roller as needed and confirm that it is the correct Roller for the type of wire being used and that the number showing is the same as the wire diameter on the Spool.\n\nd. Screw the Feed Roller Knob back into place to secure the Feed Roller.\n\nFeed Roller Knob\nSolid Core V-Groove\n0.030/0.035 groove\n0.025 groove\nFeed Roller\n0.045 groove\n0.030/0.035 groove\nFlux-Cored Knurled Groove\n\nPage 12    For technical questions, please call 1-800-444-3353.    Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Feed Roller Knob and Removal Sequence (Steps A-D)",
+      "spatial": "Top-right shows the welder wire feed compartment with Feed Roller Knob labeled. Arrow A points downward to step B showing the Feed Roller exposed after knob removal. Center shows the Feed Roller detail with groove measurements. Arrow B points to the Feed Roller label. Arrow C points downward to step showing the roller flipped/replaced. Arrow D points downward to the final image showing the knob screwed back in place at bottom.",
+      "callouts": [
+        "Feed Roller Knob",
+        "A (arrow indicating step A - unscrew knob)",
+        "Solid Core V-Groove",
+        "0.030/0.035 groove",
+        "0.025 groove",
+        "Feed Roller",
+        "B (arrow indicating step B - expose feed roller)",
+        "0.045 groove",
+        "0.030/0.035 groove",
+        "Flux-Cored Knurled Groove",
+        "C (arrow indicating step C - flip or replace roller)",
+        "D (arrow indicating step D - reinstall knob)"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Feed Roller must match the wire type: solid core (V-Groove) or flux-cored (Knurled Groove)",
+    "Feed Roller must be turned so the number showing matches the wire diameter on the Wire Spool",
+    "Solid Core V-Groove has groove sizes: 0.030/0.035 and 0.025",
+    "Flux-Cored Knurled Groove has groove sizes: 0.045 and 0.030/0.035",
+    "Feed Roller Knob is unscrewed counterclockwise to remove",
+    "Feed Roller can be flipped or replaced to select the correct groove size",
+    "Feed Roller Knob is screwed back in to secure the Feed Roller after adjustment",
+    "Technical support number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 12"
+  ],
+  "topics": [
+    "wire_feed",
+    "maintenance",
+    "mig",
+    "flux_cored",
+    "parts"
+  ],
+  "keywords": [
+    "Feed Roller",
+    "Feed Roller Knob",
+    "V-Groove",
+    "Knurled Groove",
+    "solid core",
+    "flux-cored",
+    "wire size",
+    "0.025",
+    "0.030",
+    "0.035",
+    "0.045",
+    "Wire Spool",
+    "groove",
+    "wire diameter",
+    "counterclockwise"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

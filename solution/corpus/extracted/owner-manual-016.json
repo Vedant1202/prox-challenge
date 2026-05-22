@@ -1,0 +1,80 @@
+{
+  "id": "owner-manual-016",
+  "source": "owner-manual",
+  "page": 16,
+  "image_path": "/corpus/pages/owner-manual-016.png",
+  "summary": "This page covers wire feeding setup steps 24-26 for the Vulcan OmniPro 220 welder, including plugging in power, using the Cold Wire Feed Switch, and troubleshooting wire feed issues, along with electric shock danger warnings.",
+  "text_content": "DANGER\nPARTS MAY BE AT WELDING VOLTAGE\nTO PREVENT ELECTRIC SHOCK AND DEATH:\n1. Keep hands away from Wire Feed mechanism.\n2. Close door before plugging in, unless using Cold Wire Feed to feed wire through to gun.\n3. Do not touch Trigger while feeding wire through to gun.\n\n24. Plug either 120VAC or 240VAC Power Cord into Power Input Socket.\nNote: Plug will only fit one way.\n\n25. Do not touch the Gun's Trigger. Plug the Power Cord into a properly grounded, GFCI protected 120VAC (20 amp rated) or 240VAC receptacle that matches the plug and turn the Power Switch ON. The circuit must be equipped with delayed action-type circuit breaker or fuses.\n\n26. Point the Gun away from all objects. Press and hold the Cold Wire Feed Switch until the wire feeds through two inches.\nThe wire liner may come out with the welding wire. This is normal, just push the wire liner back into the Gun.\nIf the wire does not feed properly and the Spool is stationary, turn OFF and unplug the Welder and slightly tighten the Feed Tensioner clockwise before retrying.\n\nPage 16     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Step 24 - Power Input Socket diagram",
+      "spatial": "Top-right of step 24 section; shows front/top view of the Vulcan OmniPro 220 welder with an arrow pointing to the Power Input socket on the front panel",
+      "callouts": [
+        "Power Input"
+      ]
+    },
+    {
+      "label": "Step 25 - Power Switch and outlet diagram",
+      "spatial": "Right side of step 25 section; shows a close-up of the welder side panel with Power Switch labeled, and a power cord plugging into a wall outlet (GFCI-style receptacle) shown to the left",
+      "callouts": [
+        "Power Switch",
+        "VULCAN"
+      ]
+    },
+    {
+      "label": "Step 26 - Cold Wire Feed Switch and MIG Gun diagram",
+      "spatial": "Bottom of page; left diagram shows interior of welder with Cold Wire Feed Switch labeled; right diagram shows MIG Gun with wire extending 2 inches, with Welding Wire and MIG Gun labeled",
+      "callouts": [
+        "Cold Wire Feed Switch",
+        "2\"",
+        "MIG Gun",
+        "Welding Wire"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Power cord can be either 120VAC or 240VAC and plugs into Power Input Socket",
+    "Plug will only fit one way into Power Input Socket",
+    "120VAC receptacle must be 20 amp rated and GFCI protected",
+    "240VAC receptacle must be GFCI protected",
+    "Circuit must be equipped with delayed action-type circuit breaker or fuses",
+    "Do not touch the Gun's Trigger while feeding wire through to gun",
+    "Keep hands away from Wire Feed mechanism",
+    "Close door before plugging in unless using Cold Wire Feed",
+    "Press and hold Cold Wire Feed Switch until wire feeds through two inches (2 inches)",
+    "If wire does not feed properly and spool is stationary, turn OFF and unplug the welder",
+    "To fix wire feed issue: slightly tighten the Feed Tensioner clockwise before retrying",
+    "Wire liner may come out with welding wire during cold feed — this is normal; push liner back into gun",
+    "Item number: 57812",
+    "Technical support phone number: 1-800-444-3353"
+  ],
+  "topics": [
+    "wire_feed",
+    "safety",
+    "quick_start",
+    "troubleshooting",
+    "mig"
+  ],
+  "keywords": [
+    "Cold Wire Feed Switch",
+    "Power Input Socket",
+    "120VAC",
+    "240VAC",
+    "GFCI",
+    "20 amp",
+    "Power Switch",
+    "wire liner",
+    "Feed Tensioner",
+    "MIG Gun",
+    "delayed action circuit breaker",
+    "fuses",
+    "welding voltage",
+    "electric shock",
+    "wire feed mechanism"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

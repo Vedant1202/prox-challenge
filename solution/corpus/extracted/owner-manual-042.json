@@ -1,0 +1,106 @@
+{
+  "id": "owner-manual-042",
+  "source": "owner-manual",
+  "page": 42,
+  "image_path": "/corpus/pages/owner-manual-042.png",
+  "summary": "Troubleshooting guide for MIG/Flux-Cored welding problems including wire feed issues, bird's nesting, wire stoppage, unstable arc, and weak arc strength with their causes and solutions.",
+  "text_content": "Troubleshooting–MIG/Flux-Cored Welding\n\nIMPORTANT!\nBe CERTAIN to shut off the Welder, disconnect it from power, and discharge the MIG Gun to ground before adjusting, cleaning, or repairing the unit.\n\nProblem | Possible Causes | Likely Solutions\n\nWire Feed Motor Runs but Wire Does Not Feed Properly\n1. Insufficient wire feed pressure.\n2. Incorrect wire feed roller size.\n3. Damaged MIG Gun, cable, or liner assembly.\n4. Feed Tensioner is too tight.\n\n1. Increase wire feed pressure properly. Follow step 27 on page 17.\n2. Flip roll to correct size. Follow the Feed Roller instructions on page 12.\n3. Have a qualified technician inspect these parts and replace as necessary.\n4. Loosen Feed Tensioner so it applies only enough pressure to prevent continued spinning after the Gun Trigger is released.\n\nWire Creates a Bird's Nest During Operation\n1. Excess wire feed pressure.\n2. Incorrect Contact Tip size.\n3. MIG Gun Cable Connector not fully inserted into Wire Feed mechanism.\n4. Damaged liner.\n\n1. Adjust wire feed pressure properly. Follow step 27 on page 17.\n2. Replace with the proper tip for wire used.\n3. Insert Gun Cable Connector properly. Follow steps 13 and 14 on page 13.\n4. Have a qualified technician inspect and repair/replace as necessary.\n\nWire Stops During Welding\n1. Gun cable is severely bent and Wire Feed mechanism cannot feed wire.\n2. Gun liner is clogged or worn.\n3. Gun liner is too small for welding wire being used.\n4. Wire is tangled on the spool.\n5. Wire is not making contact with Feed Rollers.\n6. Feed Roller is not making enough contact with wire or is crushing flux-cored wire.\n\n1. Straighten Gun cable.\n2. Check gun liner for obstruction. Replace if necessary.\n3. Check that gun liner is correct size for wire.\n4. Check wire for cross winding or tangled spool.\n5. Check Feed Rollers and ensure correct groove for wire diameter is being used.\n6. Check Feed Tensioner and ensure it is set properly.\n\nWelding Arc Not Stable\n1. Wire not feeding properly.\n2. Incorrect Contact Tip or liner size or excessive wear.\n3. Incorrect wire feed speed.\n4. Loose MIG Gun cable or ground cable.\n5. Damaged MIG Gun or loose connection within Gun.\n6. Incorrect polarity for process being run.\n7. Gas coverage may be insufficient or too high.\n8. Poor connection with workpiece.\n\n1. See first Troubleshooting section above.\n2. Replace with the proper tip or liner size for wire used.\n3. Adjust wire feed speed to achieve a more stable arc.\n4. Check to ensure that all connections are tight.\n5. Have a qualified technician inspect and repair/replace as necessary.\n6. Ensure polarity is correct for operation: DCEP for MIG welding and DCEN for Flux-Cored self-shielded welding.\n7. Ensure gas flow rate is set according to Settings Chart. Make sure MIG Gun Cable Connector is fully inserted into Wire Feed mechanism with no O-Rings exposed.\n8. Check the ground clamp connection to the workpiece and machine. Ensure the MIG Gun is properly secured.\n\nWeak Arc Strength\n1. Incorrect line voltage.\n2. Improper gauge or length of cord.\n3. Not enough current.\n\n1. Check the line voltage and, if insufficient, have a licensed electrician remedy the situation.\n2. Do not use an extension cord on this Welder. Use only one of the supplied power cords for this Welder or an identical replacement cord.\n3. Switch current to proper setting for metal thickness.\n\nFollow all safety precautions whenever diagnosing or servicing the equipment.\n\nPage 42    For technical questions, please call 1-800-444-3353.    Item 57812",
+  "tables": [
+    {
+      "title": "MIG/Flux-Cored Welding Troubleshooting",
+      "rows": [
+        [
+          "Problem",
+          "Possible Causes",
+          "Likely Solutions"
+        ],
+        [
+          "Wire Feed Motor Runs but Wire Does Not Feed Properly",
+          "1. Insufficient wire feed pressure.\n2. Incorrect wire feed roller size.\n3. Damaged MIG Gun, cable, or liner assembly.\n4. Feed Tensioner is too tight.",
+          "1. Increase wire feed pressure properly. Follow step 27 on page 17.\n2. Flip roll to correct size. Follow the Feed Roller instructions on page 12.\n3. Have a qualified technician inspect these parts and replace as necessary.\n4. Loosen Feed Tensioner so it applies only enough pressure to prevent continued spinning after the Gun Trigger is released."
+        ],
+        [
+          "Wire Creates a Bird's Nest During Operation",
+          "1. Excess wire feed pressure.\n2. Incorrect Contact Tip size.\n3. MIG Gun Cable Connector not fully inserted into Wire Feed mechanism.\n4. Damaged liner.",
+          "1. Adjust wire feed pressure properly. Follow step 27 on page 17.\n2. Replace with the proper tip for wire used.\n3. Insert Gun Cable Connector properly. Follow steps 13 and 14 on page 13.\n4. Have a qualified technician inspect and repair/replace as necessary."
+        ],
+        [
+          "Wire Stops During Welding",
+          "1. Gun cable is severely bent and Wire Feed mechanism cannot feed wire.\n2. Gun liner is clogged or worn.\n3. Gun liner is too small for welding wire being used.\n4. Wire is tangled on the spool.\n5. Wire is not making contact with Feed Rollers.\n6. Feed Roller is not making enough contact with wire or is crushing flux-cored wire.",
+          "1. Straighten Gun cable.\n2. Check gun liner for obstruction. Replace if necessary.\n3. Check that gun liner is correct size for wire.\n4. Check wire for cross winding or tangled spool.\n5. Check Feed Rollers and ensure correct groove for wire diameter is being used.\n6. Check Feed Tensioner and ensure it is set properly."
+        ],
+        [
+          "Welding Arc Not Stable",
+          "1. Wire not feeding properly.\n2. Incorrect Contact Tip or liner size or excessive wear.\n3. Incorrect wire feed speed.\n4. Loose MIG Gun cable or ground cable.\n5. Damaged MIG Gun or loose connection within Gun.\n6. Incorrect polarity for process being run.\n7. Gas coverage may be insufficient or too high.\n8. Poor connection with workpiece.",
+          "1. See first Troubleshooting section above.\n2. Replace with the proper tip or liner size for wire used.\n3. Adjust wire feed speed to achieve a more stable arc.\n4. Check to ensure that all connections are tight.\n5. Have a qualified technician inspect and repair/replace as necessary.\n6. Ensure polarity is correct for operation: DCEP for MIG welding and DCEN for Flux-Cored self-shielded welding.\n7. Ensure gas flow rate is set according to Settings Chart. Make sure MIG Gun Cable Connector is fully inserted into Wire Feed mechanism with no O-Rings exposed.\n8. Check the ground clamp connection to the workpiece and machine. Ensure the MIG Gun is properly secured."
+        ],
+        [
+          "Weak Arc Strength",
+          "1. Incorrect line voltage.\n2. Improper gauge or length of cord.\n3. Not enough current.",
+          "1. Check the line voltage and, if insufficient, have a licensed electrician remedy the situation.\n2. Do not use an extension cord on this Welder. Use only one of the supplied power cords for this Welder or an identical replacement cord.\n3. Switch current to proper setting for metal thickness."
+        ]
+      ]
+    }
+  ],
+  "diagrams": [],
+  "key_facts": [
+    "MIG welding requires DCEP polarity",
+    "Flux-Cored self-shielded welding requires DCEN polarity",
+    "Wire feed pressure adjustment is described in step 27 on page 17",
+    "Feed Roller instructions are on page 12",
+    "MIG Gun Cable Connector insertion steps 13 and 14 are on page 13",
+    "Do not use an extension cord on this Welder",
+    "Use only the supplied power cords or an identical replacement cord",
+    "Gas flow rate should be set according to the Settings Chart",
+    "MIG Gun Cable Connector must be fully inserted into Wire Feed mechanism with no O-Rings exposed",
+    "Before adjusting, cleaning, or repairing: shut off welder, disconnect from power, and discharge MIG Gun to ground",
+    "Bird's nest can be caused by excess wire feed pressure, incorrect contact tip size, improperly inserted gun cable connector, or damaged liner",
+    "Wire stopping during welding can be caused by severely bent gun cable preventing wire feed",
+    "Incorrect current setting relative to metal thickness can cause weak arc strength",
+    "Incorrect line voltage can cause weak arc strength; a licensed electrician should remedy insufficient line voltage",
+    "Feed Tensioner must apply only enough pressure to prevent continued spinning after Gun Trigger is released",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 42"
+  ],
+  "topics": [
+    "troubleshooting",
+    "wire_feed",
+    "mig",
+    "flux_cored",
+    "safety",
+    "polarity",
+    "maintenance",
+    "weld_diagnosis",
+    "settings"
+  ],
+  "keywords": [
+    "MIG",
+    "flux-cored",
+    "wire feed motor",
+    "bird's nest",
+    "contact tip",
+    "gun liner",
+    "feed roller",
+    "feed tensioner",
+    "DCEP",
+    "DCEN",
+    "polarity",
+    "arc stability",
+    "wire feed pressure",
+    "gun cable connector",
+    "O-rings",
+    "arc strength",
+    "line voltage",
+    "extension cord",
+    "Settings Chart",
+    "ground clamp",
+    "spool",
+    "cross winding",
+    "welding wire"
+  ],
+  "content_types": [
+    "text",
+    "table"
+  ]
+}

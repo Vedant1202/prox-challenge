@@ -1,0 +1,257 @@
+{
+  "id": "selection-chart-001",
+  "source": "selection-chart",
+  "page": 1,
+  "image_path": "/corpus/pages/selection-chart-001.png",
+  "summary": "A selection guide chart explaining how to choose the right welding process (FCAW, MIG/GMAW, Stick/SMAW, or TIG/GTAW) based on skill level, shielding gas needs, material type, thickness, typical applications, and weld cleanliness requirements.",
+  "text_content": "HOW TO CHOOSE A WELDER\n\nIMPORTANT! IDENTIFY YOUR INPUT VOLTAGE: DO YOU HAVE 120 VOLT OR 240 VOLT?\n\n1. WHAT IS YOUR SKILL LEVEL?\n   LOW | MODERATE | HIGH (columns repeated for each process)\n\n2. WILL YOU NEED SHIELDING GAS?\n   NO-GAS REQUIRED | GAS REQUIRED (Indoor welding recommended) | NO-GAS REQUIRED | GAS REQUIRED (Indoor welding recommended)\n\n3. WHAT TYPE OF MATERIAL WILL YOU BE WELDING?\n   STEEL, STAINLESS STEEL | STEEL, STAINLESS STEEL, ALUMINUM (Spool gun required) | STEEL, STAINLESS STEEL, CASTINGS | STEEL, STAINLESS STEEL, CHROME MOLY -> DC TIG REQUIRED | ALUMINUM, MAGNESIUM ALLOYS -> AC TIG REQUIRED\n\n4. WHAT IS YOUR MATERIAL THICKNESS?\n   18 Gauge to 5/16\" | 22 Gauge to 3/8\" | 10 Gauge to 1/2\" | 24 Gauge to 3/16\"\n\n5. TYPICAL APPLICATIONS\n   FCAW: Galvanized steel, General fabrication, Pipe and tubing, Maintenance & repair\n   MIG: Sheet metal, Automotive body, Tubing, Structural steel\n   STICK: Pipe and tubing, Structural steel, Pressure vessels, Maintenance & repair, Thin wall pipe & tubing, Metal art\n   TIG: Stainless steel exhausts, Bicycle frames\n\n6. HOW CLEAN DO YOU NEED YOUR WELD?\n   MORE SPATTER | CLEAN / MINIMAL SPATTER | MORE SPATTER | EXTREMELY CLEAN\n\nUSE THIS WELDING PROCESS:\n\nFLUX-CORED / FCAW\n- Ideal for outdoor or windy conditions\n- Forgiving on rusty or dirty steels\n- Good out of position welding capabilities\n- High deposition rates achievable\n\nMIG / GMAW\n- Fast production (high welding speeds)\n- Easiest to learn\n- Clean welds with no slag\n- Better control on thin materials\n\nSTICK / SMAW\n- Ideal for outdoor or windy conditions\n- Forgiving on rusty or dirty steels\n- Deep penetration\n- Good choice for thicker materials\n\nTIG / GTAW\n- Highest quality welds\n- Extremely aesthetic weld appearance\n- Can be used on a variety of materials\n- Precise control\n\nMIG or FLUX CORED?\n   [Comparison table header: MIG | FLUX CORED]\n   USES CORED WIRE: [blank] | checkmark\n   USES SOLID WIRE: checkmark | [blank]\n   USES SHIELDING GAS: checkmark | [blank]\n   WELDS MILD STEEL/LIMITED: checkmark | checkmark (implied)\n   WELDS OVER MILL SCALE AND RUST: [blank] | checkmark\n   REQUIRES MINIMAL SURFACE PREP: [blank] | checkmark\n   CAN BE USED OUTDOORS IN WINDY CONDITIONS: [blank] | checkmark\n   DEEP WELD PENETRATION: [blank] | checkmark\n   HANDLES MATERIAL GAPS WELL: [blank] | checkmark\n   THIN MATERIALS LIKE SHEET METAL: checkmark | [blank]\n\nThe Duty Cycle is the number of minutes, within a 10-minute period, a welding process can produce the specified welding current without overheating.\n\nDUTY CYCLE EXAMPLE\n165A at 30% Duty Cycle\n[Clock diagram showing:]\n3 Minutes Welding | 7 Minutes Resting",
+  "tables": [
+    {
+      "title": "Welding Process Selection Chart",
+      "rows": [
+        [
+          "Criteria",
+          "FLUX-CORED / FCAW",
+          "MIG / GMAW",
+          "STICK / SMAW",
+          "TIG / GTAW"
+        ],
+        [
+          "Skill Level",
+          "LOW",
+          "LOW",
+          "MODERATE",
+          "HIGH"
+        ],
+        [
+          "Shielding Gas",
+          "NO-GAS REQUIRED",
+          "GAS REQUIRED (Indoor welding recommended)",
+          "NO-GAS REQUIRED",
+          "GAS REQUIRED (Indoor welding recommended)"
+        ],
+        [
+          "Material Types",
+          "Steel, Stainless Steel",
+          "Steel, Stainless Steel, Aluminum (Spool gun required)",
+          "Steel, Stainless Steel, Castings",
+          "Steel, Stainless Steel, Chrome Moly (DC TIG); Aluminum, Magnesium Alloys (AC TIG)"
+        ],
+        [
+          "Material Thickness",
+          "18 Gauge to 5/16\"",
+          "22 Gauge to 3/8\"",
+          "10 Gauge to 1/2\"",
+          "24 Gauge to 3/16\""
+        ],
+        [
+          "Typical Applications",
+          "Galvanized steel, General fabrication, Pipe and tubing, Maintenance & repair",
+          "Sheet metal, Automotive body, Tubing, Structural steel",
+          "Pipe and tubing, Structural steel, Pressure vessels, Maintenance & repair, Thin wall pipe & tubing, Metal art",
+          "Stainless steel exhausts, Bicycle frames"
+        ],
+        [
+          "Weld Cleanliness",
+          "MORE SPATTER",
+          "CLEAN / MINIMAL SPATTER",
+          "MORE SPATTER",
+          "EXTREMELY CLEAN"
+        ]
+      ]
+    },
+    {
+      "title": "MIG vs Flux Cored Comparison",
+      "rows": [
+        [
+          "Feature",
+          "MIG",
+          "FLUX CORED"
+        ],
+        [
+          "Uses Cored Wire",
+          "No",
+          "Yes"
+        ],
+        [
+          "Uses Solid Wire",
+          "Yes",
+          "No"
+        ],
+        [
+          "Uses Shielding Gas",
+          "Yes",
+          "No"
+        ],
+        [
+          "Welds Mild Steel/Limited",
+          "Yes",
+          "Yes"
+        ],
+        [
+          "Welds Over Mill Scale and Rust",
+          "No",
+          "Yes"
+        ],
+        [
+          "Requires Minimal Surface Prep",
+          "No",
+          "Yes"
+        ],
+        [
+          "Can Be Used Outdoors in Windy Conditions",
+          "No",
+          "Yes"
+        ],
+        [
+          "Deep Weld Penetration",
+          "No",
+          "Yes"
+        ],
+        [
+          "Handles Material Gaps Well",
+          "No",
+          "Yes"
+        ],
+        [
+          "Thin Materials Like Sheet Metal",
+          "Yes",
+          "No"
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Duty Cycle Example Clock Diagram",
+      "spatial": "Clock face in lower right of chart; left side of clock shows welding time, right side shows resting time",
+      "callouts": [
+        "165A at 30% Duty Cycle",
+        "3 Minutes Welding",
+        "7 Minutes Resting",
+        "The Duty Cycle is the number of minutes, within a 10-minute period, a welding process can produce the specified welding current without overheating."
+      ]
+    },
+    {
+      "label": "Welding Process Selection Flow Chart",
+      "spatial": "Six rows of criteria (steps 1-6) run horizontally across the chart; four process columns run vertically; final recommendation row at bottom identifies the welding process for each column; MIG vs Flux Cored comparison table in upper right; Duty Cycle diagram in lower right",
+      "callouts": [
+        "Step 1: What is your skill level?",
+        "Step 2: Will you need shielding gas?",
+        "Step 3: What type of material will you be welding?",
+        "Step 4: What is your material thickness?",
+        "Step 5: Typical applications",
+        "Step 6: How clean do you need your weld?",
+        "FLUX-CORED / FCAW",
+        "MIG / GMAW",
+        "STICK / SMAW",
+        "TIG / GTAW",
+        "IMPORTANT! IDENTIFY YOUR INPUT VOLTAGE: DO YOU HAVE 120 VOLT OR 240 VOLT?"
+      ]
+    }
+  ],
+  "key_facts": [
+    "FCAW requires no shielding gas",
+    "MIG/GMAW requires shielding gas and indoor welding is recommended",
+    "Stick/SMAW requires no shielding gas",
+    "TIG/GTAW requires shielding gas and indoor welding is recommended",
+    "FCAW is suitable for LOW skill level",
+    "MIG/GMAW is suitable for LOW skill level",
+    "Stick/SMAW is suitable for MODERATE skill level",
+    "TIG/GTAW is suitable for HIGH skill level",
+    "FCAW welds Steel and Stainless Steel",
+    "MIG/GMAW welds Steel, Stainless Steel, and Aluminum (spool gun required for aluminum)",
+    "Stick/SMAW welds Steel, Stainless Steel, and Castings",
+    "TIG/GTAW welds Steel, Stainless Steel, Chrome Moly (DC TIG required), Aluminum, and Magnesium Alloys (AC TIG required)",
+    "FCAW material thickness range: 18 Gauge to 5/16\"",
+    "MIG/GMAW material thickness range: 22 Gauge to 3/8\"",
+    "Stick/SMAW material thickness range: 10 Gauge to 1/2\"",
+    "TIG/GTAW material thickness range: 24 Gauge to 3/16\"",
+    "FCAW produces more spatter",
+    "MIG/GMAW produces clean/minimal spatter",
+    "Stick/SMAW produces more spatter",
+    "TIG/GTAW produces extremely clean welds",
+    "Duty cycle example: 165A at 30% Duty Cycle = 3 minutes welding, 7 minutes resting in a 10-minute period",
+    "Duty cycle is defined as the number of minutes within a 10-minute period a welding process can produce specified welding current without overheating",
+    "MIG uses solid wire; Flux Cored uses cored wire",
+    "MIG uses shielding gas; Flux Cored does not",
+    "Flux Cored can be used outdoors in windy conditions; MIG cannot",
+    "Flux Cored welds over mill scale and rust; MIG does not",
+    "MIG is better for thin materials like sheet metal",
+    "Flux Cored has deep weld penetration",
+    "Flux Cored handles material gaps well",
+    "Chrome Moly requires DC TIG",
+    "Aluminum and Magnesium Alloys require AC TIG",
+    "Aluminum welding with MIG requires a spool gun",
+    "Stick/SMAW is ideal for thicker materials (up to 1/2\")",
+    "FCAW typical applications include: galvanized steel, general fabrication, pipe and tubing, maintenance & repair",
+    "MIG/GMAW typical applications include: sheet metal, automotive body, tubing, structural steel",
+    "Stick/SMAW typical applications include: pipe and tubing, structural steel, pressure vessels, maintenance & repair, thin wall pipe & tubing, metal art",
+    "TIG/GTAW typical applications include: stainless steel exhausts, bicycle frames",
+    "Input voltage identification is important: 120 Volt or 240 Volt"
+  ],
+  "topics": [
+    "selection_chart",
+    "mig",
+    "tig",
+    "flux_cored",
+    "stick",
+    "duty_cycle",
+    "settings",
+    "specifications"
+  ],
+  "keywords": [
+    "FCAW",
+    "flux-cored",
+    "MIG",
+    "GMAW",
+    "Stick",
+    "SMAW",
+    "TIG",
+    "GTAW",
+    "shielding gas",
+    "no-gas",
+    "duty cycle",
+    "skill level",
+    "material thickness",
+    "gauge",
+    "spatter",
+    "stainless steel",
+    "aluminum",
+    "chrome moly",
+    "magnesium alloys",
+    "DC TIG",
+    "AC TIG",
+    "spool gun",
+    "deposition rate",
+    "slag",
+    "penetration",
+    "120 volt",
+    "240 volt",
+    "input voltage",
+    "solid wire",
+    "cored wire",
+    "mill scale",
+    "galvanized",
+    "pressure vessels",
+    "sheet metal",
+    "structural steel",
+    "18 gauge",
+    "22 gauge",
+    "10 gauge",
+    "24 gauge",
+    "5/16 inch",
+    "3/8 inch",
+    "1/2 inch",
+    "3/16 inch",
+    "165A",
+    "30% duty cycle",
+    "10-minute period"
+  ],
+  "content_types": [
+    "text",
+    "table",
+    "diagram",
+    "chart"
+  ]
+}

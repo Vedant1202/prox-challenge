@@ -1,0 +1,85 @@
+{
+  "id": "owner-manual-011",
+  "source": "owner-manual",
+  "page": 11,
+  "image_path": "/corpus/pages/owner-manual-011.png",
+  "summary": "This page covers the installation procedure for 10-12 pound wire spools on the Vulcan OmniPro 220 welder, including spool adapter placement, wire unwind direction, wingnut tightening, and feed tensioner adjustment.",
+  "text_content": "6. 10-12 Pound Wire Spool Installation:\nRemove the Wingnut and Spacer. If replacing a Spool, remove the old Spool and all remaining wire from the liners.\n\n7. Place the Spool Adapter over the Spool Spindle and against the Spool Brake Pad as illustrated.\n\n8. Place the new Wire Spool over the Adapter and line up pin on Adapter with hole in Spool. To prevent wire feed problems, set the Spool so that it will unwind clockwise.\n\n9. Replace the Spacer over the Spool Spindle and secure Spool in place with the Wingnut.\n\nNotice: If Wire Spool can spin freely, Wingnut is too loose. This will cause the welding wire to unravel and unspool which can cause tangling and feeding problems.\n\n10. Screw the Spool Knob into the Spool Adapter.\n\n10-12 lb Spool Loading\n\nWire must unwind in this direction\n\n11. Turn the Feed Tensioner knob counterclockwise to loosen it enough to pull it down to remove tension. The spring-loaded Idler Arm will move up as shown.\n\nFeed Tensioner\nIdler Arm\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 11",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "10-12 lb Spool Loading",
+      "spatial": "Exploded vertical diagram on the right side of the page showing components from top to bottom: Spool Knob at top, then Wingnut, then Spacer, then the 10-12 lb Wire Spool, then Spool Spindle on the right side, with Spool Brake Pad to the right and Welder Wall at the bottom right, and the 10-12 lb Spool Adapter on the left side of the assembly",
+      "callouts": [
+        "Spool Knob",
+        "Wingnut",
+        "Spacer",
+        "10-12 lb Wire Spool",
+        "Spool Spindle",
+        "10-12 lb Spool Adapter",
+        "Spool Brake Pad",
+        "Welder Wall"
+      ]
+    },
+    {
+      "label": "Wire Unwind Direction",
+      "spatial": "Diagram showing the welder unit from the front with a dashed circle highlighting the spool area on the right side. An arrow labeled 'Wire must unwind in this direction' points clockwise into the spool area on the left side of the diagram.",
+      "callouts": [
+        "Wire must unwind in this direction"
+      ]
+    },
+    {
+      "label": "Feed Tensioner and Idler Arm",
+      "spatial": "Two side-by-side diagrams of the wire feed mechanism. Left diagram shows the Feed Tensioner knob labeled at the top. Right diagram shows the Idler Arm raised after tension is released. An arrow between the two diagrams indicates the transition.",
+      "callouts": [
+        "Feed Tensioner",
+        "Idler Arm"
+      ]
+    }
+  ],
+  "key_facts": [
+    "This procedure applies to 10-12 pound wire spools",
+    "When installing a replacement spool, remove old spool and all remaining wire from the liners",
+    "Spool Adapter must be placed over the Spool Spindle and against the Spool Brake Pad",
+    "Pin on Adapter must line up with hole in Spool",
+    "Wire spool must be set to unwind clockwise to prevent wire feed problems",
+    "If Wire Spool can spin freely, the Wingnut is too loose",
+    "A loose Wingnut causes welding wire to unravel and unspool, leading to tangling and feeding problems",
+    "Spool Knob is screwed into the Spool Adapter",
+    "Feed Tensioner knob must be turned counterclockwise to loosen and release tension",
+    "The Idler Arm is spring-loaded and moves up when tension is released",
+    "Item number for this welder is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "wire_feed",
+    "maintenance",
+    "parts",
+    "mig",
+    "flux_cored",
+    "troubleshooting"
+  ],
+  "keywords": [
+    "wire spool",
+    "spool installation",
+    "spool adapter",
+    "spool spindle",
+    "spool brake pad",
+    "spool knob",
+    "wingnut",
+    "spacer",
+    "10-12 pound",
+    "wire unwind",
+    "clockwise",
+    "feed tensioner",
+    "idler arm",
+    "spring-loaded",
+    "tangling",
+    "feeding problems",
+    "liner"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "id": "owner-manual-023",
+  "source": "owner-manual",
+  "page": 23,
+  "image_path": "/corpus/pages/owner-manual-023.png",
+  "summary": "This page covers post-welding shutdown procedures, duty cycle guidelines, warning screen information, and cooling requirements for the Vulcan OmniPro 220 welder.",
+  "text_content": "Note: If Welder is used too long, a warning screen appears in the LCD Display window and the unit automatically shuts down. The Welder automatically returns to service after cooling off. Should this occur, rest the MIG Gun on an electrically non-conductive, heat-proof surface, such as a concrete slab, away from the ground clamp.\n\nAllow the Welder to cool with the Power Switch on, so that the internal Fan will help cool the Welder.\n\nWhen normal operation resumes, use shorter welding periods and longer rest periods to help prevent needless wear.\n\n7. After welding the test weld on a piece of scrap for a few seconds, stop, and check your progress. Clean, then compare your weld's appearance with the diagrams and descriptions in the Welding Tips section starting on the next page. After making any necessary adjustments, continue to weld while carefully following the DUTY CYCLE guidelines as explained on page 19.\n\nCAUTION! Weld will be hot, do not touch.\n\nAfter practice welding for a few seconds, STOP and examine your weld using the guidelines starting on the next page.\n\nFOLLOW DUTY CYCLE!\n\n120VAC\n40% Use at 100A\nFor 10 Continuous Minutes\n4 Minutes Welding | 6 Minutes Resting\n100% Continuous Use at 75A\n\n240VAC\n25% Use at 200A\nFor 10 Continuous Minutes\n2-1/2 Minutes Welding | 7-1/2 Minutes Resting\n100% Continuous Use at 115A\n\n8. When welding is complete, set the MIG Gun down on a heat-proof, electrically non-conductive surface.\nTurn the Power Switch OFF.\n\n9. Allow Welder to cool down, then unplug the Power Cord.\n\n10. Remove Ground Clamp from workpiece or table and disconnect MIG Gun.\n\n11. Respool wire by clipping wire, removing gas nozzle/contact tip on MIG gun, releasing Idler Arm on Wire Feed mechanism, and rotating the Wire Spool counterclockwise. Be sure to securely hold wire as it is being respooled because the end of wire has a tendency to quickly unravel once it clears the wire feeder.\n\n12. MIG ONLY:\nClose shielding gas cylinder valve securely. Remove Regulator and replace cap. Disconnect Gas Hose from Welder. Store and secure gas cylinder.\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 23",
+  "tables": [
+    {
+      "title": "Warning Screen Problems and Remedies",
+      "rows": [
+        [
+          "Problem",
+          "Remedy"
+        ],
+        [
+          "Duty Cycle Exceeded",
+          "The machine has thermally tripped. Allow the machine to cool."
+        ],
+        [
+          "Low Voltage Input",
+          "The voltage input is below the specified limit. Inspect input voltage and ensure it is within machine limits."
+        ],
+        [
+          "High Voltage Input",
+          "The voltage input is higher than the specified limit. Inspect input voltage and ensure it is within machine limits."
+        ]
+      ]
+    },
+    {
+      "title": "Duty Cycle Chart - 120VAC",
+      "rows": [
+        [
+          "120VAC",
+          ""
+        ],
+        [
+          "40% Use at 100A",
+          "For 10 Continuous Minutes"
+        ],
+        [
+          "4 Minutes Welding",
+          "6 Minutes Resting"
+        ],
+        [
+          "100% Continuous Use at 75A",
+          ""
+        ]
+      ]
+    },
+    {
+      "title": "Duty Cycle Chart - 240VAC",
+      "rows": [
+        [
+          "240VAC",
+          ""
+        ],
+        [
+          "25% Use at 200A",
+          "For 10 Continuous Minutes"
+        ],
+        [
+          "2-1/2 Minutes Welding",
+          "7-1/2 Minutes Resting"
+        ],
+        [
+          "100% Continuous Use at 115A",
+          ""
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Warning Screen on LCD Display",
+      "spatial": "Top center of page; shows the welder LCD display with a warning triangle icon and a table of problems and remedies visible on the screen. The LCD Display label points to the top of the unit and the Power Switch label points to the bottom right of the unit.",
+      "callouts": [
+        "LCD Display",
+        "Warning Screen",
+        "Power Switch",
+        "Problem",
+        "Remedy",
+        "Duty Cycle Exceeded",
+        "The machine has thermally tripped. Allow the machine to cool.",
+        "Low Voltage Input",
+        "The voltage input is below the specified limit. Inspect input voltage and ensure it is within machine limits.",
+        "High Voltage Input",
+        "The voltage input is higher than the specified limit. Inspect input voltage and ensure it is within machine limits.",
+        "Please consult operator manual for machine specifications.",
+        "The machine will resume normal operation once issue has been remedied. There is no circuit breaker to reset.",
+        "VULCAN"
+      ]
+    },
+    {
+      "label": "Duty Cycle Pie Charts",
+      "spatial": "Center of page; two pie charts side by side. Left chart shows 120VAC duty cycle with 4 minutes welding and 6 minutes resting. Right chart shows 240VAC duty cycle with 2-1/2 minutes welding and 7-1/2 minutes resting.",
+      "callouts": [
+        "120VAC",
+        "40% Use at 100A",
+        "For 10 Continuous Minutes",
+        "4 Minutes Welding",
+        "6 Minutes Resting",
+        "100% Continuous Use at 75A",
+        "240VAC",
+        "25% Use at 200A",
+        "For 10 Continuous Minutes",
+        "2-1/2 Minutes Welding",
+        "7-1/2 Minutes Resting",
+        "100% Continuous Use at 115A"
+      ]
+    },
+    {
+      "label": "Post-Welding Shutdown Diagram",
+      "spatial": "Right side of page, middle to bottom. Shows the MIG Gun placed on a concrete slab (top left of diagram), with an arrow pointing to the welder unit (center/right), and the Power Switch indicated on the welder. Below that, shows a power cord being unplugged from a wall outlet, and at the bottom a gas cylinder valve being closed.",
+      "callouts": [
+        "MIG Gun",
+        "concrete slab (or other heat-proof, non-conductive surface)",
+        "VULCAN",
+        "Power Switch"
+      ]
+    }
+  ],
+  "key_facts": [
+    "At 120VAC and 100A, the duty cycle is 40% for 10 continuous minutes",
+    "At 120VAC 100A duty cycle: 4 minutes welding, 6 minutes resting",
+    "At 120VAC, 100% continuous use is possible at 75A",
+    "At 240VAC and 200A, the duty cycle is 25% for 10 continuous minutes",
+    "At 240VAC 200A duty cycle: 2-1/2 minutes welding, 7-1/2 minutes resting",
+    "At 240VAC, 100% continuous use is possible at 115A",
+    "If overheated, the welder automatically shuts down and shows a warning on the LCD Display",
+    "The welder automatically returns to service after cooling off",
+    "Allow welder to cool with Power Switch ON so internal fan assists cooling",
+    "Weld will be hot after welding — do not touch",
+    "After thermal trip, the machine has no circuit breaker to reset",
+    "MIG Gun should be placed on an electrically non-conductive, heat-proof surface such as a concrete slab when not in use",
+    "MIG Gun must be placed away from the ground clamp when resting",
+    "To respool wire: clip wire, remove gas nozzle/contact tip, release Idler Arm on Wire Feed mechanism, rotate Wire Spool counterclockwise",
+    "Wire end has tendency to unravel quickly once it clears the wire feeder",
+    "For MIG: close shielding gas cylinder valve securely, remove regulator and replace cap, disconnect Gas Hose from Welder",
+    "Duty cycle guidelines are explained on page 19",
+    "Welding Tips section starts on the next page (page 24)",
+    "Item number is 57812",
+    "Technical support phone number: 1-800-444-3353"
+  ],
+  "topics": [
+    "duty_cycle",
+    "safety",
+    "mig",
+    "maintenance",
+    "troubleshooting",
+    "wire_feed",
+    "quick_start"
+  ],
+  "keywords": [
+    "duty cycle",
+    "LCD display",
+    "warning screen",
+    "thermal trip",
+    "120VAC",
+    "240VAC",
+    "100A",
+    "200A",
+    "75A",
+    "115A",
+    "MIG Gun",
+    "concrete slab",
+    "non-conductive",
+    "Power Switch",
+    "wire respool",
+    "shielding gas",
+    "cylinder valve",
+    "regulator",
+    "ground clamp",
+    "wire feeder",
+    "Idler Arm",
+    "Wire Spool",
+    "cooling",
+    "fan",
+    "overheating",
+    "welding period",
+    "rest period"
+  ],
+  "content_types": [
+    "text",
+    "table",
+    "diagram",
+    "chart"
+  ]
+}

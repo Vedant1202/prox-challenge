@@ -1,0 +1,191 @@
+{
+  "id": "owner-manual-019",
+  "source": "owner-manual",
+  "page": 19,
+  "image_path": "/corpus/pages/owner-manual-019.png",
+  "summary": "This page covers duty cycle definitions and limitations for the Vulcan OmniPro 220 welder at both 120VAC and 240VAC, plus instructions for setting up a weld including surface preparation and grounding.",
+  "text_content": "Duty Cycle (Duration of Use)\n\nAvoid damage to the Welder by not welding for more than the prescribed duty cycle time. The Duty Cycle defines the number of minutes, within a 10 minute period, during which a given welder can produce a particular welding current without overheating.\n\nFor example, a welder with a 40% duty cycle at 100A welding current must be allowed to rest for at least 6 minutes after every 4 minutes of continuous welding.\n\nFailure to carefully observe duty cycle limitations can easily over-stress a welder's power generation system contributing to premature welder failure.\n\nThis Welder has an internal thermal protection system to help prevent this sort of over-stress. When the Welder overheats, it automatically shuts down and a warning screen appears in the LCD Display window. The Welder automatically returns to service after cooling off. Should this occur, rest the MIG Gun on an electrically non-conductive, heat-proof surface, such as a concrete slab, well clear of the ground clamp.\n\nAllow the Welder to cool with the Power Switch on, so that the internal Fan will help cool the Welder.\n\nWhen normal operation resumes, use shorter welding periods and longer rest periods to prevent needless wear.\n\nRated Duty Cycle\n120VAC\n40% Use at 100A\nFor 10 Continuous Minutes\n4 Minutes Welding | 6 Minutes Resting\n100% Continuous Use at 75A\n\nRated Duty Cycle\n240VAC\n25% Use at 200A\nFor 10 Continuous Minutes\n2-1/2 Minutes Welding | 7-1/2 Minutes Resting\n100% Continuous Use at 115A\n\nSetting Up The Weld\n\n1. Make practice welds on pieces of scrap the same thickness as your intended workpiece to practice technique before welding anything of value. Clean the weld surfaces thoroughly with a wire brush or angle grinder; there must be no rust, paint, oil, or other materials on the weld surfaces, only bare metal.\n\n2. Use clamps (not included) to hold the workpieces in position so that you can concentrate on proper welding technique. The distance (if any) between the two workpieces must be controlled properly to allow the weld to hold both sides securely while allowing the weld to penetrate fully into the joint. The edges of thicker workpieces may need to be chamfered (or beveled) to allow proper weld penetration.\n\nNotice: When welding equipment on a vehicle, disconnect the vehicle battery power from both the positive connection and the ground before welding. This prevents damage to some vehicle electrical systems and electronics due to the high voltage and high frequency bursts common in welding.\n\n3. Clamp Ground Cable to bare metal on the workpiece near the weld area, or to metal work bench where the workpiece is clamped.\n\nGround connection depends on desired welding polarity\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 19",
+  "tables": [
+    {
+      "title": "Rated Duty Cycle - 120VAC",
+      "rows": [
+        [
+          "Voltage",
+          "Duty Cycle",
+          "Current",
+          "Period"
+        ],
+        [
+          "120VAC",
+          "40%",
+          "100A",
+          "10 Continuous Minutes"
+        ],
+        [
+          "Welding Time",
+          "Resting Time",
+          "",
+          ""
+        ],
+        [
+          "4 Minutes",
+          "6 Minutes",
+          "",
+          ""
+        ],
+        [
+          "100% Continuous Use",
+          "75A",
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "title": "Rated Duty Cycle - 240VAC",
+      "rows": [
+        [
+          "Voltage",
+          "Duty Cycle",
+          "Current",
+          "Period"
+        ],
+        [
+          "240VAC",
+          "25%",
+          "200A",
+          "10 Continuous Minutes"
+        ],
+        [
+          "Welding Time",
+          "Resting Time",
+          "",
+          ""
+        ],
+        [
+          "2-1/2 Minutes",
+          "7-1/2 Minutes",
+          "",
+          ""
+        ],
+        [
+          "100% Continuous Use",
+          "115A",
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Rated Duty Cycle 120VAC pie chart",
+      "spatial": "Pie chart on right side of page showing 4 minutes welding (smaller slice, left) and 6 minutes resting (larger slice, right). Title at top, specs below title, minute labels flanking the chart, continuous use note at bottom.",
+      "callouts": [
+        "Rated Duty Cycle",
+        "120VAC",
+        "40% Use at 100A",
+        "For 10 Continuous Minutes",
+        "4 Minutes Welding",
+        "6 Minutes Resting",
+        "100% Continuous Use at 75A"
+      ]
+    },
+    {
+      "label": "Rated Duty Cycle 240VAC pie chart",
+      "spatial": "Pie chart on right side of page showing 2-1/2 minutes welding (smaller slice, left) and 7-1/2 minutes resting (larger slice, right). Title at top, specs below title, minute labels flanking the chart, continuous use note at bottom.",
+      "callouts": [
+        "Rated Duty Cycle",
+        "240VAC",
+        "25% Use at 200A",
+        "For 10 Continuous Minutes",
+        "2-1/2 Minutes Welding",
+        "7-1/2 Minutes Resting",
+        "100% Continuous Use at 115A"
+      ]
+    },
+    {
+      "label": "Setting Up The Weld - workpiece clamping diagram",
+      "spatial": "Top-down or side view showing two workpieces held together by clamps on left and right sides. Callouts point to clamps at top, workpieces in middle, clean surfaces at joint area, and chamfer note at bottom.",
+      "callouts": [
+        "clamps",
+        "workpieces",
+        "Clean surfaces to bare metal.",
+        "Chamfer thick workpieces."
+      ]
+    },
+    {
+      "label": "Ground clamp connection diagram",
+      "spatial": "Welder unit on the left, cable running right to a ground clamp connected to a workpiece on the right. Callouts label the workpiece, ground clamp, clean surface area, and note about ground connection polarity at bottom.",
+      "callouts": [
+        "Workpiece",
+        "Clean surface to bare metal.",
+        "Ground Clamp",
+        "Ground connection depends on desired welding polarity"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Duty cycle is defined within a 10 minute period",
+    "120VAC rated duty cycle is 40% at 100A",
+    "At 120VAC 40% duty cycle: weld 4 minutes, rest 6 minutes per 10-minute period",
+    "120VAC supports 100% continuous use at 75A",
+    "240VAC rated duty cycle is 25% at 200A",
+    "At 240VAC 25% duty cycle: weld 2-1/2 minutes, rest 7-1/2 minutes per 10-minute period",
+    "240VAC supports 100% continuous use at 115A",
+    "At 100A with 40% duty cycle, welder must rest at least 6 minutes after every 4 minutes of welding",
+    "Welder has internal thermal protection that automatically shuts down on overheat",
+    "Warning screen appears in LCD Display window when welder overheats",
+    "When overheated, rest MIG Gun on electrically non-conductive heat-proof surface such as concrete slab",
+    "Keep MIG Gun well clear of ground clamp when cooling",
+    "Leave Power Switch ON while cooling so internal fan helps cool the welder",
+    "Weld surfaces must be free of rust, paint, oil, and other materials — only bare metal",
+    "Thick workpieces may need to be chamfered or beveled for proper weld penetration",
+    "Clamps used to hold workpieces are not included with the welder",
+    "When welding on a vehicle, disconnect both positive and ground battery connections before welding",
+    "Ground Cable must be clamped to bare metal near the weld area or to metal work bench",
+    "Ground connection polarity depends on desired welding polarity",
+    "Item number: 57812",
+    "Technical support phone: 1-800-444-3353",
+    "Page number: 19"
+  ],
+  "topics": [
+    "duty_cycle",
+    "safety",
+    "mig",
+    "settings",
+    "quick_start"
+  ],
+  "keywords": [
+    "duty cycle",
+    "120VAC",
+    "240VAC",
+    "40%",
+    "25%",
+    "100A",
+    "200A",
+    "75A",
+    "115A",
+    "thermal protection",
+    "overheat",
+    "LCD display",
+    "cooling fan",
+    "MIG Gun",
+    "ground clamp",
+    "bare metal",
+    "chamfer",
+    "bevel",
+    "weld penetration",
+    "workpiece",
+    "surface preparation",
+    "welding current",
+    "10 minute period",
+    "continuous use",
+    "polarity"
+  ],
+  "content_types": [
+    "text",
+    "diagram",
+    "chart"
+  ]
+}

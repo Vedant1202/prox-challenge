@@ -1,0 +1,103 @@
+{
+  "id": "quick-start-002",
+  "source": "quick-start",
+  "page": 2,
+  "image_path": "/corpus/pages/quick-start-002.png",
+  "summary": "Quick start cable setup guide for the Vulcan OmniPro 220 welder covering Stick, MIG, Flux, and TIG welding configurations.",
+  "text_content": "VULCAN OMNIPRO 220 QUICK START GUIDE 57812\n\nSTICK CABLE SETUP\n1. Connect ground clamp to negative terminal.\n2. Connect electrode holder to positive terminal.\n3. Leave wire feed power disconnected.\n\nMIG CABLE SETUP\n1. Connect ground clamp to negative terminal.\n2. Connect wire feed power to positive terminal.\n3. Connect MIG gun to wire feed.\n4. Connect wire feed control inside welder.\n\nFLUX CABLE SETUP\nFollow MIG cable setup but connect ground clamp to positive terminal and wire feed power to negative terminal.\n\nTIG CABLE SETUP\n1. Connect ground clamp to positive terminal.\n2. Connect TIG torch to negative terminal.\n3. Connect gas line to gas regulator.\n4. Connect foot pedal inside welder.\n5. Leave wire feed power disconnected.\n\nBASIC WELDING INSTRUCTIONS AND WELDING TIPS ARE IN MANUAL.",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Stick Cable Setup Diagram",
+      "spatial": "Welder unit on the right side; ground clamp (yellow/green) on the far left connected via cable labeled 1 to the top terminal; electrode holder (red tip) at bottom center labeled 2 connected to the lower terminal; wire feed connector labeled 3 shown disconnected in the middle",
+      "callouts": [
+        "1 - Ground clamp cable to negative terminal",
+        "2 - Electrode holder to positive terminal",
+        "3 - Wire feed power (disconnected)"
+      ]
+    },
+    {
+      "label": "MIG Cable Setup Diagram",
+      "spatial": "Welder unit on the right; MIG gun at top center; ground clamp at bottom left; cables numbered 1-4 connecting to the welder terminals",
+      "callouts": [
+        "1 - Ground clamp to negative terminal",
+        "2 - Wire feed power to positive terminal",
+        "3 - MIG gun to wire feed",
+        "4 - Wire feed control inside welder"
+      ]
+    },
+    {
+      "label": "Flux Cable Setup Diagram",
+      "spatial": "Shares the MIG diagram illustration; text box overlaid at bottom right describing reversed polarity setup",
+      "callouts": [
+        "Follow MIG cable setup but connect ground clamp to positive terminal and wire feed power to negative terminal"
+      ]
+    },
+    {
+      "label": "TIG Cable Setup Diagram",
+      "spatial": "Welder unit on the right; TIG torch with purple tungsten at bottom left; foot pedal at bottom center labeled 5; cables numbered 1-4 connecting to welder; gas line shown connecting to regulator",
+      "callouts": [
+        "1 - Ground clamp to positive terminal",
+        "2 - TIG torch to negative terminal",
+        "3 - Gas line to gas regulator",
+        "4 - Foot pedal inside welder",
+        "5 - Wire feed power (disconnected)"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Product model: Vulcan OmniPro 220, item number 57812",
+    "Stick welding: ground clamp connects to negative terminal",
+    "Stick welding: electrode holder connects to positive terminal",
+    "Stick welding: wire feed power must be left disconnected",
+    "MIG welding: ground clamp connects to negative terminal",
+    "MIG welding: wire feed power connects to positive terminal",
+    "MIG welding: MIG gun connects to wire feed",
+    "MIG welding: wire feed control connects inside welder",
+    "Flux-cored welding: uses same physical setup as MIG but with reversed polarity",
+    "Flux-cored welding: ground clamp connects to positive terminal",
+    "Flux-cored welding: wire feed power connects to negative terminal",
+    "TIG welding: ground clamp connects to positive terminal",
+    "TIG welding: TIG torch connects to negative terminal",
+    "TIG welding: gas line connects to gas regulator",
+    "TIG welding: foot pedal connects inside welder",
+    "TIG welding: wire feed power must be left disconnected",
+    "MIG polarity: DCEP (electrode positive)",
+    "Flux-cored polarity: DCEN (electrode negative)",
+    "TIG polarity: DCEP for ground, DCEN for torch (standard DCEN TIG setup)",
+    "Stick polarity: DCEP (electrode positive)"
+  ],
+  "topics": [
+    "quick_start",
+    "mig",
+    "tig",
+    "stick",
+    "flux_cored",
+    "polarity",
+    "wire_feed",
+    "settings"
+  ],
+  "keywords": [
+    "ground clamp",
+    "negative terminal",
+    "positive terminal",
+    "electrode holder",
+    "wire feed",
+    "MIG gun",
+    "TIG torch",
+    "flux",
+    "foot pedal",
+    "gas regulator",
+    "gas line",
+    "polarity",
+    "DCEP",
+    "DCEN",
+    "cable setup",
+    "wire feed power",
+    "wire feed control"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

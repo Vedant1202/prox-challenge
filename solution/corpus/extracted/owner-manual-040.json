@@ -1,0 +1,157 @@
+{
+  "id": "owner-manual-040",
+  "source": "owner-manual",
+  "page": 40,
+  "image_path": "/corpus/pages/owner-manual-040.png",
+  "summary": "This page covers stick welding troubleshooting topics including slag coating, porosity, crooked/wavy bead, excessive spatter, and burn-through, with causes and solutions for each defect.",
+  "text_content": "Stick Weld–Coat of Slag Over Weld\nTOP VIEW\nPARTIALLY CHIPPED AWAY TO SHOW WELD\nSlag is a necessary part of a stick weld. It shields the weld from impurities. Clean off the slag with the Chipping Hammer and Wire Brush after welding.\n\nStick Weld–Porosity — Small cavities or holes in the bead.\nPOSSIBLE CAUSES AND SOLUTIONS\nTOP VIEW\n1. Dirty workpiece or fill material:\nClean workpiece down to bare metal.\nMake certain that fill material and Electrode are clean and free from oil, coatings, and other residues.\n2. Inconsistent welding speed:\nMaintain steady weld speed.\n\nStick Weld–Crooked/Wavy Bead\nPOSSIBLE CAUSES AND SOLUTIONS\nTOP VIEW\n1. Inaccurate welding:\nUse two hands or rest hand on steady surface.\n2. Inconsistent welding speed:\nMaintain steady weld speed.\n\nStick Weld–Excessive Spatter\nPOSSIBLE CAUSES AND SOLUTIONS\nTOP VIEW\nFine spatter is normal. Spatter that is grainy and large is a problem.\nDirty workpiece or fill material:\nClean workpiece down to bare metal.\nMake certain that fill material and Electrode are clean and free from oil, coatings, and other residues.\n\nStick Weld–Burn-Through — Base material melts away, leaving a hole in the weld.\nPOSSIBLE CAUSES AND SOLUTIONS\nTOP VIEW\n1. Workpiece overheating:\nReduce current.\n2. Welding speed too slow:\nIncrease welding speed and ensure that welding speed is kept steady.\n3. Excessive material at weld:\nReduce amount of fill material.\n\nPage 40     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [
+    {
+      "title": "Stick Weld Defects – Causes and Solutions",
+      "rows": [
+        [
+          "Defect",
+          "Possible Causes",
+          "Solutions"
+        ],
+        [
+          "Coat of Slag Over Weld",
+          "Normal part of stick welding",
+          "Clean off slag with Chipping Hammer and Wire Brush after welding"
+        ],
+        [
+          "Porosity (small cavities or holes in bead)",
+          "Dirty workpiece or fill material",
+          "Clean workpiece down to bare metal; ensure fill material and electrode are clean and free from oil, coatings, and other residues"
+        ],
+        [
+          "Porosity",
+          "Inconsistent welding speed",
+          "Maintain steady weld speed"
+        ],
+        [
+          "Crooked/Wavy Bead",
+          "Inaccurate welding",
+          "Use two hands or rest hand on steady surface"
+        ],
+        [
+          "Crooked/Wavy Bead",
+          "Inconsistent welding speed",
+          "Maintain steady weld speed"
+        ],
+        [
+          "Excessive Spatter",
+          "Dirty workpiece or fill material",
+          "Clean workpiece down to bare metal; ensure fill material and electrode are clean and free from oil, coatings, and other residues"
+        ],
+        [
+          "Burn-Through (base material melts away, leaving a hole)",
+          "Workpiece overheating",
+          "Reduce current"
+        ],
+        [
+          "Burn-Through",
+          "Welding speed too slow",
+          "Increase welding speed and ensure it is kept steady"
+        ],
+        [
+          "Burn-Through",
+          "Excessive material at weld",
+          "Reduce amount of fill material"
+        ]
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "label": "Stick Weld – Coat of Slag Over Weld (Top View)",
+      "spatial": "Top view of weld bead shown horizontally; slag coat covers the weld bead visible from above; a chipping hammer is shown at top right striking the slag; label 'PARTIALLY CHIPPED AWAY TO SHOW WELD' is below the image",
+      "callouts": [
+        "TOP VIEW",
+        "PARTIALLY CHIPPED AWAY TO SHOW WELD"
+      ]
+    },
+    {
+      "label": "Stick Weld – Porosity (Top View)",
+      "spatial": "Top view of weld bead showing small cavities or holes (porosity) visible as white dots scattered along the bead surface",
+      "callouts": [
+        "TOP VIEW"
+      ]
+    },
+    {
+      "label": "Stick Weld – Crooked/Wavy Bead (Top View)",
+      "spatial": "Top view of weld bead showing a wavy, non-straight bead path indicating inconsistent travel",
+      "callouts": [
+        "TOP VIEW"
+      ]
+    },
+    {
+      "label": "Stick Weld – Excessive Spatter (Top View)",
+      "spatial": "Top view of weld bead with scattered spatter particles visible around the bead on both sides",
+      "callouts": [
+        "TOP VIEW"
+      ]
+    },
+    {
+      "label": "Stick Weld – Burn-Through (Top View)",
+      "spatial": "Top view of weld showing a large hole or void in the base material where burn-through has occurred, with partial weld bead visible at right",
+      "callouts": [
+        "TOP VIEW"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Slag is a necessary part of a stick weld and shields the weld from impurities",
+    "Slag must be cleaned off with a Chipping Hammer and Wire Brush after welding",
+    "Porosity in stick welding is defined as small cavities or holes in the bead",
+    "Porosity can be caused by a dirty workpiece or fill material",
+    "Porosity can be caused by inconsistent welding speed",
+    "To fix porosity from dirty materials: clean workpiece down to bare metal and ensure electrode and fill material are free from oil, coatings, and other residues",
+    "Crooked/wavy bead can be caused by inaccurate welding technique",
+    "Crooked/wavy bead solution: use two hands or rest hand on a steady surface",
+    "Inconsistent welding speed causes both porosity and crooked/wavy bead",
+    "Fine spatter is normal in stick welding; grainy and large spatter is a problem",
+    "Excessive spatter is caused by dirty workpiece or fill material",
+    "Burn-through is defined as base material melting away, leaving a hole in the weld",
+    "Burn-through cause 1: workpiece overheating – solution is to reduce current",
+    "Burn-through cause 2: welding speed too slow – solution is to increase and maintain steady welding speed",
+    "Burn-through cause 3: excessive material at weld – solution is to reduce amount of fill material",
+    "Technical support phone number: 1-800-444-3353",
+    "Manual item number: 57812",
+    "This content is on page 40 of the manual"
+  ],
+  "topics": [
+    "troubleshooting",
+    "stick",
+    "weld_diagnosis",
+    "safety"
+  ],
+  "keywords": [
+    "stick weld",
+    "slag",
+    "chipping hammer",
+    "wire brush",
+    "porosity",
+    "weld bead",
+    "crooked bead",
+    "wavy bead",
+    "spatter",
+    "burn-through",
+    "electrode",
+    "fill material",
+    "workpiece",
+    "welding speed",
+    "current",
+    "bare metal",
+    "oil",
+    "coatings",
+    "residues",
+    "overheating",
+    "impurities"
+  ],
+  "content_types": [
+    "text",
+    "diagram",
+    "table"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "owner-manual-010",
+  "source": "owner-manual",
+  "page": 10,
+  "image_path": "/corpus/pages/owner-manual-010.png",
+  "summary": "This page covers wire spool installation and wire setup procedures for MIG/Flux-Cored wire welding on the Vulcan welder, including safety warnings and step-by-step instructions for loading a 1-2 lb wire spool.",
+  "text_content": "MIG/Flux-Cored Wire Welding\n\nRead the ENTIRE IMPORTANT SAFETY INFORMATION section at the beginning of this manual including all text under subheadings therein before set up or use of this product.\n\nWARNING TO PREVENT SERIOUS INJURY FROM ACCIDENTAL OPERATION: Turn the Power Switch off and unplug the Welder before setup.\n\nNote: Remove the protective foam and cardboard from the Welder before setup.\n\nWire Spool Installation/Wire Setup\n\n1. Turn the Power Switch OFF and unplug the Welder before proceeding.\n\n2. Pull up on the Door Latch, then open the Door.\n\n3. 1-2 Pound Wire Spool Installation: Remove the Wingnut and Spacer. If replacing a Spool, remove the old Spool and all remaining wire from the liners.\n\n4. Place the new Wire Spool over the Spool Spindle and against the Spool Brake Pad as illustrated. To prevent wire feed problems, set the Spool so that it will unwind clockwise.\n\n5. Replace the Spacer over the Spool Spindle and secure Spool in place with the Wingnut.\n\nNotice: If Wire Spool can spin freely, Wingnut is too loose. This will cause the welding wire to unravel and unspool which can cause tangling and feeding problems.\n\nPage 10     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Step 1 - Power Switch and Plug Diagram",
+      "spatial": "Left side shows the front of the Vulcan welder with Power Switch labeled at top right of the machine. Right side shows an inset close-up of the power plug being unplugged from an outlet.",
+      "callouts": [
+        "Power Switch",
+        "VULCAN"
+      ]
+    },
+    {
+      "label": "Step 2 - Door Latch and Door Diagram",
+      "spatial": "Shows the side/front view of the welder. The Door is labeled at the top of the opening panel. The Door Latch is labeled lower on the front face of the machine.",
+      "callouts": [
+        "Door",
+        "Door Latch"
+      ]
+    },
+    {
+      "label": "1-2 lb Spool Loading Diagram",
+      "spatial": "Exploded/cross-section side view showing the spool assembly from left to right: Wingnut on the far left, then Spacer, then Spool Spindle in the center, then the 1-2 lb Wire Spool on the right side, with the Spool Brake Pad below the spool on the right, and Welder Wall at the far right bottom.",
+      "callouts": [
+        "Wingnut",
+        "Spacer",
+        "Spool Spindle",
+        "1-2 lb Wire Spool",
+        "Spool Brake Pad",
+        "Welder Wall",
+        "1-2 lb Spool Loading"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Turn the Power Switch OFF and unplug the Welder before setup to prevent serious injury from accidental operation",
+    "Remove protective foam and cardboard from the Welder before setup",
+    "This page covers installation of 1-2 pound wire spools",
+    "To prevent wire feed problems, set the Spool so that it will unwind clockwise",
+    "Wire spool is secured using a Wingnut and Spacer over the Spool Spindle",
+    "Wire spool is placed against the Spool Brake Pad",
+    "If the Wire Spool can spin freely, the Wingnut is too loose",
+    "A loose Wingnut will cause the welding wire to unravel and unspool, leading to tangling and feeding problems",
+    "When replacing a spool, remove the old spool and all remaining wire from the liners",
+    "To open the wire compartment, pull up on the Door Latch then open the Door",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 10"
+  ],
+  "topics": [
+    "wire_feed",
+    "mig",
+    "flux_cored",
+    "safety",
+    "maintenance",
+    "quick_start"
+  ],
+  "keywords": [
+    "wire spool",
+    "spool installation",
+    "wingnut",
+    "spacer",
+    "spool spindle",
+    "spool brake pad",
+    "door latch",
+    "wire feed",
+    "MIG",
+    "flux-cored",
+    "clockwise",
+    "unwind",
+    "liner",
+    "1-2 pound spool",
+    "power switch",
+    "welder wall"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

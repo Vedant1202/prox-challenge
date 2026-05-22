@@ -1,0 +1,79 @@
+{
+  "id": "owner-manual-005",
+  "source": "owner-manual",
+  "page": 5,
+  "image_path": "/corpus/pages/owner-manual-005.png",
+  "summary": "This page covers welder use and care guidelines, maintenance procedures, and gas shielded welding cylinder safety instructions for the Vulcan OmniPro 220 welder.",
+  "text_content": "Welder Use and Care\n\n1. Do not use the welder if the switch does not turn it on and off. Any welder that cannot be controlled with the switch is dangerous and must be repaired.\n2. Disconnect the plug from the power source before making any adjustments, changing accessories, or storing welders. Such preventive Safety measures reduce the risk of starting the welder accidentally.\n3. Prevent unintentional starting. Ensure the switch is in the off-position before connecting to power source or moving the welder. Carrying or energizing welders that have the switch on invites accidents.\n4. Store idle welders out of the reach of children and do not allow persons unfamiliar with the welder or these instructions to operate the welder. Welders are dangerous in the hands of untrained users.\n5. Use the welder and accessories in accordance with these instructions, taking into account the working conditions and the work to be performed. Use of the welder for operations different from those intended could result in a hazardous situation.\n6. Do not use the welder for pipe thawing.\n\nMaintenance\n\n1. Maintain welders. Check for misalignment or binding of moving parts, breakage of parts and any other condition that may affect the welder's operation. If damaged, have the welder repaired before use. Many accidents are caused by poorly maintained welders.\n2. Have your welder serviced by a qualified repair person using only identical replacement parts. This will ensure that the Safety of the welder is maintained.\n3. Maintain labels and nameplates on the Welder. These carry important information. If unreadable or missing, contact Harbor Freight Tools for a replacement.\n4. Unplug before maintenance. Unplug the Welder from its electrical outlet before any inspection, maintenance, or cleaning procedures.\n\nGas Shielded Welding - Cylinder Safety\n\nCylinders can explode when damaged.\n\n1. Do not weld on a pressurized or closed cylinder.\n2. Do not allow an electrode holder, electrode, welding torch, or welding wire to touch the cylinder.\n3. Keep cylinders away from any electrical circuits, including welding circuits.\n4. Keep protective cap in place over the valve except when the cylinder is in use.\n5. Use only correct gas shielding equipment designed specifically for the type of welding you will do. Maintain this equipment properly.\n6. Protect gas cylinders from heat, being struck, physical damage, slag, flames, sparks, and arcs.\n7. Use proper procedures to move cylinders.\n\nSAVE THESE INSTRUCTIONS.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 5",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Warning symbol for cylinder explosion hazard",
+      "spatial": "Icon appears in the top right of the Gas Shielded Welding - Cylinder Safety section header area",
+      "callouts": [
+        "Cylinders can explode when damaged."
+      ]
+    },
+    {
+      "label": "Save These Instructions warning icon",
+      "spatial": "Triangle warning/caution icon appears to the left of the 'SAVE THESE INSTRUCTIONS.' text at the bottom of the page",
+      "callouts": [
+        "SAVE THESE INSTRUCTIONS."
+      ]
+    }
+  ],
+  "key_facts": [
+    "Do not use the welder if the switch does not turn it on and off — it is dangerous and must be repaired",
+    "Disconnect the plug from the power source before making any adjustments, changing accessories, or storing welders",
+    "Ensure the switch is in the off-position before connecting to power source or moving the welder",
+    "Store idle welders out of the reach of children",
+    "Do not allow persons unfamiliar with the welder or instructions to operate the welder",
+    "Do not use the welder for pipe thawing",
+    "Check for misalignment or binding of moving parts, breakage of parts before use",
+    "Have the welder serviced by a qualified repair person using only identical replacement parts",
+    "Contact Harbor Freight Tools for replacement labels or nameplates if unreadable or missing",
+    "Unplug the Welder from its electrical outlet before any inspection, maintenance, or cleaning procedures",
+    "Cylinders can explode when damaged",
+    "Do not weld on a pressurized or closed cylinder",
+    "Do not allow an electrode holder, electrode, welding torch, or welding wire to touch the cylinder",
+    "Keep cylinders away from any electrical circuits, including welding circuits",
+    "Keep protective cap in place over the valve except when the cylinder is in use",
+    "Use only correct gas shielding equipment designed specifically for the type of welding being performed",
+    "Protect gas cylinders from heat, being struck, physical damage, slag, flames, sparks, and arcs",
+    "Use proper procedures to move cylinders",
+    "Item number: 57812",
+    "Technical support phone number: 1-800-444-3353",
+    "Page number: 5"
+  ],
+  "topics": [
+    "safety",
+    "maintenance"
+  ],
+  "keywords": [
+    "welder use",
+    "welder care",
+    "maintenance",
+    "gas shielded welding",
+    "cylinder safety",
+    "pipe thawing",
+    "electrode holder",
+    "welding torch",
+    "welding wire",
+    "pressurized cylinder",
+    "gas shielding equipment",
+    "replacement parts",
+    "Harbor Freight Tools",
+    "unplug",
+    "off-position",
+    "switch",
+    "nameplates",
+    "labels",
+    "slag",
+    "sparks",
+    "arcs"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

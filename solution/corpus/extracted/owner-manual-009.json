@@ -1,0 +1,66 @@
+{
+  "id": "owner-manual-009",
+  "source": "owner-manual",
+  "page": 9,
+  "image_path": "/corpus/pages/owner-manual-009.png",
+  "summary": "This page illustrates and labels the interior controls of the Vulcan OmniPro 220 welder (Item 57812), identifying all internal components visible when the unit is open.",
+  "text_content": "Interior Controls\n\nCold Wire Feed Switch\nFeed Tensioner\nWire Feed Mechanism\nIdler Arm\nWire Spool\nSpool Knob\nWire Inlet Liner\nFeed Roller Knob\nFoot Pedal Socket\nWire Feed Control Socket\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 9",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Interior Controls diagram of Vulcan OmniPro 220 welder",
+      "spatial": "Top center: Cold Wire Feed Switch. Top right: Feed Tensioner. Center left: Wire Feed Mechanism. Far left: Wire Spool. Lower left: Spool Knob. Center lower left: Wire Inlet Liner. Right center: Idler Arm. Lower right: Feed Roller Knob. Bottom center-left: Foot Pedal Socket. Bottom center-right: Wire Feed Control Socket.",
+      "callouts": [
+        "Cold Wire Feed Switch",
+        "Feed Tensioner",
+        "Wire Feed Mechanism",
+        "Idler Arm",
+        "Wire Spool",
+        "Spool Knob",
+        "Wire Inlet Liner",
+        "Feed Roller Knob",
+        "Foot Pedal Socket",
+        "Wire Feed Control Socket"
+      ]
+    }
+  ],
+  "key_facts": [
+    "The welder has a Cold Wire Feed Switch accessible from the interior",
+    "The unit includes a Feed Tensioner for wire tension adjustment",
+    "A Wire Feed Mechanism is located in the interior of the unit",
+    "The Wire Spool mounts on the left side of the interior",
+    "The Spool Knob is located on the lower left of the interior",
+    "A Wire Inlet Liner guides wire into the feed mechanism",
+    "An Idler Arm is present on the right side of the wire feed mechanism",
+    "A Feed Roller Knob is located on the lower right of the wire feed area",
+    "A Foot Pedal Socket is accessible at the bottom of the interior",
+    "A Wire Feed Control Socket is accessible at the bottom of the interior",
+    "Item number for this welder is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "wire_feed",
+    "parts",
+    "mig",
+    "tig"
+  ],
+  "keywords": [
+    "Cold Wire Feed Switch",
+    "Feed Tensioner",
+    "Wire Feed Mechanism",
+    "Idler Arm",
+    "Wire Spool",
+    "Spool Knob",
+    "Wire Inlet Liner",
+    "Feed Roller Knob",
+    "Foot Pedal Socket",
+    "Wire Feed Control Socket",
+    "interior controls",
+    "OmniPro 220",
+    "Item 57812"
+  ],
+  "content_types": [
+    "diagram",
+    "text"
+  ]
+}

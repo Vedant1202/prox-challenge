@@ -1,0 +1,192 @@
+{
+  "id": "owner-manual-043",
+  "source": "owner-manual",
+  "page": 43,
+  "image_path": "/corpus/pages/owner-manual-043.png",
+  "summary": "Troubleshooting guide covering four common welder problems with their possible causes and likely solutions for the Vulcan OmniPro 220 welder.",
+  "text_content": "Problem | Possible Causes | Likely Solutions\n\nWelder Does Not Function When Switched On\n1. Tripped thermal protection device. | 1. If a warning screen appears in the LCD Display window, Welder may have overheated and shut down. Stop and wait with the Power Switch ON for the Welder to cool. The Welder automatically returns to service after cooling off. Reduce duration or frequency of welding periods to help reduce wear on the Welder. Refer to Duty Cycle (Duration of Use) on page 19.\n2. Circuit supplies insufficient input voltage or amperage. | 2. Verify that the circuit is designed to supply the required input voltage and amperage as detailed on the Specifications table. If a warning screen appears in the LCD Display window, check the input voltage to ensure it is within specified range.\n3. Faulty or improperly connected Trigger. | 3. Ensure the gun connection is properly seated on machine. Qualified technician must check and secure/replace Trigger.\n4. Machine is in low- or over-voltage protection. | 4. Check input voltage and ensure it falls within the specified range. If input voltage is correct, press Reset Button on back of machine.\n5. Machine is in the incorrect mode. | 5. Ensure the correct process has been selected.\n\nLCD Display Does Not Light When Welder is Switched On\n1. Unit is not connected to outlet properly. | 1. Verify the voltage at the outlet and the connection to the outlet.\n2. Outlet is unpowered. | 2. Check circuit breaker/GFCI devices; if any are tripped, determine and remedy cause before resetting.\n3. Plug does not have correct rating. | 3. Make sure installed plug is correct rating. See Specifications on page 7.\n4. Circuit breaker has tripped due to high input amperage. | 4. Press Reset Button on back of machine to reset circuit breaker.\n5. Input Power Cord is not seated properly. | 5. Ensure the twist lock input Power Cord is fully secured.\n\nWire Feeds, but Arc Does Not Ignite\n1. Improper ground connection. | 1. Make certain that the workpiece is contacted properly by the Ground Clamp and that the workpiece is properly cleaned near the ground clamp and the welding location.\n2. Improperly sized Contact Tip. | 2. Verify that Contact Tip is the proper size for welding wire. If needed, replace Contact Tip with proper size and type.\n3. Excessively worn Contact Tip. | 3. Check that the hole in the tip is not deformed or enlarged. If needed, replace Contact Tip with proper size and type.\n4. Dirty Contact Tip. | 4. Properly clean Contact Tip.\n\nPorosity in the Weld Metal\n1. Shielding gas bottle is empty. | 1. Check gas bottle and replenish as necessary.\n2. Not enough or too much shielding gas. | 2. Check gas regulator to ensure proper flow.\n3. Dirty workpiece. | 3. Clean workpiece down to bare metal.\n4. Gun is being used too far away from workpiece. | 4. Check CTWD (contact tip to work distance) for the proper procedure.\n5. Polarity is incorrect for the application. | 5. Check the polarity and ensure it is DCEP for MIG and DCEN for Flux-Cored.\n6. Dirty welding wire is introducing contamination into the weld. | 6. Make certain that welding wire is clean and free of rust and residues.\n\nFollow all safety precautions whenever diagnosing or servicing the equipment.\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 43",
+  "tables": [
+    {
+      "title": "Troubleshooting Guide",
+      "rows": [
+        [
+          "Problem",
+          "Possible Causes",
+          "Likely Solutions"
+        ],
+        [
+          "Welder Does Not Function When Switched On",
+          "1. Tripped thermal protection device.",
+          "1. If a warning screen appears in the LCD Display window, Welder may have overheated and shut down. Stop and wait with the Power Switch ON for the Welder to cool. The Welder automatically returns to service after cooling off. Reduce duration or frequency of welding periods to help reduce wear on the Welder. Refer to Duty Cycle (Duration of Use) on page 19."
+        ],
+        [
+          "Welder Does Not Function When Switched On",
+          "2. Circuit supplies insufficient input voltage or amperage.",
+          "2. Verify that the circuit is designed to supply the required input voltage and amperage as detailed on the Specifications table. If a warning screen appears in the LCD Display window, check the input voltage to ensure it is within specified range."
+        ],
+        [
+          "Welder Does Not Function When Switched On",
+          "3. Faulty or improperly connected Trigger.",
+          "3. Ensure the gun connection is properly seated on machine. Qualified technician must check and secure/replace Trigger."
+        ],
+        [
+          "Welder Does Not Function When Switched On",
+          "4. Machine is in low- or over-voltage protection.",
+          "4. Check input voltage and ensure it falls within the specified range. If input voltage is correct, press Reset Button on back of machine."
+        ],
+        [
+          "Welder Does Not Function When Switched On",
+          "5. Machine is in the incorrect mode.",
+          "5. Ensure the correct process has been selected."
+        ],
+        [
+          "LCD Display Does Not Light When Welder is Switched On",
+          "1. Unit is not connected to outlet properly.",
+          "1. Verify the voltage at the outlet and the connection to the outlet."
+        ],
+        [
+          "LCD Display Does Not Light When Welder is Switched On",
+          "2. Outlet is unpowered.",
+          "2. Check circuit breaker/GFCI devices; if any are tripped, determine and remedy cause before resetting."
+        ],
+        [
+          "LCD Display Does Not Light When Welder is Switched On",
+          "3. Plug does not have correct rating.",
+          "3. Make sure installed plug is correct rating. See Specifications on page 7."
+        ],
+        [
+          "LCD Display Does Not Light When Welder is Switched On",
+          "4. Circuit breaker has tripped due to high input amperage.",
+          "4. Press Reset Button on back of machine to reset circuit breaker."
+        ],
+        [
+          "LCD Display Does Not Light When Welder is Switched On",
+          "5. Input Power Cord is not seated properly.",
+          "5. Ensure the twist lock input Power Cord is fully secured."
+        ],
+        [
+          "Wire Feeds, but Arc Does Not Ignite",
+          "1. Improper ground connection.",
+          "1. Make certain that the workpiece is contacted properly by the Ground Clamp and that the workpiece is properly cleaned near the ground clamp and the welding location."
+        ],
+        [
+          "Wire Feeds, but Arc Does Not Ignite",
+          "2. Improperly sized Contact Tip.",
+          "2. Verify that Contact Tip is the proper size for welding wire. If needed, replace Contact Tip with proper size and type."
+        ],
+        [
+          "Wire Feeds, but Arc Does Not Ignite",
+          "3. Excessively worn Contact Tip.",
+          "3. Check that the hole in the tip is not deformed or enlarged. If needed, replace Contact Tip with proper size and type."
+        ],
+        [
+          "Wire Feeds, but Arc Does Not Ignite",
+          "4. Dirty Contact Tip.",
+          "4. Properly clean Contact Tip."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "1. Shielding gas bottle is empty.",
+          "1. Check gas bottle and replenish as necessary."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "2. Not enough or too much shielding gas.",
+          "2. Check gas regulator to ensure proper flow."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "3. Dirty workpiece.",
+          "3. Clean workpiece down to bare metal."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "4. Gun is being used too far away from workpiece.",
+          "4. Check CTWD (contact tip to work distance) for the proper procedure."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "5. Polarity is incorrect for the application.",
+          "5. Check the polarity and ensure it is DCEP for MIG and DCEN for Flux-Cored."
+        ],
+        [
+          "Porosity in the Weld Metal",
+          "6. Dirty welding wire is introducing contamination into the weld.",
+          "6. Make certain that welding wire is clean and free of rust and residues."
+        ]
+      ]
+    }
+  ],
+  "diagrams": [],
+  "key_facts": [
+    "Welder overheating causes LCD warning screen and automatic shutdown; keep Power Switch ON while cooling",
+    "Welder automatically returns to service after cooling off from thermal overload",
+    "Reduce duration or frequency of welding periods to reduce wear; refer to Duty Cycle on page 19",
+    "Input voltage and amperage requirements are detailed on the Specifications table",
+    "Low- or over-voltage protection requires checking input voltage and pressing Reset Button on back of machine",
+    "Trigger faults require a qualified technician to check and secure/replace Trigger",
+    "LCD not lighting: check plug rating per Specifications on page 7",
+    "LCD not lighting: press Reset Button on back of machine to reset tripped circuit breaker",
+    "LCD not lighting: ensure twist lock input Power Cord is fully secured",
+    "Wire feeds but arc does not ignite: workpiece must be properly contacted by Ground Clamp and cleaned near welding location",
+    "Wire feeds but arc does not ignite: verify Contact Tip is proper size for welding wire",
+    "Wire feeds but arc does not ignite: check Contact Tip hole is not deformed or enlarged",
+    "Porosity cause: shielding gas bottle empty - check and replenish",
+    "Porosity cause: check gas regulator to ensure proper flow",
+    "Porosity cause: clean workpiece down to bare metal",
+    "Porosity cause: check CTWD (contact tip to work distance) for proper procedure",
+    "MIG welding requires DCEP polarity",
+    "Flux-Cored welding requires DCEN polarity",
+    "Porosity cause: dirty welding wire - ensure wire is clean and free of rust and residues",
+    "GFCI devices that are tripped must have cause remedied before resetting",
+    "Technical support phone number: 1-800-444-3353",
+    "This is page 43 of the manual",
+    "Item number: 57812"
+  ],
+  "topics": [
+    "troubleshooting",
+    "safety",
+    "mig",
+    "flux_cored",
+    "wire_feed",
+    "polarity",
+    "maintenance",
+    "weld_diagnosis"
+  ],
+  "keywords": [
+    "thermal protection",
+    "overheating",
+    "LCD display",
+    "warning screen",
+    "duty cycle",
+    "input voltage",
+    "amperage",
+    "trigger",
+    "low-voltage protection",
+    "over-voltage protection",
+    "Reset Button",
+    "GFCI",
+    "circuit breaker",
+    "twist lock",
+    "Power Cord",
+    "ground connection",
+    "Ground Clamp",
+    "Contact Tip",
+    "CTWD",
+    "contact tip to work distance",
+    "shielding gas",
+    "porosity",
+    "DCEP",
+    "DCEN",
+    "flux-cored",
+    "MIG",
+    "wire feed",
+    "arc ignition",
+    "contamination",
+    "welding wire"
+  ],
+  "content_types": [
+    "text",
+    "table"
+  ]
+}

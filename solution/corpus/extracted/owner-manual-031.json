@@ -1,0 +1,88 @@
+{
+  "id": "owner-manual-031",
+  "source": "owner-manual",
+  "page": 31,
+  "image_path": "/corpus/pages/owner-manual-031.png",
+  "summary": "This page covers TIG welding operational steps 10-19, optional settings (Recall/Save), post-weld shutdown procedures, and safety warnings for the Vulcan OmniPro 220 welder.",
+  "text_content": "d. Optional Settings:\n• Press Main Control Knob to enter Optional Settings.\n• Turn Main Control Knob until desired setting appears on screen.\n• Press Main Control Knob to select desired setting.\n• Turn Main Control Knob to adjust setting.\nAvailable Optional Settings:\n• Recall Setting–Retrieve saved settings.\n• Save Setting–Program up to 5 different configurations.\n\nNote: The initial settings may need to be adjusted after stopping and carefully inspecting the weld. Proper welding takes experience.\n\nWARNING! TO PREVENT SERIOUS INJURY: Protective gear must be worn when using the Welder; minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, NIOSH-approved respirator, and fire resistant work clothes without pockets should be worn when welding. Light from the arc can cause permanent damage to the eyes and skin. Do not breathe arc fumes.\n\nAfter practice welding on scrap, stop, and check your progress. Perform Strike Test according to Strike Test on page 34. After making any necessary adjustments, continue to weld while carefully following the DUTY CYCLE guidelines as explained on page 29.\n\nWARNING! TO PREVENT SERIOUS INJURY: Metal work bench must be grounded when TIG welding.\n\n10. Hold TIG Torch in one gloved hand and the TIG Rod (sold separately) in other gloved hand.\n\nNOTE: Maintain a constant distance between the Tungsten Electrode and the workpiece: between 1 and 1.5 times the diameter of the Electrode.\n\n11. Open valve on TIG Torch to start gas flow.\n\n12. To initiate welding arc, push Foot Pedal and touch Electrode to work piece and lift. If not using Foot Pedal, touch Electrode to work piece and lift.\n\n13. When welding puddle is hot enough, tilt Torch backward about 10-15 degrees from vertical and move it back slightly. Add TIG Rod material as needed to the front end of the weld puddle.\n\n14. Alternate between pushing the torch/weld puddle and adding the TIG Rod material.\n\nNOTE: Remove the TIG Rod each time the Electrode is advanced, but do not remove it from the gas shield. This prevents oxidation from contaminating the weld.\n\n15. When finished welding, release the Foot Pedal but keep Torch on weld puddle until weld solidifies. If not using Foot Pedal, pull Torch away from work piece until welding arc is broken, then return the gas coverage until weld solidifies.\n\n16. Close valve on TIG Torch and turn Right Knob to OFF to turn off power to TIG Torch.\n\n17. Set TIG Torch down on nonconductive, nonflammable surface away from any grounded objects.\n\n18. Turn the Power Switch OFF.\n\n19. To prevent accidents, after use:\n• Allow Welder to cool down.\n• Unplug Welder's power cord from outlet.\n• Remove Ground Clamp from workpiece or table.\n• Disconnect TIG Torch, Ground and Foot Pedal Cables.\n• Close gas cylinder's valve securely, remove regulator and replace cap.\n• Disconnect Gas Hose from Welder.\n• Store and secure gas cylinder.\n• Clean, then store Welder and its accessories indoors out of children's reach.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 31",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Recall Setting screen display",
+      "spatial": "Centered box with title 'Recall Setting' at top, an upward arrow icon in the middle area, and two small icons at the bottom",
+      "callouts": [
+        "Recall Setting",
+        "upward arrow icon",
+        "bottom navigation icons"
+      ]
+    },
+    {
+      "label": "Save Setting screen display",
+      "spatial": "Centered box with title 'Save Setting' at top, a downward arrow icon in the middle area, and two small icons at the bottom",
+      "callouts": [
+        "Save Setting",
+        "downward arrow icon",
+        "bottom navigation icons"
+      ]
+    }
+  ],
+  "key_facts": [
+    "TIG Rod is sold separately from the welder",
+    "Maintain electrode-to-workpiece distance of 1 to 1.5 times the diameter of the Electrode",
+    "Tilt TIG Torch backward about 10-15 degrees from vertical when welding puddle is hot",
+    "Save Setting allows programming up to 5 different configurations",
+    "Recall Setting retrieves previously saved settings",
+    "Minimum shade number 10 full face shield or welding mask required",
+    "NIOSH-approved respirator required when welding",
+    "Fire resistant work clothes without pockets must be worn",
+    "Arc light can cause permanent damage to eyes and skin",
+    "Do not breathe arc fumes",
+    "Metal work bench must be grounded when TIG welding",
+    "After practice welding on scrap, perform Strike Test according to page 34",
+    "Duty cycle guidelines are explained on page 29",
+    "To initiate arc: push Foot Pedal and touch Electrode to workpiece and lift",
+    "Without Foot Pedal: touch Electrode to workpiece and lift to initiate arc",
+    "Do not remove TIG Rod from gas shield to prevent oxidation from contaminating the weld",
+    "After welding, keep Torch on weld puddle until weld solidifies before removing",
+    "If not using Foot Pedal, pull Torch away until arc is broken then return gas coverage until weld solidifies",
+    "Turn Right Knob to OFF to turn off power to TIG Torch",
+    "Set TIG Torch down on nonconductive, nonflammable surface away from grounded objects",
+    "Item number: 57812",
+    "Technical support number: 1-800-444-3353",
+    "Page number: 31"
+  ],
+  "topics": [
+    "tig",
+    "safety",
+    "settings",
+    "quick_start",
+    "duty_cycle",
+    "maintenance"
+  ],
+  "keywords": [
+    "TIG Torch",
+    "TIG Rod",
+    "Tungsten Electrode",
+    "Foot Pedal",
+    "weld puddle",
+    "gas flow",
+    "Recall Setting",
+    "Save Setting",
+    "Main Control Knob",
+    "duty cycle",
+    "Strike Test",
+    "oxidation",
+    "gas shield",
+    "nonconductive",
+    "nonflammable",
+    "NIOSH",
+    "face shield",
+    "arc fumes",
+    "ground clamp",
+    "gas cylinder"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

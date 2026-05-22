@@ -1,0 +1,86 @@
+{
+  "id": "owner-manual-013",
+  "source": "owner-manual",
+  "page": 13,
+  "image_path": "/corpus/pages/owner-manual-013.png",
+  "summary": "This page covers steps 13-16 of the Vulcan OmniPro 220 welder setup, including installing the gun cable connector, wire feed control cable, and configuring DCEN polarity for flux-cored gasless welding.",
+  "text_content": "13. Loosen the Knob on the Wire Feed mechanism, then insert the Gun Cable Connector through the hole on the Welder front and into the socket on the Wire Feed.\n\n14. Ensure that the Gun Cable Connector is fully inserted into the socket on the Wire Feed mechanism as shown, then tighten the Knob securely. If Connector is not fully inserted, the gas connection will leak, preventing shielding gas from reaching the welding arc.\n\nNOTICE: To prevent damage, do not overtighten the Knob.\n\n15. Insert the Wire Feed Control Cable through the hole on the Welder front and connect it to the Wire Feed Control Socket inside the machine, then tighten the lock ring on the Cable plug. Note that the plug on the Cable fits into the Socket in one specific orientation only.\n\n16. DCEN Direct Current Electrode Negative Wire Setup for Flux-Cored (gasless) welding:\nPlug Ground Clamp Cable into Positive (+) Socket. Plug Wire Feed Power Cable into Negative (–) Socket. Twist cables clockwise all the way to lock in place.\n\nNOTICE: To prevent damage, do not overtighten the Knob.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 13",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Incorrect – Connector not fully inserted",
+      "spatial": "Top diagram on page. The Wire Feed Mechanism is labeled at top-left, the Knob is labeled at the left-center, and the Gun Cable Connector is labeled at the right with an arrow pointing left showing partial insertion into the wire feed socket.",
+      "callouts": [
+        "Wire Feed Mechanism",
+        "Gun Cable Connector",
+        "Knob",
+        "Incorrect–Connector not fully inserted"
+      ]
+    },
+    {
+      "label": "Correct – Connector fully inserted",
+      "spatial": "Middle diagram on page. Similar view to top diagram. The Wire Feed Control Cable is labeled at the top-right with an arrow pointing left showing full insertion into the socket.",
+      "callouts": [
+        "Wire Feed Control Cable",
+        "Correct–Connector fully inserted"
+      ]
+    },
+    {
+      "label": "DCEN Flux-Cored (Gasless) Polarity Setup",
+      "spatial": "Bottom diagram showing the front panel of the welder. Wire Feed Power Cable in Negative Socket is labeled at the top-center. Ground Clamp Cable in Positive Socket is labeled at the bottom-right. The welder body is shown in the center with cables connected.",
+      "callouts": [
+        "DCEN Flux-Cored (Gasless) Polarity Setup",
+        "Wire Feed Power Cable in Negative Socket",
+        "Ground Clamp Cable in Positive Socket"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Step 13: Loosen the Knob on the Wire Feed mechanism before inserting the Gun Cable Connector",
+    "Gun Cable Connector must be inserted through the hole on the Welder front and into the socket on the Wire Feed",
+    "Step 14: Gun Cable Connector must be fully inserted before tightening the Knob securely",
+    "If Gun Cable Connector is not fully inserted, gas connection will leak and shielding gas will not reach the welding arc",
+    "Do not overtighten the Knob to prevent damage",
+    "Step 15: Wire Feed Control Cable is inserted through the hole on the Welder front and connected to the Wire Feed Control Socket inside the machine",
+    "The lock ring on the Wire Feed Control Cable plug must be tightened after connection",
+    "The Wire Feed Control Cable plug fits into the Socket in one specific orientation only",
+    "Step 16: DCEN (Direct Current Electrode Negative) setup is used for Flux-Cored (gasless) welding",
+    "For DCEN Flux-Cored (gasless) welding: Ground Clamp Cable plugs into Positive (+) Socket",
+    "For DCEN Flux-Cored (gasless) welding: Wire Feed Power Cable plugs into Negative (–) Socket",
+    "Cables must be twisted clockwise all the way to lock in place",
+    "Item number: 57812",
+    "Technical support phone number: 1-800-444-3353",
+    "Page number: 13"
+  ],
+  "topics": [
+    "wire_feed",
+    "flux_cored",
+    "polarity",
+    "mig",
+    "safety",
+    "quick_start"
+  ],
+  "keywords": [
+    "Gun Cable Connector",
+    "Wire Feed mechanism",
+    "Knob",
+    "Wire Feed Control Cable",
+    "Wire Feed Control Socket",
+    "lock ring",
+    "DCEN",
+    "Direct Current Electrode Negative",
+    "Flux-Cored",
+    "gasless welding",
+    "Ground Clamp Cable",
+    "Positive Socket",
+    "Negative Socket",
+    "polarity",
+    "shielding gas",
+    "welder front",
+    "socket orientation"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

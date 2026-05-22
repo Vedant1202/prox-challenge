@@ -1,0 +1,115 @@
+{
+  "id": "quick-start-001",
+  "source": "quick-start",
+  "page": 1,
+  "image_path": "/corpus/pages/quick-start-001.png",
+  "summary": "Quick start guide for the Vulcan OmniPro 220 welder (item 57812) covering the six-step setup and wire feed process for flux core or MIG welding.",
+  "text_content": "VULCAN OMNIPRO 220 QUICK START GUIDE 57812\n\n1 Connect cables as needed for flux wire welding - see back of guide.\n\nWingnut\nSpacer\nSpindle\n2 lb Wire Spool\nBrake Pad\nWelder\n2 lb Spool Loading\nAdapter and knob required for 10-12 lb spool\n\nFeed Mechanism\nfeed guides\nwelding wire\nWire Spool\n\n2 Install wire spool. Insert wire through both feed guides and clamp it into feed mechanism. See manual if changing wire size or using solid wire.\n\nWARNING\nTo prevent serious injury, read manual warnings and instructions before use.\n\n2\"\nContact Tip\nNozzle\n\n3 Take off nozzle and tip, plug selected cord into welder and into wall, turn welder on, and press cold wire feed switch until wire comes out.\n\nWARNING\nTo prevent fire and serious injury, keep torch and wire clear of grounded objects while welder plugged in.\n\nclockwise\n\n4 Incrementally tighten wire feed tension knob clockwise until wire will bend from feed tension at 2\"-3\".\n\nwood block\n2\"-3\"\n\n5 Unplug welder and replace nozzle and tip.\n\n6 Hold gun clear of workpiece, then plug in welder, turn it on, and set weld thickness and other settings.\n\nHOLD GUN CLEAR\n\nBASIC WELDING INSTRUCTIONS AND WELDING TIPS ARE IN MANUAL.",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Step 1 & 2 – Spool Loading and Wire Feed Assembly",
+      "spatial": "Left side shows exploded view of 2 lb spool assembly components stacked vertically (wingnut at top, then spacer, spindle, 2 lb wire spool, brake pad, welder at bottom). Right side shows top-down view of wire spool installed in welder with feed mechanism at upper right, feed guides on right, welding wire routed from spool toward feed guides.",
+      "callouts": [
+        "Wingnut",
+        "Spacer",
+        "Spindle",
+        "2 lb Wire Spool",
+        "Brake Pad",
+        "Welder",
+        "2 lb Spool Loading",
+        "Adapter and knob required for 10-12 lb spool",
+        "Feed Mechanism",
+        "feed guides",
+        "welding wire",
+        "Wire Spool"
+      ]
+    },
+    {
+      "label": "Step 3 – Nozzle and Tip Removal / Cold Wire Feed",
+      "spatial": "Left shows MIG gun with nozzle and contact tip labeled, with a 2\" dimension indicated. Right shows welder unit with cord being plugged in.",
+      "callouts": [
+        "2\"",
+        "Contact Tip",
+        "Nozzle"
+      ]
+    },
+    {
+      "label": "Step 4 – Wire Feed Tension Adjustment",
+      "spatial": "Left shows the wire feed tension mechanism on the welder with a clockwise arrow indicating tightening direction. Right shows the gun wire bending against a wood block at 2\"-3\" from the tip.",
+      "callouts": [
+        "clockwise",
+        "wood block",
+        "2\"-3\""
+      ]
+    },
+    {
+      "label": "Step 5 – Unplug and Replace Nozzle/Tip",
+      "spatial": "Left shows a power plug being removed from a 240V outlet. Right shows the MIG gun with nozzle and tip being reinstalled, depicted with arrows indicating assembly.",
+      "callouts": []
+    },
+    {
+      "label": "Step 6 – Hold Gun Clear, Plug In, and Set Parameters",
+      "spatial": "Far left shows a hand holding the MIG gun clear of workpiece labeled HOLD GUN CLEAR. Center-left shows plug going into wall outlet. Center shows welder power switch being turned on. Far right shows the OmniPro 220 control panel for setting weld thickness and other settings.",
+      "callouts": [
+        "HOLD GUN CLEAR"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Item number is 57812",
+    "Product is the Vulcan OmniPro 220 welder",
+    "Standard spool size for direct loading is 2 lb",
+    "An adapter and knob are required to use a 10-12 lb spool",
+    "Wire must be inserted through both feed guides before clamping into the feed mechanism",
+    "The nozzle and contact tip must be removed before feeding wire in Step 3",
+    "Cold wire feed switch is pressed until wire comes out of the gun",
+    "Wire feed tension knob is tightened clockwise",
+    "Correct wire feed tension is achieved when wire bends at 2 to 3 inches from feed tension",
+    "A wood block is used to test wire bend distance of 2\"-3\"",
+    "The welder must be unplugged before replacing nozzle and tip (Step 5)",
+    "Gun must be held clear of workpiece before plugging in the welder (Step 6)",
+    "See manual for instructions when changing wire size or using solid wire",
+    "See back of guide for cable connections for flux wire welding",
+    "Keep torch and wire clear of grounded objects while welder is plugged in to prevent fire and serious injury",
+    "Basic welding instructions and welding tips are in the manual"
+  ],
+  "topics": [
+    "wire_feed",
+    "flux_cored",
+    "mig",
+    "safety",
+    "parts",
+    "quick_start",
+    "settings"
+  ],
+  "keywords": [
+    "OmniPro 220",
+    "flux wire welding",
+    "wire spool",
+    "2 lb spool",
+    "10-12 lb spool",
+    "feed mechanism",
+    "feed guides",
+    "welding wire",
+    "contact tip",
+    "nozzle",
+    "cold wire feed switch",
+    "wire feed tension knob",
+    "clockwise",
+    "wood block",
+    "2\"-3\"",
+    "wingnut",
+    "spacer",
+    "spindle",
+    "brake pad",
+    "adapter",
+    "solid wire",
+    "weld thickness",
+    "57812"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "owner-manual-026",
+  "source": "owner-manual",
+  "page": 26,
+  "image_path": "/corpus/pages/owner-manual-026.png",
+  "summary": "This page covers procedures for sharpening a tungsten electrode and assembling a TIG torch, including safety warnings and step-by-step instructions.",
+  "text_content": "Sharpen Tungsten Electrode (sold separately)\n\nTo avoid Electrode contamination, dedicate a fine grit grinding wheel exclusively to Electrode grinding.\n\nWARNING! TO PREVENT SERIOUS INJURY: Some Electrodes may have materials added to them that are hazardous to breathe. Wear a respirator and ANSI-approved Safety goggles when grinding an Electrode.\n\n1. Shut off the welder and wait until Electrode and Torch have cooled enough to handle.\n2. Remove Back Cap. Pull Electrode from front of Torch. (Pulling it from rear will damage Collet and create burrs on Electrode).\n3. If Electrode has dulled or been otherwise contaminated, use pliers or a suitable tool to grip the Electrode above the contaminated section and snap off the end of the Electrode.\n4. Lightly press Electrode tip against the surface of the grinding wheel at an angle. Rotate Electrode tip until a blunt point is formed.\n\nNote: Grinding direction must be parallel to length of Electrode.\n\n5. The conical portion of the ideal tip will be 2-1/2 times as long as the Electrode diameter.\n6. Re-insert Electrode into Collet with tip protruding 1/8\"-1/4\" beyond the Ceramic Nozzle, then re-tighten the Back Cap.\n\nAssemble TIG Torch (sold separately)\n\n1. Consult Settings Chart, on top of Welder, to determine proper Tungsten Electrode size to be used with thickness of material to be welded.\n2. Match Collet and Collet Body sizes to Tungsten Electrode size.\n3. Thread Collet Body into the front of the Torch.\n4. Make sure Ceramic Nozzle size is appropriate for application.\n5. Thread Ceramic Nozzle onto Collet Body.\n6. Insert Collet into back of Torch and into Collet Body.\n7. Insert Tungsten Electrode into Collet on front of Torch.\n8. Lock Electrode in place with Back Cap. Electrode should protrude 1/8\" to 1/4\" beyond the Ceramic Nozzle.\n\nPage 26     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Tungsten Electrode Grinding Diagram",
+      "spatial": "Top-right of sharpening section; shows an electrode on the left being pressed against a grinding wheel on the right at an angle; electrode is labeled at top, grinding wheel at right",
+      "callouts": [
+        "Electrode",
+        "Grinding Wheel"
+      ]
+    },
+    {
+      "label": "Conical Tip Shape Diagram",
+      "spatial": "Middle-right of sharpening section; shows two side-by-side illustrations of electrode tip profiles indicating ideal conical shape",
+      "callouts": []
+    },
+    {
+      "label": "TIG Torch Assembly Diagram",
+      "spatial": "Right side of torch assembly section; shows exploded view of TIG torch components; Back Cap at top-right, Collet to its left, torch body in center, Collet Body below center, Ceramic Nozzle at bottom; arrow points to insertion point labeled 'Insert tungsten Electrode here.'",
+      "callouts": [
+        "Back Cap",
+        "Collet",
+        "Insert tungsten Electrode here.",
+        "Collet Body",
+        "Ceramic Nozzle"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Dedicate a fine grit grinding wheel exclusively to Electrode grinding to avoid contamination",
+    "Wear a respirator and ANSI-approved safety goggles when grinding an electrode",
+    "Pull electrode from the front of the torch, not the rear, to avoid damaging the Collet and creating burrs",
+    "Grinding direction must be parallel to the length of the Electrode",
+    "The conical portion of the ideal tip will be 2-1/2 times as long as the Electrode diameter",
+    "Re-insert Electrode into Collet with tip protruding 1/8\"-1/4\" beyond the Ceramic Nozzle",
+    "Electrode should protrude 1/8\" to 1/4\" beyond the Ceramic Nozzle after assembly",
+    "Consult Settings Chart on top of Welder to determine proper Tungsten Electrode size",
+    "Match Collet and Collet Body sizes to Tungsten Electrode size",
+    "Thread Collet Body into the front of the Torch",
+    "Insert Collet into back of Torch and into Collet Body",
+    "Lock Electrode in place with Back Cap",
+    "TIG Torch is sold separately",
+    "Tungsten Electrode is sold separately",
+    "Item number: 57812",
+    "Technical support phone number: 1-800-444-3353"
+  ],
+  "topics": [
+    "tig",
+    "safety",
+    "maintenance",
+    "parts",
+    "quick_start"
+  ],
+  "keywords": [
+    "tungsten electrode",
+    "TIG torch",
+    "grinding wheel",
+    "collet",
+    "collet body",
+    "ceramic nozzle",
+    "back cap",
+    "electrode sharpening",
+    "conical tip",
+    "respirator",
+    "ANSI safety goggles",
+    "electrode contamination",
+    "fine grit",
+    "electrode diameter",
+    "protrusion"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

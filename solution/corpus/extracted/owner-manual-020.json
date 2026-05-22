@@ -1,0 +1,151 @@
+{
+  "id": "owner-manual-020",
+  "source": "owner-manual",
+  "page": 20,
+  "image_path": "/corpus/pages/owner-manual-020.png",
+  "summary": "This page covers the initial setup and settings configuration for MIG Stainless Steel welding on the Vulcan OmniPro 220, including power connection, process selection, polarity/gas settings, wire diameter, material thickness, and auto weld settings.",
+  "text_content": "4. Turn the Power Switch to the OFF position, then plug the Power Cord into a properly grounded, GFCI protected 120VAC (20 amp rated) or 240VAC receptacle that matches the plug. The circuit must be equipped with delayed action-type circuit breaker or fuses.\n\n5. Set MIG Gun down on nonconductive, nonflammable surface away from any grounded objects.\n\n6. Turn the Power Switch ON.\n\nSettings\n\n1. Press Home Button on Control Panel.\n2. Turn Main Control Knob until desired process appears on LCD display screen.\n3. Press Main Control Knob to select process.\n\nNote: Press Main Control Knob to go to next screen. Press Back Button to return to the previous screen.\n\n4. Adjust settings for the selected process.\n\na. Polarity and Gas Settings:\n• Plug cables in according to screen.\n• Connect gas according to screen.\n• Set SCFH between 20-30.\n\nb. Set Wire Diameter and Material Thickness:\n• Turn Left Knob to set wire diameter.\n• Turn Right Knob to set material thickness.\n\nc. Auto Weld Settings:\n• Turn Left Knob to adjust Wire Feed Speed (Amperage).\n• Turn Right Knob to adjust Voltage.\n\nNote: If the Wire Feed Speed or Voltage settings are adjusted manually, the white mark on the line shows the recommended setting for your wire/electrode diameter and workpiece thickness.\n\nFor technical questions, please call 1-800-444-3353.\nPage 20   Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Power Switch and Power Cord Connection",
+      "spatial": "Top right of page; left side shows the Vulcan welder unit with Power Switch labeled at top right of unit; right side shows a GFCI-style power plug being inserted into a wall receptacle",
+      "callouts": [
+        "Power Switch",
+        "VULCAN"
+      ]
+    },
+    {
+      "label": "Control Panel - Left Knob, Main Control Knob, Right Knob",
+      "spatial": "Left side of settings section; shows the front panel of the Vulcan OmniPro 220 with three knobs along the bottom; Left Knob on far left, Main Control Knob in center, Right Knob on far right; LCD display shows 'MIG Stainless Steel'; HOME and BACK buttons visible",
+      "callouts": [
+        "Left Knob",
+        "Main Control Knob",
+        "Right Knob",
+        "HOME",
+        "BACK",
+        "MIG Stainless Steel",
+        "VULCAN",
+        "OMNIPRO 220"
+      ]
+    },
+    {
+      "label": "Polarity and Gas Settings Screen - Stainless Tri-Mix",
+      "spatial": "Bottom left of settings section; shows LCD screen with cable polarity diagram (minus on left, plus on right) and gas connection; CONFIRM button at bottom",
+      "callouts": [
+        "Stainless Tri-Mix",
+        "CONFIRM",
+        "-",
+        "+"
+      ]
+    },
+    {
+      "label": "Wire Diameter and Material Thickness Screen - MIG Stainless Steel",
+      "spatial": "Upper right of settings section; shows LCD screen split into two panels: left panel shows Diameter .025\", right panel shows Thickness 24Ga; CONFIRM button at bottom",
+      "callouts": [
+        "MIG Stainless Steel",
+        "Diameter",
+        ".025\"",
+        "Thickness",
+        "24Ga",
+        "CONFIRM"
+      ]
+    },
+    {
+      "label": "Auto Weld Settings Screen",
+      "spatial": "Lower right of settings section; shows LCD display with Wire Feed Speed 121 in/min on left and Voltage 13.8 V on top right; 0 A and 0.0 V below; bottom bar shows process, gas type, run-in WFS, inductance, settings, spot timer, wire diameter, material thickness",
+      "callouts": [
+        "121 in/min",
+        "13.8 V",
+        "0 A",
+        "0.0 V",
+        "Process",
+        "MIG Steel",
+        "Gas Type",
+        "C25",
+        "Run-In WFS",
+        "25",
+        "Inductance",
+        "5",
+        "SETTINGS",
+        "Spot Timer",
+        "0.0 s",
+        "Wire Diameter",
+        ".030\"",
+        "Material Thickness",
+        "24Ga"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Power cord must be plugged into a GFCI protected 120VAC (20 amp rated) or 240VAC receptacle",
+    "Circuit must be equipped with delayed action-type circuit breaker or fuses",
+    "MIG Gun must be set on nonconductive, nonflammable surface away from grounded objects during setup",
+    "Gas flow rate (SCFH) should be set between 20-30 for MIG Stainless Steel",
+    "Wire diameter example shown: .025 inches",
+    "Material thickness example shown: 24 Gauge (24Ga)",
+    "Auto Weld Settings example Wire Feed Speed: 121 in/min",
+    "Auto Weld Settings example Voltage: 13.8 V",
+    "Gas type shown in example: C25",
+    "Process shown in example: MIG Steel",
+    "Wire diameter in auto weld example: .030 inches",
+    "Material thickness in auto weld example: 24Ga",
+    "Spot Timer default: 0.0 s",
+    "Inductance default shown: 5",
+    "Run-In WFS default shown: 25",
+    "White mark on the line shows the recommended setting for wire/electrode diameter and workpiece thickness when settings are manually adjusted",
+    "Press Main Control Knob to go to next screen",
+    "Press Back Button to return to the previous screen",
+    "Left Knob adjusts Wire Feed Speed (Amperage) in Auto Weld Settings",
+    "Right Knob adjusts Voltage in Auto Weld Settings",
+    "Left Knob sets wire diameter in Wire Diameter/Material Thickness screen",
+    "Right Knob sets material thickness in Wire Diameter/Material Thickness screen",
+    "Gas used for MIG Stainless Steel: Stainless Tri-Mix",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812"
+  ],
+  "topics": [
+    "settings",
+    "mig",
+    "wire_feed",
+    "safety",
+    "quick_start"
+  ],
+  "keywords": [
+    "Power Switch",
+    "GFCI",
+    "120VAC",
+    "240VAC",
+    "20 amp",
+    "delayed action circuit breaker",
+    "MIG Stainless Steel",
+    "Left Knob",
+    "Right Knob",
+    "Main Control Knob",
+    "wire diameter",
+    "material thickness",
+    "SCFH",
+    "Stainless Tri-Mix",
+    "Auto Weld Settings",
+    "Wire Feed Speed",
+    "Amperage",
+    "Voltage",
+    "inductance",
+    "run-in WFS",
+    "spot timer",
+    "C25",
+    "LCD display",
+    "Home Button",
+    "Back Button",
+    "OmniPro 220",
+    "Vulcan",
+    ".025 inch",
+    ".030 inch",
+    "24Ga"
+  ],
+  "content_types": [
+    "text",
+    "diagram",
+    "photo"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "owner-manual-027",
+  "source": "owner-manual",
+  "page": 27,
+  "image_path": "/corpus/pages/owner-manual-027.png",
+  "summary": "This page covers the Stick welding setup procedure for the Vulcan OmniPro 220, including how to connect the ground clamp cable, electrode holder cable, and power cord.",
+  "text_content": "Stick Setup\n\nConnect Cables\n\nGround Clamp Cable in Negative Socket\nGround Clamp\nElectrode Holder Cable in Positive Socket\nElectrode Holder\n\n1. Plug Ground Clamp Cable into Negative Socket. Twist clockwise all the way to lock in place.\n2. Plug Electrode Holder Cable into Positive Socket. Twist clockwise all the way to lock in place.\n\nConnect Power Cord\n\nPower Input\n\nPlug either 120VAC or 240VAC Power Cord into Power Input Socket.\n\nNote: Plug will only fit one way.\n\nWARNING! TO PREVENT SERIOUS INJURY FROM ACCIDENTAL OPERATION: Do not plug cord into wall outlet at this time.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 27",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Stick Setup - Connect Cables diagram",
+      "spatial": "The welder unit is shown in the center-right area. The Ground Clamp Cable connects to the Negative Socket on the left side of the machine front panel. The Electrode Holder Cable connects to the Positive Socket on the right side of the machine front panel. The Ground Clamp tool is shown on the far left extending from the cable. The Electrode Holder tool is shown at the bottom-center extending from its cable.",
+      "callouts": [
+        "Ground Clamp Cable in Negative Socket",
+        "Ground Clamp",
+        "Electrode Holder Cable in Positive Socket",
+        "Electrode Holder"
+      ]
+    },
+    {
+      "label": "Connect Power Cord diagram",
+      "spatial": "The welder unit is shown from the front/top. The Power Input socket is labeled on the left side of the machine's front panel, indicated by an arrow pointing to the socket location in the center-left of the panel.",
+      "callouts": [
+        "Power Input"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Ground Clamp Cable plugs into the Negative Socket for Stick welding",
+    "Electrode Holder Cable plugs into the Positive Socket for Stick welding",
+    "Cables are locked in place by twisting clockwise all the way",
+    "The welder supports either 120VAC or 240VAC power input",
+    "The power cord plug will only fit one way into the Power Input Socket",
+    "Do not plug the power cord into the wall outlet during setup to prevent accidental operation",
+    "Item number for this welder is 57812",
+    "Technical support phone number is 1-800-444-3353",
+    "This information is on page 27 of the manual"
+  ],
+  "topics": [
+    "stick",
+    "safety",
+    "quick_start",
+    "settings"
+  ],
+  "keywords": [
+    "Stick welding",
+    "Ground Clamp",
+    "Negative Socket",
+    "Electrode Holder",
+    "Positive Socket",
+    "Power Input",
+    "120VAC",
+    "240VAC",
+    "cable connection",
+    "power cord",
+    "twist clockwise",
+    "lock in place"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -7,6 +7,7 @@
  * Requires: poppler (brew install poppler) for pdftoppm
  */
 
+import 'dotenv/config'
 import Anthropic from '@anthropic-ai/sdk'
 import fs from 'fs'
 import path from 'path'
@@ -80,54 +81,56 @@ Extract ALL information from this page into this exact JSON structure:
 Be exhaustive with key_facts — these are used for retrieval. Include every specific number, measurement, setting, or procedure mentioned.
 Return only valid JSON, no markdown.`
 
-  const response = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
-    messages: [
-      {
-        role: 'user',
-        content: [
+  for (let attempt = 0; attempt < 4; attempt++) {
+    if (attempt > 0) {
+      const delay = attempt * 8000
+      console.log(`    Retry ${attempt}/3 after ${delay / 1000}s...`)
+      await new Promise(r => setTimeout(r, delay))
+    }
+    try {
+      const response = await client.messages.create({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 4096,
+        messages: [
           {
-            type: 'image',
-            source: {
-              type: 'base64',
-              media_type: 'image/png',
-              data: base64Image,
-            },
+            role: 'user',
+            content: [
+              {
+                type: 'image',
+                source: { type: 'base64', media_type: 'image/png', data: base64Image },
+              },
+              { type: 'text', text: prompt },
+            ],
           },
-          { type: 'text', text: prompt },
         ],
-      },
-    ],
-  })
+      })
 
-  const text = response.content[0].type === 'text' ? response.content[0].text : ''
-  let parsed: Omit<PageRecord, 'id' | 'source' | 'page' | 'image_path'>
+      const text = response.content[0].type === 'text' ? response.content[0].text : ''
+      let parsed: Omit<PageRecord, 'id' | 'source' | 'page' | 'image_path'>
+      try {
+        const jsonMatch = text.match(/\{[\s\S]*\}/)
+        parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text)
+      } catch {
+        console.error(`  Failed to parse JSON for ${id}, using fallback`)
+        parsed = {
+          summary: 'Page extraction failed',
+          text_content: text,
+          tables: [],
+          diagrams: [],
+          key_facts: [],
+          topics: [],
+          keywords: [],
+          content_types: ['text'],
+        }
+      }
 
-  try {
-    const jsonMatch = text.match(/\{[\s\S]*\}/)
-    parsed = JSON.parse(jsonMatch ? jsonMatch[0] : text)
-  } catch {
-    console.error(`  Failed to parse JSON for ${id}, using fallback`)
-    parsed = {
-      summary: 'Page extraction failed',
-      text_content: text,
-      tables: [],
-      diagrams: [],
-      key_facts: [],
-      topics: [],
-      keywords: [],
-      content_types: ['text'],
+      return { id, source, page: pageNum, image_path: `/corpus/pages/${id}.png`, ...parsed }
+    } catch (err: unknown) {
+      const isOverload = String(err).includes('529') || String(err).includes('overloaded')
+      if (!isOverload || attempt === 3) throw err
     }
   }
-
-  return {
-    id,
-    source,
-    page: pageNum,
-    image_path: `/corpus/pages/${id}.png`,
-    ...parsed,
-  }
+  throw new Error(`Max retries exceeded for ${id}`)
 }
 
 async function main() {
@@ -191,8 +194,8 @@ async function main() {
         fs.writeFileSync(extractedPath, JSON.stringify(record, null, 2))
         allPages.push(record)
         console.log(`    ✓ ${record.topics.join(', ')}`)
-        // Small delay to avoid rate limits
-        await new Promise(r => setTimeout(r, 500))
+        // Delay between pages to avoid rate limits
+        await new Promise(r => setTimeout(r, 2000))
       } catch (err) {
         console.error(`    ✗ Error: ${err}`)
       }

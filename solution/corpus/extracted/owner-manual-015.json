@@ -1,0 +1,85 @@
+{
+  "id": "owner-manual-015",
+  "source": "owner-manual",
+  "page": 15,
+  "image_path": "/corpus/pages/owner-manual-015.png",
+  "summary": "This page covers the wire loading procedure for the Vulcan OmniPro 220 MIG welder, including cutting the wire, threading it through the feed system, setting tensioner pressure, and preparing the MIG gun.",
+  "text_content": "IMPORTANT\nSecurely hold onto the end of the welding wire and keep tension on it during the following steps.\n\nIf this is not done, the welding wire will unravel and unspool which can cause tangling and feeding problems.\n\n18. Cut off all bent and crimped wire. The cut end must have no burrs or sharp edges; cut again if needed.\n\n19. Keep tension on the wire and guide at least 12 inches of wire into the Wire Inlet Liner and Feed Guide.\n\n20. Make sure the welding wire is resting in the groove of the Feed Roller, then push the wire Idler Arm down, and swing the Feed Tensioner up to latch it across the tip of the arm.\nAfter the wire is held by the Tensioner, you may release it.\n\nNote: The tension should be 3–5 for solid wire and 2–3 for flux-cored wire. Too much force on flux-cored wire will crush it and may cause feeding issues.\n\n21. Pull the Nozzle to remove it.\n\n22. Unscrew the Contact Tip counterclockwise and remove.\n\n23. Lay the MIG Gun Cable out in a straight line so that the welding wire moves through it easily. Leave the cover open, so that the feed mechanism can be observed.\n\nIMPORTANT\nStainless steel wire is less flexible than other welding wire. Therefore, it is more difficult to feed through the liner and gun. It is especially important to keep the gun cable straight while feeding stainless steel wire.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 15",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Wire threading diagram showing Wire Spool, Wire Inlet Liner, and Feed Guide",
+      "spatial": "Wire Spool is on the left with dotted lines indicating wire path going right through Wire Inlet Liner in the center toward Feed Guide on the upper right; 'HOLD WIRE SECURELY' label is at top center; Welding Wire label points to the wire path",
+      "callouts": [
+        "HOLD WIRE SECURELY",
+        "Feed Guide",
+        "Welding Wire",
+        "Wire Spool",
+        "Wire Inlet Liner"
+      ]
+    },
+    {
+      "label": "Feed Roller and Tensioner assembly diagram showing Idler Arm being pushed down and Feed Tensioner latching",
+      "spatial": "Left image shows Idler Arm with arrow indicating downward push motion; right image shows the Feed Tensioner latched in position; arrow between images indicates progression of steps",
+      "callouts": [
+        "Idler Arm",
+        "Feed Tensioner"
+      ]
+    },
+    {
+      "label": "MIG Gun diagram showing Nozzle, Contact Tip, and MIG Gun body",
+      "spatial": "Nozzle is on the far left end of the gun, Contact Tip is in the middle-left area, MIG Gun label points to the body/handle on the right side",
+      "callouts": [
+        "MIG Gun",
+        "Nozzle",
+        "Contact Tip"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Feed tensioner setting should be 3–5 for solid wire",
+    "Feed tensioner setting should be 2–3 for flux-cored wire",
+    "Too much tensioner force on flux-cored wire will crush it and may cause feeding issues",
+    "At least 12 inches of wire must be guided into the Wire Inlet Liner and Feed Guide",
+    "Cut wire end must have no burrs or sharp edges",
+    "If tension is not kept on welding wire, it will unravel and unspool causing tangling and feeding problems",
+    "Stainless steel wire is less flexible than other welding wire and is more difficult to feed through liner and gun",
+    "MIG Gun cable must be kept straight while feeding stainless steel wire",
+    "Nozzle is removed by pulling",
+    "Contact Tip is removed by unscrewing counterclockwise",
+    "MIG Gun Cable should be laid out straight so wire moves through easily",
+    "Cover should be left open during wire feeding so feed mechanism can be observed",
+    "Item number is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "wire_feed",
+    "mig",
+    "flux_cored",
+    "safety",
+    "maintenance",
+    "quick_start"
+  ],
+  "keywords": [
+    "welding wire",
+    "wire spool",
+    "wire inlet liner",
+    "feed guide",
+    "feed roller",
+    "idler arm",
+    "feed tensioner",
+    "MIG gun",
+    "nozzle",
+    "contact tip",
+    "solid wire",
+    "flux-cored wire",
+    "stainless steel wire",
+    "tension",
+    "burrs",
+    "crimped wire"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "id": "owner-manual-030",
+  "source": "owner-manual",
+  "page": 30,
+  "image_path": "/corpus/pages/owner-manual-030.png",
+  "summary": "This page provides TIG welding setup instructions for the Vulcan OmniPro 220 welder, including safety warnings, step-by-step configuration procedures, and screen navigation guidance.",
+  "text_content": "TIG Welding\n\nWARNING\nTO PREVENT SERIOUS INJURY AND DEATH:\nDo not weld without Grounding Clamp.\nWhen the operator is not holding the Torch, it must be sitting on a nonconductive, nonflammable surface.\nOnly hold TIG Rod with an electrically insulated welding glove.\n\nDANGER\nTO PREVENT DEATH FROM ASPHYXIATION:\nDo not open gas without proper ventilation. Fix gas leaks immediately. Shielding gas can displace air and cause rapid loss of consciousness and death. Shielding gas without carbon dioxide can be even more hazardous because asphyxiation can start without feeling shortness of breath.\n\nNOTICE: TIG welding is a complicated process, requiring experience and skill to achieve successful results. Training beyond the scope of this manual is required to TIG weld properly.\n\n1. Open gas cylinder's valve all the way.\n2. Set Flow Gauge to SCFH value indicated on the Settings Chart on the inside of the Welder door.\n3. Turn the Power Switch to the OFF position, then plug the Welder into a properly grounded, GFCI protected, 120VAC (20 amp rated) outlet or 240V outlet. The circuit must be equipped with delayed action-type circuit breaker or fuses.\n4. Set TIG Torch down on nonconductive, nonflammable surface away from any grounded objects.\n5. Turn the Power Switch ON.\n6. Press Home Button on Control Panel.\n7. Turn Main Control Knob until TIG process appears on LCD display screen.\n8. Press Main Control Knob to select TIG process.\n\nNote: Press Main Control Knob to go to next screen. Press Back Button to return to the previous screen.\n\n9. Adjust settings for the TIG process.\n   a. Polarity and Gas Settings:\n      • Plug cables in according to screen.\n      • Connect gas according to screen.\n      • Set SCFH between 10-25.\n\n   b. Set Rod Diameter and Material Thickness:\n      • Turn Left Knob to set rod diameter.\n      • Turn Right Knob to set material thickness.\n\n   c. Auto Weld Settings:\n      • Turn Left Knob to adjust output amperage.\n      • Turn Right Knob to ON to energize TIG Torch.\n\nWARNING! TO PREVENT SERIOUS INJURY: Welder is now energized and Open Circuit Voltage is present.\n\nPage 30     For technical questions, please call 1-800-444-3353.     Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Control Panel Overview - TIG Mode",
+      "spatial": "Center of page lower-left: Vulcan OmniPro 220 control panel showing TIG selected on LCD display. Bottom of panel shows three knobs labeled left to right: Left Knob, Main Control Knob, Right Knob. HOME button on upper left of panel, BACK button on upper right.",
+      "callouts": [
+        "Left Knob",
+        "Main Control Knob",
+        "Right Knob",
+        "VULCAN",
+        "OMNIPRO 220",
+        "TIG",
+        "HOME",
+        "BACK"
+      ]
+    },
+    {
+      "label": "Polarity and Gas Settings Screen",
+      "spatial": "Center-right of page: LCD screen showing polarity connections with minus (-) on left side and plus (+) on right side, with torch/cable icons. Center text shows '100% Argon'. CONFIRM button at bottom center.",
+      "callouts": [
+        "-",
+        "+",
+        "100% Argon",
+        "CONFIRM"
+      ]
+    },
+    {
+      "label": "Rod Diameter and Material Thickness Settings Screen",
+      "spatial": "Center-right of page: LCD screen showing TIG label at top, two setting boxes side by side. Left box labeled 'Diameter' shows '1/16\"', Right box labeled 'Thickness' shows '24 Ga'. CONFIRM button at bottom center.",
+      "callouts": [
+        "TIG",
+        "Diameter",
+        "Thickness",
+        "1/16\"",
+        "24 Ga",
+        "CONFIRM"
+      ]
+    },
+    {
+      "label": "Auto Weld Settings Screen",
+      "spatial": "Bottom-right of page: LCD screen showing two panels. Left panel shows '30 A' on top and '0 A' on bottom. Right panel shows 'ON O OFF' toggle at top and '0.0 V' below. Bottom of screen shows process and gas type info. Right side has callouts for Rod Diameter and Material Thickness.",
+      "callouts": [
+        "30 A",
+        "0 A",
+        "ON",
+        "OFF",
+        "0.0 V",
+        "Process",
+        "Gas Type",
+        "TIG with Pedal",
+        "100% Ar",
+        "1/16\"",
+        "24Ga",
+        "SETTINGS",
+        "Rod Diameter",
+        "Material Thickness"
+      ]
+    }
+  ],
+  "key_facts": [
+    "TIG welding requires a grounding clamp at all times",
+    "TIG torch must rest on a nonconductive, nonflammable surface when not held",
+    "TIG rod must only be held with an electrically insulated welding glove",
+    "Shielding gas without carbon dioxide can cause asphyxiation without feeling shortness of breath",
+    "Gas leaks must be fixed immediately",
+    "Gas cylinder valve must be opened all the way for TIG welding",
+    "Flow Gauge SCFH value is found on the Settings Chart inside the Welder door",
+    "Welder must be plugged into a GFCI protected 120VAC (20 amp rated) outlet or 240V outlet",
+    "Circuit must be equipped with delayed action-type circuit breaker or fuses",
+    "TIG Torch must be set on nonconductive, nonflammable surface away from grounded objects during setup",
+    "SCFH should be set between 10-25 for TIG welding",
+    "TIG process uses 100% Argon shielding gas",
+    "Default rod diameter shown in example screen is 1/16 inch",
+    "Default material thickness shown in example screen is 24 Ga",
+    "Left Knob sets rod diameter in TIG rod/thickness settings screen",
+    "Right Knob sets material thickness in TIG rod/thickness settings screen",
+    "Left Knob adjusts output amperage in Auto Weld Settings",
+    "Right Knob turned to ON energizes TIG Torch",
+    "When TIG Torch is energized, Open Circuit Voltage is present",
+    "Main Control Knob navigates forward through screens",
+    "Back Button returns to previous screen",
+    "Home Button must be pressed after powering on before selecting process",
+    "TIG process is selected by turning and pressing the Main Control Knob",
+    "Example Auto Weld Settings screen shows 30 A set output and 0 A actual output",
+    "Example Auto Weld Settings screen shows 0.0 V open circuit voltage",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 30"
+  ],
+  "topics": [
+    "tig",
+    "safety",
+    "settings",
+    "quick_start"
+  ],
+  "keywords": [
+    "TIG welding",
+    "SCFH",
+    "shielding gas",
+    "100% Argon",
+    "grounding clamp",
+    "open circuit voltage",
+    "rod diameter",
+    "material thickness",
+    "flow gauge",
+    "GFCI",
+    "120VAC",
+    "240V",
+    "nonconductive",
+    "asphyxiation",
+    "carbon dioxide",
+    "Main Control Knob",
+    "Left Knob",
+    "Right Knob",
+    "Auto Weld Settings",
+    "polarity",
+    "energize",
+    "LCD display",
+    "circuit breaker",
+    "delayed action fuse",
+    "OmniPro 220",
+    "Vulcan"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "owner-manual-022",
+  "source": "owner-manual",
+  "page": 22,
+  "image_path": "/corpus/pages/owner-manual-022.png",
+  "summary": "This page covers basic wire welding techniques including bead types, gun angles, push/drag angles, and contact tip to work distance for MIG and flux-cored welding.",
+  "text_content": "Basic Wire Welding Technique\n\n1. Press (and hold) Trigger and contact the area to be welded with electrode wire to ignite arc.\n\n2. For a narrow weld, you can usually draw the wire in a steady straight line.\nThis is called a stringer bead.\n\nFor a wider weld, draw the wire back and forth across the joint.\nThis is called a weave bead and takes practice to perform properly.\n\n3. Direct the welding wire straight into the joint. This gives an angle of 90° (straight up and down) for butt (end to end) welds, and an angle of 45° for fillet (T-shaped) welds.\n\nWeld MIG Gun angles, viewed from front of weld joint.\n\nfillet weld joint    butt weld joint\n\n4. For MIG welding using solid wire and shielding gas, the end of the MIG Gun should be tilted so that wire is angled anywhere in-between straight on and 15° away from the direction you are welding. The amount of tilt is called the push angle.\n\n5. When using flux-cored wire without shielding gas, the end of the MIG Gun should be tilted so that wire is angled anywhere in-between straight on and 15° in the direction you are welding. The amount of tilt is called the drag angle.\n\n6. The Contact Tip should remain within 1/2″ of the work surface. This distance is called CTWD - Contact Tip to Work Distance.\n\nPush Angle    Drag Angle\n0-15°    0-15°\nWeld Direction    Weld Direction\nSolid Wire with Shielding Gas    Flux-Cored Wire without Gas\n\nCTWD (up to 1/2\")\n\nPage 22    For technical questions, please call 1-800-444-3353.    Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "stringer bead and weave bead illustrations",
+      "spatial": "Two diagrams side by side at top right: stringer bead on the left showing a narrow straight weld bead with arrow indicating direction; weave bead on the right showing a wider back-and-forth pattern weld bead",
+      "callouts": [
+        "stringer bead",
+        "weave bead"
+      ]
+    },
+    {
+      "label": "Weld MIG Gun angles viewed from front of weld joint",
+      "spatial": "Two diagrams side by side in the middle right: fillet weld joint on the left showing gun at 45° angle into a T-joint; butt weld joint on the right showing gun at 90° angle into a flat butt joint",
+      "callouts": [
+        "Weld MIG Gun angles, viewed from front of weld joint.",
+        "45°",
+        "fillet weld joint",
+        "90°",
+        "butt weld joint"
+      ]
+    },
+    {
+      "label": "Push Angle and Drag Angle diagrams",
+      "spatial": "Two diagrams side by side in the lower right: Push Angle on the left showing gun tilted 0-15° away from weld direction with arrow pointing right; Drag Angle on the right showing gun tilted 0-15° toward weld direction with arrow pointing right",
+      "callouts": [
+        "Push Angle",
+        "Drag Angle",
+        "0-15°",
+        "0-15°",
+        "Weld Direction",
+        "Weld Direction",
+        "Solid Wire with Shielding Gas",
+        "Flux-Cored Wire without Gas"
+      ]
+    },
+    {
+      "label": "CTWD Contact Tip to Work Distance diagram",
+      "spatial": "Single diagram at bottom center showing MIG gun tip close to work surface with bracket indicating the CTWD distance between contact tip and work surface",
+      "callouts": [
+        "CTWD (up to 1/2\")"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Press and hold the trigger and contact the area to be welded with electrode wire to ignite arc",
+    "A stringer bead is created by drawing the wire in a steady straight line for narrow welds",
+    "A weave bead is created by drawing the wire back and forth across the joint for wider welds",
+    "Weave bead takes practice to perform properly",
+    "Gun angle for butt (end to end) welds is 90° (straight up and down)",
+    "Gun angle for fillet (T-shaped) welds is 45°",
+    "For MIG welding with solid wire and shielding gas, the push angle is 0-15° away from the direction of welding",
+    "For flux-cored wire without shielding gas, the drag angle is 0-15° in the direction of welding",
+    "CTWD (Contact Tip to Work Distance) should remain within 1/2 inch of the work surface",
+    "Push angle is used with solid wire and shielding gas",
+    "Drag angle is used with flux-cored wire without shielding gas",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812"
+  ],
+  "topics": [
+    "mig",
+    "flux_cored",
+    "wire_feed",
+    "settings",
+    "quick_start"
+  ],
+  "keywords": [
+    "stringer bead",
+    "weave bead",
+    "push angle",
+    "drag angle",
+    "CTWD",
+    "Contact Tip to Work Distance",
+    "fillet weld",
+    "butt weld",
+    "MIG gun angle",
+    "solid wire",
+    "flux-cored wire",
+    "shielding gas",
+    "electrode wire",
+    "trigger",
+    "arc",
+    "45 degrees",
+    "90 degrees",
+    "0-15 degrees",
+    "weld direction"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

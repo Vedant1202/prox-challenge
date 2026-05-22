@@ -1,0 +1,79 @@
+{
+  "id": "owner-manual-018",
+  "source": "owner-manual",
+  "page": 18,
+  "image_path": "/corpus/pages/owner-manual-018.png",
+  "summary": "This page introduces basic wire welding processes (flux-cored, MIG, and aluminum) for the Vulcan OmniPro 220, with safety warnings and practice recommendations.",
+  "text_content": "Basic Wire Welding\n\nRead the ENTIRE IMPORTANT SAFETY INFORMATION section at the beginning of this manual including all text under subheadings therein before welding.\n\nWARNING\nTO PREVENT SERIOUS INJURY:\nProtective gear must be worn when using the Welder; minimum shade number 10 full face shield (or welding mask), ear protection, welding gloves, sleeves and apron, NIOSH-approved respirator, and fire resistant work clothes without pockets should be worn when welding.\nLight from the arc can cause permanent damage to the eyes and skin.\nDo not breathe arc fumes.\n\nFlux-cored wire welding is used to weld mild steel and stainless steel without shielding gas.\n\nMIG welding uses solid wire and shielding gas, and is used to weld mild steel and stainless steel. MIG welding can also be used to weld thinner workpieces than flux-cored welding can.\n\nAluminum welding can be performed with an optional Spool Gun (sold separately) using aluminum wire and shielding gas.\n\nGood welding takes a degree of skill and experience. Practice a few sample welds on scrap before welding your first project. Additional practice periods are recommended whenever you weld:\n• a different thickness of material\n• a different type of material\n• a different type of connection\n• using a different process\n\nMake practice welds on pieces of scrap to practice technique before welding anything of value.\n\nWARNING\nTO PREVENT SERIOUS INJURY, FIRE AND BURNS:\nKeep welding tip clear of grounded objects whenever unit is plugged in and turned on.\n\nPower Switch\n\nPractice your welding technique on scrap pieces before welding anything of value.\n\nPage 18    For technical questions, please call 1-800-444-3353.    Item 57812",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Welder front panel and MIG gun diagram",
+      "spatial": "Center-bottom of page; the Vulcan OmniPro 220 welder unit is shown on the left side of the diagram with controls visible on the front panel; a MIG welding gun is shown to the right of the welder connected by a cable; a lightning bolt symbol indicates live electrical output at the gun tip",
+      "callouts": [
+        "Power Switch",
+        "VULCAN"
+      ]
+    },
+    {
+      "label": "Safety icons — top right of page",
+      "spatial": "Four safety icons arranged in a 2x2 grid in the upper right area of the page; top-left is a welding helmet warning triangle icon; top-right is a welding glove icon; bottom-left is a welding respirator/face shield icon; bottom-right is a fire/burn warning triangle icon",
+      "callouts": []
+    },
+    {
+      "label": "Fire warning icon — second warning box",
+      "spatial": "Left side of the second WARNING box at the bottom-left of the page; shows a flame symbol inside a warning triangle",
+      "callouts": []
+    }
+  ],
+  "key_facts": [
+    "Minimum shade number 10 full face shield or welding mask required when welding",
+    "Ear protection is required when welding",
+    "Welding gloves, sleeves, and apron are required when welding",
+    "NIOSH-approved respirator is required when welding",
+    "Fire resistant work clothes without pockets should be worn when welding",
+    "Arc light can cause permanent damage to the eyes and skin",
+    "Do not breathe arc fumes",
+    "Flux-cored wire welding welds mild steel and stainless steel without shielding gas",
+    "MIG welding uses solid wire and shielding gas",
+    "MIG welding is used to weld mild steel and stainless steel",
+    "MIG welding can weld thinner workpieces than flux-cored welding",
+    "Aluminum welding requires an optional Spool Gun sold separately",
+    "Aluminum welding uses aluminum wire and shielding gas",
+    "Practice welds on scrap are recommended before welding any project of value",
+    "Additional practice is recommended when welding a different thickness of material, a different type of material, a different type of connection, or using a different process",
+    "Keep welding tip clear of grounded objects whenever the unit is plugged in and turned on",
+    "Item number for this welder is 57812",
+    "Technical support phone number: 1-800-444-3353"
+  ],
+  "topics": [
+    "safety",
+    "mig",
+    "flux_cored",
+    "wire_feed",
+    "quick_start"
+  ],
+  "keywords": [
+    "flux-cored",
+    "MIG welding",
+    "aluminum welding",
+    "shielding gas",
+    "spool gun",
+    "welding mask",
+    "face shield",
+    "NIOSH respirator",
+    "arc fumes",
+    "mild steel",
+    "stainless steel",
+    "welding gloves",
+    "fire resistant",
+    "shade number 10",
+    "power switch",
+    "welding tip",
+    "grounded objects"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

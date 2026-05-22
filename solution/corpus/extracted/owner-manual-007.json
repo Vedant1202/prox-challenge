@@ -1,0 +1,220 @@
+{
+  "id": "owner-manual-007",
+  "source": "owner-manual",
+  "page": 7,
+  "image_path": "/corpus/pages/owner-manual-007.png",
+  "summary": "This page provides complete electrical and performance specifications for the Vulcan OmniPro 220 welder in MIG, TIG, and Stick modes at both 120VAC and 240VAC input voltages.",
+  "text_content": "Specifications\n\nMIG\nPower Input | 120VAC / 60Hz | 240VAC / 60Hz\nCurrent Input at Output | 20.8A at 100A | 25.5A at 200A\nWelding Current Range | 30–140A | 30–220A\nRated Duty Cycles | 40% @ 100A / 100% @ 75A | 25% @ 200A / 100% @ 115A\nMaximum OCV | 86VDC\nWeldable Materials | Mild Steel, Stainless Steel, Aluminum (with optional Spool Gun)\nWelding Wire Capacity | Solid Core: 0.025\"/0.030\"/0.035\" / Flux Cored: 0.030\"/0.035\"/0.045\"\nWire Speed | 50–500 IPM\nWire Spool Capacity | Up to 12 lb spool\n\nTIG\nPower Input | 120VAC / 60Hz | 240VAC / 60Hz\nCurrent Input at Output | 20.6A at 125A | 15.6A at 175A\nWelding Current Range | 10A–125A | 10A–175A\nRated Duty Cycles | 40% @ 125A / 100% @ 90A | 30% @ 175A / 100% @ 105A\nMaximum OCV | 86VDC\nWeldable Materials | Mild Steel, Stainless Steel, Chrome Moly\n\nStick\nPower Input | 120VAC / 60Hz | 240VAC / 60Hz\nCurrent Input at Output | 19.5A at 80A | 23.7A at 175A\nWelding Current Range | 10A–80A | 10A–175A\nRated Duty Cycles | 40% @ 80A / 100% @ 60A | 25% @ 175A / 100% @ 100A\nMaximum OCV | 86VDC\nWeldable Materials | Mild Steel, Stainless Steel\n\nItem 57812    For technical questions, please call 1-800-444-3353.    Page 7",
+  "tables": [
+    {
+      "title": "MIG Specifications",
+      "rows": [
+        [
+          "",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Power Input",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Current Input at Output",
+          "20.8A at 100A",
+          "25.5A at 200A"
+        ],
+        [
+          "Welding Current Range",
+          "30–140A",
+          "30–220A"
+        ],
+        [
+          "Rated Duty Cycles",
+          "40% @ 100A / 100% @ 75A",
+          "25% @ 200A / 100% @ 115A"
+        ],
+        [
+          "Maximum OCV",
+          "86VDC",
+          "86VDC"
+        ],
+        [
+          "Weldable Materials",
+          "Mild Steel, Stainless Steel, Aluminum (with optional Spool Gun)",
+          "Mild Steel, Stainless Steel, Aluminum (with optional Spool Gun)"
+        ],
+        [
+          "Welding Wire Capacity",
+          "Solid Core: 0.025\"/0.030\"/0.035\" / Flux Cored: 0.030\"/0.035\"/0.045\"",
+          "Solid Core: 0.025\"/0.030\"/0.035\" / Flux Cored: 0.030\"/0.035\"/0.045\""
+        ],
+        [
+          "Wire Speed",
+          "50–500 IPM",
+          "50–500 IPM"
+        ],
+        [
+          "Wire Spool Capacity",
+          "Up to 12 lb spool",
+          "Up to 12 lb spool"
+        ]
+      ]
+    },
+    {
+      "title": "TIG Specifications",
+      "rows": [
+        [
+          "",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Power Input",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Current Input at Output",
+          "20.6A at 125A",
+          "15.6A at 175A"
+        ],
+        [
+          "Welding Current Range",
+          "10A–125A",
+          "10A–175A"
+        ],
+        [
+          "Rated Duty Cycles",
+          "40% @ 125A / 100% @ 90A",
+          "30% @ 175A / 100% @ 105A"
+        ],
+        [
+          "Maximum OCV",
+          "86VDC",
+          "86VDC"
+        ],
+        [
+          "Weldable Materials",
+          "Mild Steel, Stainless Steel, Chrome Moly",
+          "Mild Steel, Stainless Steel, Chrome Moly"
+        ]
+      ]
+    },
+    {
+      "title": "Stick Specifications",
+      "rows": [
+        [
+          "",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Power Input",
+          "120VAC / 60Hz",
+          "240VAC / 60Hz"
+        ],
+        [
+          "Current Input at Output",
+          "19.5A at 80A",
+          "23.7A at 175A"
+        ],
+        [
+          "Welding Current Range",
+          "10A–80A",
+          "10A–175A"
+        ],
+        [
+          "Rated Duty Cycles",
+          "40% @ 80A / 100% @ 60A",
+          "25% @ 175A / 100% @ 100A"
+        ],
+        [
+          "Maximum OCV",
+          "86VDC",
+          "86VDC"
+        ],
+        [
+          "Weldable Materials",
+          "Mild Steel, Stainless Steel",
+          "Mild Steel, Stainless Steel"
+        ]
+      ]
+    }
+  ],
+  "diagrams": [],
+  "key_facts": [
+    "MIG at 120VAC: current input is 20.8A at 100A output",
+    "MIG at 240VAC: current input is 25.5A at 200A output",
+    "MIG at 120VAC: welding current range is 30–140A",
+    "MIG at 240VAC: welding current range is 30–220A",
+    "MIG at 120VAC: duty cycle is 40% @ 100A and 100% @ 75A",
+    "MIG at 240VAC: duty cycle is 25% @ 200A and 100% @ 115A",
+    "MIG maximum OCV is 86VDC",
+    "MIG weldable materials: Mild Steel, Stainless Steel, Aluminum (with optional Spool Gun)",
+    "MIG solid core wire capacity: 0.025\", 0.030\", 0.035\"",
+    "MIG flux cored wire capacity: 0.030\", 0.035\", 0.045\"",
+    "MIG wire speed range: 50–500 IPM",
+    "MIG wire spool capacity: up to 12 lb spool",
+    "TIG at 120VAC: current input is 20.6A at 125A output",
+    "TIG at 240VAC: current input is 15.6A at 175A output",
+    "TIG at 120VAC: welding current range is 10A–125A",
+    "TIG at 240VAC: welding current range is 10A–175A",
+    "TIG at 120VAC: duty cycle is 40% @ 125A and 100% @ 90A",
+    "TIG at 240VAC: duty cycle is 30% @ 175A and 100% @ 105A",
+    "TIG maximum OCV is 86VDC",
+    "TIG weldable materials: Mild Steel, Stainless Steel, Chrome Moly",
+    "Stick at 120VAC: current input is 19.5A at 80A output",
+    "Stick at 240VAC: current input is 23.7A at 175A output",
+    "Stick at 120VAC: welding current range is 10A–80A",
+    "Stick at 240VAC: welding current range is 10A–175A",
+    "Stick at 120VAC: duty cycle is 40% @ 80A and 100% @ 60A",
+    "Stick at 240VAC: duty cycle is 25% @ 175A and 100% @ 100A",
+    "Stick maximum OCV is 86VDC",
+    "Stick weldable materials: Mild Steel, Stainless Steel",
+    "All three modes (MIG, TIG, Stick) share the same maximum OCV of 86VDC",
+    "All three modes support both 120VAC/60Hz and 240VAC/60Hz power input",
+    "Aluminum MIG welding requires optional Spool Gun",
+    "Item number is 57812",
+    "Technical support phone number is 1-800-444-3353"
+  ],
+  "topics": [
+    "duty_cycle",
+    "wire_feed",
+    "mig",
+    "tig",
+    "flux_cored",
+    "stick",
+    "specifications"
+  ],
+  "keywords": [
+    "MIG",
+    "TIG",
+    "Stick",
+    "duty cycle",
+    "OCV",
+    "welding current range",
+    "wire speed",
+    "IPM",
+    "wire spool",
+    "solid core",
+    "flux cored",
+    "weldable materials",
+    "120VAC",
+    "240VAC",
+    "60Hz",
+    "86VDC",
+    "mild steel",
+    "stainless steel",
+    "aluminum",
+    "chrome moly",
+    "spool gun",
+    "current input",
+    "power input",
+    "specifications"
+  ],
+  "content_types": [
+    "text",
+    "table"
+  ]
+}

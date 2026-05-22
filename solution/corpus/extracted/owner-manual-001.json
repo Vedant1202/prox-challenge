@@ -1,0 +1,54 @@
+{
+  "id": "owner-manual-001",
+  "source": "owner-manual",
+  "page": 1,
+  "image_path": "/corpus/pages/owner-manual-001.png",
+  "summary": "This is the cover page of the Vulcan OmniPro 220 Multiprocess Welding System Owner's Manual and Safety Instructions, providing product identification, contact information, and basic handling instructions.",
+  "text_content": "Owner's Manual & Safety Instructions\n\nSave This Manual Keep this manual for the safety warnings and precautions, assembly, operating, inspection, maintenance and cleaning procedures. Write the product's Date Code in the back of the manual (or month and year of purchase if product has no number). Keep this manual and the receipt in a safe and dry place for future reference.\n\n25e\n\nVULCAN\n\nOMNIPRO 220\nMULTIPROCESS WELDING SYSTEM\n\nVisit our website at: https://www.harborfreight.com\nEmail our technical support at: productsupport@harborfreight.com\n\n57812\n\nWhen unpacking, make sure that the product is intact and undamaged. If any parts are missing or broken, please call 1-800-444-3353 as soon as possible.\n\nCopyright© 2022 by Harbor Freight Tools®. All rights reserved.\nNo portion of this manual or any artwork contained herein may be reproduced in any shape or form without the express written consent of Harbor Freight Tools. Diagrams within this manual may not be drawn proportionally. Due to continuing improvements, actual product may differ slightly from the product described herein. Tools required for assembly and service may not be included.\n\n⚠WARNING\n\nRead this material before using this product. Failure to do so can result in serious injury. SAVE THIS MANUAL.",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Product photo of Vulcan OmniPro 220 welder",
+      "spatial": "Center of page; the welder unit is shown in a three-quarter front-left perspective view. The front panel is visible on the left side showing a display screen labeled 'MIG Steel C25', control knobs, and output connection ports at the bottom. The right side panel shows ventilation louvers and the 'OMNIPRO 220' and 'VULCAN' branding. A carry handle is visible on top.",
+      "callouts": [
+        "VULCAN (brand name on front panel)",
+        "MIG Steel C25 (display screen text)",
+        "220 (model number on top right of front panel)",
+        "BACK (button label on front panel)",
+        "OMNIPRO 220 (on right side panel)",
+        "VULCAN (on right side panel)"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Product name: Vulcan OmniPro 220 Multiprocess Welding System",
+    "Item number: 57812",
+    "Manual revision code: 25e",
+    "Copyright year: 2022 by Harbor Freight Tools",
+    "Customer service phone number: 1-800-444-3353",
+    "Technical support email: productsupport@harborfreight.com",
+    "Website: https://www.harborfreight.com",
+    "Users must write the product's Date Code in the back of the manual",
+    "Product should be inspected upon unpacking for damage or missing parts",
+    "Failure to read the manual before use can result in serious injury"
+  ],
+  "topics": [
+    "safety"
+  ],
+  "keywords": [
+    "OmniPro 220",
+    "Vulcan",
+    "multiprocess",
+    "welding system",
+    "Harbor Freight Tools",
+    "owner's manual",
+    "safety instructions",
+    "MIG Steel C25",
+    "item number 57812",
+    "date code"
+  ],
+  "content_types": [
+    "text",
+    "photo"
+  ]
+}

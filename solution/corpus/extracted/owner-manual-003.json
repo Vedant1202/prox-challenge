@@ -1,0 +1,93 @@
+{
+  "id": "owner-manual-003",
+  "source": "owner-manual",
+  "page": 3,
+  "image_path": "/corpus/pages/owner-manual-003.png",
+  "summary": "This page covers fume and gas safety precautions for welding and plasma cutting, as well as arc ray safety guidelines to protect against eye injury and skin burns.",
+  "text_content": "Fume and Gas Safety\n\nINHALATION HAZARD:\nWelding and Plasma Cutting produce toxic fumes.\n\n1. Exposure to welding or cutting exhaust fumes can increase the risk of developing certain cancers, such as cancer of the larynx and lung cancer. Also, some diseases that may be linked to exposure to welding or plasma cutting exhaust fumes are:\n• Early onset of Parkinson's Disease\n• Heart disease\n• Ulcers\n• Damage to the reproductive organs\n• Inflammation of the small intestine or stomach\n• Kidney damage\n• Respiratory diseases such as emphysema, bronchitis, or pneumonia\nUse natural or forced air ventilation and wear a respirator approved by NIOSH to protect against the fumes produced to reduce the risk of developing the above illnesses.\n\n2. Do not use near degreasing or painting operations.\n\n3. Keep head out of fumes. Do not breathe exhaust fumes.\n\n4. Use enough ventilation, exhaust at arc, or both, to keep fumes and gases from breathing zone and general area. If engineering controls are not feasible, use an approved respirator.\n\n5. Work in a confined area only if it is well-ventilated, or while wearing an air-supplied respirator.\n\n6. Have a recognized specialist in Industrial Hygiene or Environmental Services check the operation and air quality and make recommendations for the specific welding situation. Follow OSHA guidelines for Permissible Exposure Limits (PEL's) and the American Conference of Governmental Industrial Hygienists recommendations for Threshold Limit Values (TLV's) for fumes and gases.\n\nArc Ray Safety\n\nARC RAYS can injure eyes and burn skin.\n\n1. Wear ANSI-approved welding eye protection featuring at least a number 10 shade lens rating.\n\n2. Wear leather leggings, fire resistant shoes or boots during use. Do not wear pants with cuffs, shirts with open pockets, or any clothing that can catch and hold molten metal or sparks.\n\n3. Keep clothing free of grease, oil, solvents, or any flammable substances. Wear dry, insulating gloves and protective clothing.\n\n4. Wear an approved head covering to protect the head and neck. Use aprons, cape, sleeves, shoulder covers, and bibs designed and approved for welding and cutting procedures.\n\n5. Wear an approved welding jacket or long sleeves to protect forearms from radiation burns.\n\n6. When welding/cutting overhead or in confined spaces, wear flame resistant ear plugs or ear muffs to keep sparks out of ears.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 3",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "Fume and Gas Safety warning icons",
+      "spatial": "Top right of the Fume and Gas Safety section; two safety icons side by side — a respirator/gas mask icon on the left and a hazard warning triangle icon on the right",
+      "callouts": [
+        "Respirator/gas mask icon",
+        "Hazard warning triangle with exclamation mark"
+      ]
+    },
+    {
+      "label": "Arc Ray Safety warning icon",
+      "spatial": "Top right of the Arc Ray Safety section; a single hazard warning triangle icon with a radiation/arc ray symbol inside",
+      "callouts": [
+        "Hazard warning triangle with arc ray/radiation symbol"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Welding and plasma cutting produce toxic fumes classified as an inhalation hazard",
+    "Exposure to welding or cutting exhaust fumes can increase risk of cancers of the larynx and lung",
+    "Diseases potentially linked to welding/plasma cutting fumes include: early onset of Parkinson's Disease, heart disease, ulcers, damage to reproductive organs, inflammation of small intestine or stomach, kidney damage, emphysema, bronchitis, pneumonia",
+    "Respirator must be approved by NIOSH for protection against welding fumes",
+    "Do not use welder near degreasing or painting operations",
+    "In confined areas, use a well-ventilated space or wear an air-supplied respirator",
+    "Follow OSHA guidelines for Permissible Exposure Limits (PEL's)",
+    "Follow American Conference of Governmental Industrial Hygienists recommendations for Threshold Limit Values (TLV's)",
+    "A recognized specialist in Industrial Hygiene or Environmental Services should check operation and air quality",
+    "ARC RAYS can injure eyes and burn skin",
+    "Welding eye protection must be ANSI-approved with at least a number 10 shade lens rating",
+    "Wear leather leggings and fire resistant shoes or boots during welding",
+    "Do not wear pants with cuffs, shirts with open pockets, or clothing that can catch and hold molten metal or sparks",
+    "Keep clothing free of grease, oil, solvents, or any flammable substances",
+    "Wear dry, insulating gloves and protective clothing",
+    "Wear approved head covering including aprons, cape, sleeves, shoulder covers, and bibs for welding and cutting",
+    "Wear an approved welding jacket or long sleeves to protect forearms from radiation burns",
+    "When welding/cutting overhead or in confined spaces, wear flame resistant ear plugs or ear muffs",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "Page number: 3"
+  ],
+  "topics": [
+    "safety",
+    "mig",
+    "tig",
+    "stick",
+    "flux_cored"
+  ],
+  "keywords": [
+    "fume safety",
+    "gas safety",
+    "inhalation hazard",
+    "toxic fumes",
+    "NIOSH respirator",
+    "welding fumes",
+    "plasma cutting",
+    "arc ray safety",
+    "shade lens rating",
+    "ANSI",
+    "OSHA",
+    "PEL",
+    "TLV",
+    "Permissible Exposure Limits",
+    "Threshold Limit Values",
+    "Industrial Hygiene",
+    "Environmental Services",
+    "ventilation",
+    "air-supplied respirator",
+    "Parkinson's Disease",
+    "lung cancer",
+    "larynx cancer",
+    "emphysema",
+    "bronchitis",
+    "pneumonia",
+    "fire resistant",
+    "radiation burns",
+    "confined spaces",
+    "ear protection",
+    "eye protection",
+    "welding jacket"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "owner-manual-041",
+  "source": "owner-manual",
+  "page": 41,
+  "image_path": "/corpus/pages/owner-manual-041.png",
+  "summary": "This page covers maintenance procedures for the Vulcan OmniPro 220 welder, including pre-use inspection, MIG gun nozzle and contact tip cleaning, and LCD screen cover replacement.",
+  "text_content": "Maintenance\n\nWARNING\nTO PREVENT SERIOUS INJURY, FIRE AND BURNS:\nUnplug the Welder, rest the tool on a heat-proof, electrically non-conductive surface, and allow all parts of the Welder to cool thoroughly before service.\n\n1. BEFORE EACH USE, inspect the general condition of the Welder. Check for:\n• loose hardware\n• misalignment or binding of moving parts\n• damaged cord/electrical wiring\n• frayed or damaged cables\n• cracked or broken parts\n• any other condition that may affect its safe operation.\n\n2. PERIODICALLY, have a qualified technician remove the Rear Panel and use compressed air to blow out all dust from the interior.\n\n3. AFTER EVERY USE, store in a clean and dry location.\n\n4. For optimal MIG/Flux-Cored wire weld quality, clean and inspect the MIG Gun Contact Tip and Nozzle before each use, as explained below.\n\nMIG Gun Nozzle and Contact Tip Inspection and Cleaning\n\n1. Make sure that the entire MIG Gun is completely cool and that the Power Cord is unplugged from the electrical outlet before proceeding.\n2. Pull the Nozzle to remove it.\n3. Scrub the interior of the Nozzle clean with a wire brush.\n4. Examine the end of the Nozzle. The end should be flat and even. If the end is uneven, chipped, melted, cracked, or otherwise damaged, the Nozzle will adversely effect the weld and should be replaced.\n5. Unscrew the Contact Tip counterclockwise and slide it off the welding wire to remove.\n6. Scrub the outside of the Tip clean with a wire brush. Clean out the inside of the tip with a tip cleaner (sold separately). Check that the Tip is the proper type for the wire size used.\n7. Examine the shape of the hole at the end of the Contact Tip. It should be an even circle; it should not be oblong or have any bulges in it.\n8. If any problems are noted, replace the Contact Tip. Select a new Tip of the correct size for the welding wire used.\n9. Reinstall the Tip and securely reinstall the Nozzle as well.\n\nReplacing the LCD Screen Cover\n\n1. Carefully pry frame off of Display (22) by inserting flathead screwdriver (sold separately) into one of the side slots.\n2. Insert a new Screen Cover (17) into Screen Frame (18) with the gap facing downward.\n3. Insert frame back into slot on Display with the top end being placed in first.\n\nItem 57812     For technical questions, please call 1-800-444-3353.     Page 41",
+  "tables": [],
+  "diagrams": [
+    {
+      "label": "MIG Gun Nozzle and Contact Tip diagram",
+      "spatial": "The MIG gun is shown pointing to the left with the nozzle on the left end and the handle/body on the right. Callout lines point to the Nozzle on the left and the Contact Tip just behind the nozzle.",
+      "callouts": [
+        "Nozzle",
+        "Contact Tip"
+      ]
+    },
+    {
+      "label": "LCD Screen Cover Replacement - Display diagram",
+      "spatial": "Shows the welder Display (22) on the left with a flathead screwdriver being inserted into a side slot from the bottom-right.",
+      "callouts": [
+        "Display"
+      ]
+    },
+    {
+      "label": "LCD Screen Cover Replacement - Screen Cover and Frame diagram",
+      "spatial": "Screen Cover (17) is shown on the left with an arrow pointing right toward the Screen Frame (18). The Screen Frame is shown on the right as a rectangular frame. Labels appear above and to the right of respective components.",
+      "callouts": [
+        "Screen Cover",
+        "Screen Frame"
+      ]
+    }
+  ],
+  "key_facts": [
+    "Before each use, inspect for loose hardware, misalignment or binding of moving parts, damaged cord/electrical wiring, frayed or damaged cables, cracked or broken parts, and any other unsafe conditions",
+    "Periodically have a qualified technician remove the Rear Panel and use compressed air to blow out all dust from the interior",
+    "After every use, store welder in a clean and dry location",
+    "For optimal MIG/Flux-Cored wire weld quality, clean and inspect the MIG Gun Contact Tip and Nozzle before each use",
+    "Before cleaning MIG gun nozzle and contact tip, ensure MIG Gun is completely cool and Power Cord is unplugged",
+    "Pull the Nozzle to remove it from the MIG gun",
+    "Scrub the interior of the Nozzle clean with a wire brush",
+    "A damaged Nozzle end (uneven, chipped, melted, cracked) will adversely affect the weld and should be replaced",
+    "Unscrew the Contact Tip counterclockwise and slide it off the welding wire to remove",
+    "Clean out the inside of the Contact Tip with a tip cleaner (sold separately)",
+    "Check that the Contact Tip is the proper type for the wire size used",
+    "The Contact Tip hole should be an even circle; it should not be oblong or have any bulges",
+    "Select a new Contact Tip of the correct size for the welding wire used",
+    "Reinstall the Tip and securely reinstall the Nozzle after cleaning",
+    "To replace LCD Screen Cover, pry Display frame (22) off by inserting flathead screwdriver (sold separately) into one of the side slots",
+    "Insert new Screen Cover (17) into Screen Frame (18) with the gap facing downward",
+    "Insert frame back into slot on Display with the top end placed in first",
+    "Display is item 22, Screen Cover is item 17, Screen Frame is item 18",
+    "Technical support phone number: 1-800-444-3353",
+    "Item number: 57812",
+    "This information is on page 41 of the manual"
+  ],
+  "topics": [
+    "maintenance",
+    "safety",
+    "mig",
+    "flux_cored",
+    "parts"
+  ],
+  "keywords": [
+    "maintenance",
+    "MIG gun",
+    "nozzle",
+    "contact tip",
+    "wire brush",
+    "tip cleaner",
+    "LCD screen cover",
+    "display",
+    "screen frame",
+    "inspection",
+    "cleaning",
+    "compressed air",
+    "rear panel",
+    "flathead screwdriver",
+    "welding wire",
+    "heat-proof surface"
+  ],
+  "content_types": [
+    "text",
+    "diagram"
+  ]
+}
