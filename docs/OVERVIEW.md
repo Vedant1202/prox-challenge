@@ -18,9 +18,12 @@ The goal was to show what a support agent looks like when it's genuinely useful 
 |---|---|
 | "What's the duty cycle for MIG at 200A on 240V?" | SVG arc gauge: 25% duty cycle, weld/rest time breakdown |
 | "What polarity do I need for TIG?" | Front-panel SVG with cables highlighted by socket (DCEN) |
-| "I'm getting porosity in my flux-cored welds." | Click-through checklist — mark each cause resolved as you check |
+| "I'm getting porosity in my flux-cored welds." | Interactive checklist with expandable steps, tip panels, and inline diagram thumbnails |
 | "Show me the wire feed mechanism." | Actual manual page images with diagrams and callouts |
 | "What wire speed for MIG on 1/4" steel?" | Settings card from the selection chart |
+| "Walk me through MIG setup" | Checklist with per-step manual page thumbnails — tap to zoom full-page |
+
+The sidebar also exposes two standalone tools: a **Machine Diagram** (annotated hotspot map of the front panel) and a **Manual Viewer** (all 51 pages in a thumbnail grid with zoom + page navigation).
 
 ---
 
@@ -47,7 +50,7 @@ The reviewer never runs this. It's a one-time $1 extraction.
 
 ### 2. Agentic retrieval loop
 
-When you send a message, the API route runs a tool-use loop:
+When you send a message, the API route runs a prompt-cached tool-use loop:
 
 ```
 User message
@@ -60,17 +63,23 @@ get_page_image(page_id)
     └─ returns static PNG URL
     └─ emits page_image SSE event → PageImage card in UI
     ↓
-show_artifact(type, title)
-    └─ signals artifact type, Claude generates <artifact> HTML inline
+show_artifact(type, title)          OR        show_checklist(title, items[])
+    └─ Claude generates <artifact>              └─ emits checklist SSE event
+       HTML inline                                 items carry step, description,
+                                                   optional image_id, optional tips
     ↓
-Final text + <artifact>…</artifact> block streamed to client
+Final text streamed to client; done event carries token usage (cache + input + output)
 ```
 
 ### 3. Artifact rendering
 
-Claude writes self-contained HTML/CSS/JS inside `<artifact type="html">` blocks in its response. The frontend strips these from the markdown display and renders each one in a sandboxed `<iframe srcDoc>`. Light/dark theme is injected via CSS custom property overrides — no communication channel between iframe and host needed.
+Claude writes self-contained HTML/CSS/JS inside `<artifact type="html">` blocks in its response. The frontend strips these from the markdown display and renders each one in a sandboxed `<iframe srcDoc>`. Light/dark theme is injected via CSS custom property overrides — no communication channel between iframe and host needed. A fullscreen zoom button opens the artifact in a full-window modal.
 
-### 4. Multimodal troubleshooting
+### 4. Checklist rendering
+
+The `show_checklist` tool emits a structured JSON payload instead of inline HTML. `ChecklistCard` renders it as a stateful step list: checkboxes (checked state lives in `page.tsx`), expandable rows, optional corpus-page thumbnails with zoom modals, and optional tips panels. Checked steps are summarised back into the next API message so Claude knows the user's progress.
+
+### 5. Multimodal troubleshooting
 
 The system prompt instructs a diagnostic conversation loop: suggest a fix → ask if it worked → if not, ask one clarifying question → re-search → never repeat a suggestion → when corpus is exhausted, say so and point to manufacturer support.
 
@@ -118,20 +127,36 @@ solution/
   public/corpus/pages/        ← PNGs served statically by Next.js
   scripts/extract-corpus.ts   ← one-time extraction (already run)
   src/
-    app/api/chat/route.ts     ← streaming API + agentic tool loop
-    app/page.tsx              ← chat UI
-    lib/corpus.ts             ← searchCorpus, getPage, formatPageForContext
-    lib/anthropic.ts          ← client + model allowlist
-    lib/db.ts                 ← SQLite init + schema
-    lib/rate-limit.ts         ← sliding window rate limiter
+    app/
+      api/chat/route.ts       ← streaming API + agentic tool loop + prompt caching
+      api/chats/              ← chat CRUD + messages endpoint
+      api/config/             ← client config (model, rate limit settings)
+      page.tsx                ← root UI: view routing, checklist state, stream handling
+    lib/
+      corpus.ts               ← searchCorpus, getPage, formatPageForContext
+      anthropic.ts            ← client + model allowlist
+      db.ts                   ← SQLite init + migration-safe schema
+      rate-limit.ts           ← sliding window rate limiter
+      theme-context.tsx       ← dark/light theme provider
     components/
-      ChatMessage.tsx         ← markdown + artifact parsing + page images
-      ArtifactFrame.tsx       ← sandboxed iframe renderer
-      PageImage.tsx           ← expandable manual page card
+      ChatMessage.tsx         ← markdown + artifact parsing + page images + checklists
+      ArtifactFrame.tsx       ← sandboxed iframe with fullscreen zoom modal
+      ChecklistCard.tsx       ← step checklist with image thumbnails, tips, zoom modal
+      MachineDiagram.tsx      ← annotated SVG front-panel diagram with hotspot pins
+      ManualViewer.tsx        ← 51-page grid with zoom + page navigation modal
+      ChatSidebar.tsx         ← chat list + Machine Diagram / Manual Pages nav
+      PageImage.tsx           ← expandable manual page card (inline in chat)
+      ModelSelector.tsx       ← Sonnet / Haiku picker
+      RateLimitBadge.tsx      ← usage / limit / countdown display
+      ActivitySteps.tsx       ← step progress indicator during streaming
+      ThemeToggle.tsx         ← dark/light theme switcher
+      SiriOrb.tsx             ← animated orb for empty state
+      FingerprintProvider.tsx ← localStorage UUID for rate-limit fingerprinting
 docs/
   ARCHITECTURE.md             ← system design, component breakdown, decisions
   CONFIGURATION.md            ← all env vars with types, defaults, examples
   USAGE.md                    ← feature guide
+  OVERVIEW.md                 ← this file — high-level summary
 ```
 
 ---

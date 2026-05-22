@@ -32,16 +32,32 @@ When the answer involves a diagram, schematic, or photo from the manual, the ass
 
 ### Generate interactive artifacts
 
-For questions about polarity setup, duty cycle, settings, or troubleshooting, the assistant generates an interactive HTML component inline:
+For questions about polarity setup, duty cycle, or settings, the assistant generates an interactive HTML component inline:
 
 | Question type | Artifact generated |
 |---|---|
 | Polarity / cable connections | SVG front-panel diagram with cables highlighted by socket |
 | Duty cycle | Arc gauge showing cycle % with weld/rest time breakdown |
-| Troubleshooting | Click-through checklist — mark each cause resolved as you check it |
 | Settings / wire speed | Formatted settings card from the selection chart |
 
-Artifacts render in a sandboxed iframe next to the response text. They have no external dependencies — everything is self-contained HTML/CSS/JS.
+Artifacts render in a sandboxed iframe next to the response text. They have no external dependencies — everything is self-contained HTML/CSS/JS. Click the expand icon on any artifact to open it fullscreen.
+
+### Interactive step checklists
+
+For procedural questions (setup, troubleshooting sequences), the assistant generates a step-by-step checklist:
+
+- Click the circle next to a step to check it off — the progress counter updates
+- Click the chevron to expand a step and see its description
+- Steps with a relevant manual diagram show a thumbnail — click it to zoom the full page
+- Steps with practical tips show a "Tips" panel with actionable shortcuts or warnings
+- Checked steps are included as context in your next message so the assistant knows where you are in the process
+
+### View manual pages and diagrams
+
+Use the **Tools** section at the bottom of the sidebar:
+
+- **Machine Diagram** — annotated hotspot map of the Vulcan OmniPro 220 front panel. Click any pin for a labelled popover showing the control's function. Click the diagram to open it fullscreen.
+- **Manual Pages** — all 51 corpus pages in a scrollable grid. Click any thumbnail to open the full page. Use ← → arrow keys or the on-screen buttons to navigate between pages. Type a page number and press Enter to jump directly.
 
 ---
 
@@ -53,6 +69,7 @@ While the assistant is working, a step-by-step indicator shows what it's doing:
 - **Searching manual…** — `search_corpus` tool running
 - **Loading page image…** — `get_page_image` tool running
 - **Building visual…** — `show_artifact` tool signalled, artifact HTML being generated
+- **Building checklist…** — `show_checklist` tool generating a step-by-step checklist
 
 ---
 

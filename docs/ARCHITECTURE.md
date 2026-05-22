@@ -14,33 +14,38 @@ Browser
       Rate limit check (SQLite sliding window, keyed on SHA256(ip:fingerprint))
               │
               ▼
-      Claude Sonnet 4.6  —  agentic tool loop
+      Claude Sonnet 4.6  —  agentic tool loop  (prompt-cached: system → tools → history)
               │
-        ┌─────┴──────────────────────────────┐
-        │  search_corpus(query)              │
-        │    └─ linear keyword/topic/        │
-        │       key_fact score over          │
-        │       corpus.json (51 pages)       │
-        │                                    │
-        │  get_page_image(page_id)           │
-        │    └─ returns /corpus/pages/*.png  │
-        │       URL, emits page_image event  │
-        │                                    │
-        │  show_artifact(type, title)        │
-        │    └─ signals frontend to expect   │
-        │       <artifact> block in text     │
-        └────────────────────────────────────┘
+        ┌─────┴──────────────────────────────────┐
+        │  search_corpus(query)                  │
+        │    └─ linear keyword/topic/            │
+        │       key_fact score over              │
+        │       corpus.json (51 pages)           │
+        │                                        │
+        │  get_page_image(page_id)               │
+        │    └─ returns /corpus/pages/*.png URL  │
+        │       emits page_image SSE event       │
+        │                                        │
+        │  show_artifact(type, title)            │
+        │    └─ signals frontend to expect       │
+        │       <artifact> block in text         │
+        │                                        │
+        │  show_checklist(title, items[])        │
+        │    └─ emits checklist SSE event        │
+        │       items carry step, description,   │
+        │       optional image_id, optional tips │
+        └────────────────────────────────────────┘
               │
               ▼
-      SSE stream: text | tool_call | page_image | done
+      SSE stream: text | tool_call | page_image | checklist | done
               │
               ▼
        Client accumulates text, renders markdown,
-       parses <artifact>…</artifact> → sandboxed iframe,
-       shows PageImage cards for each page_image event
+       parses <artifact>…</artifact> → ArtifactFrame (sandboxed iframe),
+       shows PageImage cards, renders ChecklistCard for checklist events
               │
               ▼
-       On done: persist to SQLite (chats + messages tables)
+       On done: persist to SQLite (chats + messages tables, including checklist JSON)
 ```
 
 ---
@@ -74,6 +79,13 @@ Typical sequence for a technical question:
 4. Claude calls `show_artifact("polarity_diagram", "TIG Polarity Setup")`
 5. Claude generates final text + inline `<artifact>` HTML block
 6. Loop exits, page_image event fires, `done` event fires
+
+Typical sequence for a procedural question (e.g. "walk me through MIG setup"):
+1. Claude calls `search_corpus("MIG polarity wire setup")`
+2. Claude calls `show_checklist("MIG Setup", [{step, description, image_id, tips}, ...])`
+3. Checklist SSE event fires; client creates ChecklistCard and initialises checked state
+4. Claude generates explanatory text alongside
+5. `done` event fires; checklist JSON is persisted with the message
 
 ---
 
@@ -133,10 +145,13 @@ The client connects with a standard `fetch` + `ReadableStream` reader. Events ar
 | `text` | `{ text: string }` | Append to assistant message content |
 | `tool_call` | `{ name, input }` | Advance activity step indicator |
 | `page_image` | `{ page_id, url, page_num, source, summary, show_by_default }` | Add PageImage card to message |
-| `done` | `{}` | Finalize message, refetch chat list, persist |
+| `checklist` | `{ title: string, items: ChecklistItem[] }` | Mount ChecklistCard, initialise checked state |
+| `done` | `{ usage: { cache_creation, cache_read, input, output } }` | Finalise message, refetch chat list, persist |
 | `error` | `{ message }` | Show error in message bubble |
 
 `show_by_default` is computed server-side: a page image auto-expands if the final assistant text explicitly references that page number (e.g. "see page 18", "p. 18").
+
+`ChecklistItem` schema: `{ step: string, description: string, image_id?: string, tips?: string[] }`. `image_id` maps to a corpus page PNG. Checked state is held in `page.tsx` as `Map<"${chatId}:${msgIndex}", boolean[]>` and serialised into follow-up messages as context.
 
 ---
 
@@ -158,6 +173,38 @@ Client-side in `ChatMessage.tsx`:
 
 Theme tokens are injected into the iframe via a `<style>` block prepended to the `srcDoc`, overriding the CSS custom properties Claude uses (`--color-bg`, `--color-text`, `--color-accent`, `--color-surface`, `--color-border`, `--color-muted`). This is how light/dark theme switching propagates into artifacts without any communication channel between the iframe and the host page.
 
+`ArtifactFrame` also exposes a fullscreen zoom button. The modal is rendered via `createPortal` into `document.body` so it covers the full viewport regardless of ancestor stacking contexts created by `backdrop-filter` on glass/glass-card elements.
+
+---
+
+## Prompt Caching
+
+Three `cache_control: { type: "ephemeral" }` breakpoints are set per request to minimise repeated token costs:
+
+1. **System prompt** — the large SYSTEM_PROMPT text block; rarely changes, cached across all turns
+2. **Tools** — the tool definition array; the last tool (`show_artifact`) carries the cache marker
+3. **Conversation history** — `withHistoryCacheMarker()` marks the penultimate message (last complete turn before the current user message), caching the growing history prefix
+
+The `done` event payload includes token usage — `cache_creation`, `cache_read`, `input`, `output` — accumulated across all agentic loop iterations.
+
+---
+
+## UI Views
+
+`page.tsx` manages three mutually-exclusive views via `view: 'chat' | 'diagram' | 'manual'` state:
+
+| View | Component | Trigger |
+|---|---|---|
+| `chat` | Default chat UI | Any chat click in sidebar, or toggling active view |
+| `diagram` | `MachineDiagramPage` | "Machine Diagram" nav button in sidebar |
+| `manual` | `ManualViewer` | "Manual Pages" nav button in sidebar |
+
+The sidebar is always visible; only the main column content switches. All three views share the same sidebar, which highlights the active nav item.
+
+**MachineDiagram** — SVG-based hotspot map of the front panel. Pins are positioned as CSS percentages over an `<img>` tag. Clicking a pin opens an annotated popover near the pin. The full diagram can be zoomed into a full-window modal.
+
+**ManualViewer** — Grid of all 51 corpus pages as lazy-loaded thumbnails. Clicking opens a zoom modal with: header showing page number + label, prev/next buttons, keyboard arrows (← →), Escape to close, and a page-number input for direct navigation. All modals portal to `document.body`.
+
 ---
 
 ## Persistence Layer
@@ -165,12 +212,14 @@ Theme tokens are injected into the iframe via a `<style>` block prepended to the
 SQLite via Node.js built-in `node:sqlite` (no native module, no binary dependency).
 
 ```sql
-chats    (id, title, created_at, updated_at)
-messages (id, chat_id, role, content, page_images JSON, artifact_html, created_at)
+chats      (id, title, created_at, updated_at)
+messages   (id, chat_id, role, content, page_images JSON, checklist JSON, created_at)
 rate_limit (client_key, timestamp)   ← sliding window log
 ```
 
-Database is written **after** the stream completes (inside the `finally`-equivalent path after `send({ type: 'done' })`). This means the client sees the response immediately; persistence is fire-and-forget with error logging.
+`checklist` is a nullable JSON column added via migration-safe `ALTER TABLE … ADD COLUMN` on startup — safe to run against an existing database from an older version.
+
+Database is written **after** the stream completes (inside the `finally`-equivalent path after `send({ type: 'done' })`). The client sees the response immediately; persistence is fire-and-forget with error logging.
 
 The chat row is auto-created from the first message if it doesn't exist yet — no separate "create chat" API call is required before the first message.
 

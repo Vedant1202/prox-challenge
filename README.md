@@ -27,9 +27,14 @@ Try these questions to see the full range of responses:
 |---|---|
 | "What's the duty cycle for MIG at 200A on 240V?" | Interactive arc gauge showing 25% duty cycle, weld/rest breakdown |
 | "What polarity do I need for TIG welding?" | SVG front-panel diagram with cables highlighted by socket |
-| "I'm getting porosity in my flux-cored welds." | Interactive checklist: click through causes, mark resolved |
+| "I'm getting porosity in my flux-cored welds." | Step-by-step interactive checklist with expandable tips and manual page thumbnails |
 | "Show me the wire feed mechanism." | Actual manual page images with callouts |
 | "What wire speed for MIG on 1/4\" steel?" | Recommended settings card from the selection chart |
+| "Walk me through MIG polarity setup" | Checklist with inline diagram thumbnails — tap to zoom any page |
+
+Use the sidebar to jump to:
+- **Machine Diagram** — labeled hotspot map of the front panel; click any part for details
+- **Manual Pages** — all 51 pages in a grid; click any thumbnail to zoom with prev/next navigation
 
 ---
 
@@ -38,17 +43,19 @@ Try these questions to see the full range of responses:
 ```
 User message
     ↓
-POST /api/chat  (full conversation history every turn)
+POST /api/chat  (full conversation history every turn, prompt-cached)
     ↓
 Claude Sonnet 4.6  ─  agentic loop
     ├── search_corpus(query)     keyword/topic/key_fact scoring → top 5 pages
     ├── get_page_image(page_id)  → image URL → PageImage card in UI
-    └── show_artifact(type)      → signals artifact type
+    ├── show_artifact(type)      → signals artifact type → <artifact> HTML block
+    └── show_checklist(title, items[{step, description, image_id?, tips?}])
+                                 → interactive step-by-step checklist in UI
     ↓
-Streamed SSE: text deltas + page_image events + done
+Streamed SSE: text | tool_call | page_image | checklist | done
     ↓
 Client: accumulates text, parses <artifact>…</artifact> blocks,
-        renders ArtifactFrame (sandboxed iframe) + PageImage cards
+        renders ArtifactFrame (sandboxed iframe) + PageImage cards + ChecklistCard
 ```
 
 **No server-side state.** Full `messages[]` array sent with every request — Claude sees the entire conversation each turn for free.
@@ -98,22 +105,25 @@ Steps:
 
 ## Multimodal Response System
 
-Claude generates `<artifact type="html">...</artifact>` blocks inline. The frontend:
+**Artifacts** — Claude generates `<artifact type="html">` blocks inline. The frontend:
 1. Parses artifact blocks from the streamed text
 2. Strips them from the markdown
-3. Renders them in a `<iframe sandbox="allow-scripts" srcDoc={html}>` — same pattern as Claude Artifacts on claude.ai
+3. Renders them in `<iframe sandbox="allow-scripts" srcDoc={html}>` — same pattern as Claude Artifacts on claude.ai
+4. Zoom button opens a full-window modal for any artifact
 
-**Artifact rules in system prompt:**
-- All CSS inline — no external stylesheets
-- No external JS — vanilla only
-- Only corpus-verified data values (no hallucinated specs)
-- Dark theme: `#1a1a1a` bg, `#e5e5e5` text, `#f59e0b` accent
-- Interactive where it helps (clickable flowcharts, arc gauges, hover states)
+**Checklists** — The `show_checklist` tool produces structured step-by-step flows:
+- Each step is expandable: description, optional manual page thumbnail, optional tips panel
+- Thumbnails link to the full-resolution page via a zoom modal
+- State (checked/unchecked) is tracked per-message and included as context in follow-up turns
+
+**Machine Diagram** — An annotated SVG of the Vulcan OmniPro 220 front panel, accessible from the sidebar. Click any hotspot pin for a labeled popover; tap the image to zoom.
+
+**Manual Viewer** — All 51 corpus pages in a thumbnail grid, accessible from the sidebar. Click any page to open a zoom modal with previous/next navigation and a page-jump input.
 
 Artifacts generated in testing:
-- **Duty cycle question** → SVG arc gauge with weld/rest time breakdown and amperage selector
+- **Duty cycle question** → SVG arc gauge with weld/rest time breakdown
 - **TIG polarity question** → Front panel SVG with sockets labeled, cables with arrows
-- **Flux-cored porosity** → Click-through checklist with mark-resolved per cause
+- **Wire settings** → Formatted settings card from the selection chart
 
 ---
 
@@ -158,15 +168,30 @@ solution/
     extract-corpus.ts        ← one-time extraction (already run)
   src/
     app/
-      api/chat/route.ts      ← streaming Claude API + agentic tool loop
-      page.tsx               ← chat UI
+      api/chat/route.ts      ← streaming API + agentic tool loop + prompt caching
+      api/chats/             ← chat CRUD endpoints
+      api/config/            ← client config endpoint
+      page.tsx               ← root UI: chat, diagram, manual view routing
     lib/
       corpus.ts              ← searchCorpus(), getPage(), formatPageForContext()
-      anthropic.ts           ← client + model constant
+      anthropic.ts           ← client + model allowlist
+      db.ts                  ← SQLite init + migrations
+      rate-limit.ts          ← sliding window rate limiter
+      theme-context.tsx      ← dark/light theme provider
     components/
-      ChatMessage.tsx        ← markdown + page images + artifact iframes
-      ArtifactFrame.tsx      ← sandboxed iframe renderer
+      ChatMessage.tsx        ← markdown + artifact parsing + page images + checklists
+      ArtifactFrame.tsx      ← sandboxed iframe with zoom modal
+      ChecklistCard.tsx      ← interactive step checklist with image thumbnails + tips
+      MachineDiagram.tsx     ← annotated SVG front-panel diagram with hotspot pins
+      ManualViewer.tsx       ← 51-page grid with zoom modal + page navigation
+      ChatSidebar.tsx        ← chat list + Machine Diagram / Manual Pages nav
       PageImage.tsx          ← expandable manual page card
+      ModelSelector.tsx      ← Sonnet / Haiku picker
+      RateLimitBadge.tsx     ← usage / limit / countdown display
+      ThemeToggle.tsx        ← dark/light switcher
+      ActivitySteps.tsx      ← tool-call step progress indicator
+      SiriOrb.tsx            ← animated empty-state orb
+      FingerprintProvider.tsx ← localStorage fingerprint for rate limiting
 ```
 
 ---
