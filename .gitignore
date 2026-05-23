@@ -3,4 +3,5 @@
 repomix-output.xml
 solution/.env
 solution/.tmp/
+.tmp/
 .tmp/demo-script.md
