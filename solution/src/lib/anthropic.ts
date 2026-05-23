@@ -4,7 +4,7 @@ export const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
-export const ALLOWED_MODELS = ['claude-sonnet-4-6', 'claude-haiku-4-5'] as const
+export const ALLOWED_MODELS = ['claude-sonnet-4-6', 'claude-haiku-4-5-20251001'] as const
 export type AllowedModel = typeof ALLOWED_MODELS[number]
 
 export function resolveModel(requested?: string | null): AllowedModel {

@@ -1,10 +1,10 @@
 'use client'
 
-export type Model = 'claude-sonnet-4-6' | 'claude-haiku-4-5'
+export type Model = 'claude-sonnet-4-6' | 'claude-haiku-4-5-20251001'
 
 const OPTIONS: { id: Model; label: string; sublabel: string }[] = [
   { id: 'claude-sonnet-4-6', label: 'Sonnet', sublabel: 'Smart' },
-  { id: 'claude-haiku-4-5', label: 'Haiku', sublabel: 'Fast' },
+  { id: 'claude-haiku-4-5-20251001', label: 'Haiku', sublabel: 'Fast' },
 ]
 
 interface ModelSelectorProps {
