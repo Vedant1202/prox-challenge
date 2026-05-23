@@ -81,7 +81,7 @@ export default function ArtifactFrame({ html, title, defaultExpanded = false }: 
             sandbox="allow-scripts"
             srcDoc={themedHtml}
             className="w-full block border-none"
-            style={{ height: 420 }}
+            style={{ height: 'min(420px, 55vh)' }}
             title={title || 'Interactive artifact'}
           />
         )}

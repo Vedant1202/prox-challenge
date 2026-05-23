@@ -72,6 +72,7 @@ function HomeInner() {
   const [activeChatId, setActiveChatId] = useState<string | null>(null)
 
   const [view, setView] = useState<'chat' | 'diagram' | 'manual'>('chat')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [checklistState, setChecklistState] = useState<Map<string, boolean[]>>(new Map())
 
   // Deep-link state — set when a diagram ref chip is clicked in a chat message
@@ -154,6 +155,7 @@ function HomeInner() {
   function selectChat(id: string) {
     setActiveChatId(id)
     activeChatIdRef.current = id
+    setSidebarOpen(false)
 
     // Show cached snapshot immediately — no blank flash for in-flight or visited chats
     const cached = chatMsgCache.current.get(id)
@@ -183,6 +185,7 @@ function HomeInner() {
     setActiveChatId(null)
     setMessages([])
     setInput('')
+    setSidebarOpen(false)
   }
 
   function handleDeleteChat(id: string) {
@@ -412,6 +415,7 @@ function HomeInner() {
   function handleViewChange(v: 'chat' | 'diagram' | 'manual') {
     setPendingDiagramHotspot(null)
     setDiagramReturnMsgIndex(null)
+    setSidebarOpen(false)
     setView(v)
   }
 
@@ -460,6 +464,8 @@ function HomeInner() {
         onDeleteChat={handleDeleteChat}
         view={view}
         onViewChange={handleViewChange}
+        mobileOpen={sidebarOpen}
+        onMobileClose={() => setSidebarOpen(false)}
       />
 
       {/* Main column */}
@@ -475,7 +481,17 @@ function HomeInner() {
         {view !== 'chat' ? null : (<>
 
         {/* Header — z-index keeps it above chat bubbles (which create stacking contexts via backdrop-filter) */}
-        <header className="glass border-b flex items-center gap-3 px-5 py-3 flex-shrink-0 relative z-10">
+        <header className="glass border-b flex items-center gap-3 px-4 py-3 flex-shrink-0 relative z-10">
+          {/* Hamburger — mobile only */}
+          <button
+            className="sm:hidden btn btn-ghost btn-sm btn-circle flex-shrink-0"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <path d="M2 4h12M2 8h12M2 12h12"/>
+            </svg>
+          </button>
           <div
             style={{
               width: 28,
@@ -493,9 +509,9 @@ function HomeInner() {
           >
             V
           </div>
-          <div>
-            <div className="font-semibold text-sm text-base-content">Vulcan OmniPro 220</div>
-            <div className="text-xs text-base-content/50">Welder Assistant</div>
+          <div className="min-w-0">
+            <div className="font-semibold text-sm text-base-content truncate">Vulcan OmniPro 220</div>
+            <div className="text-xs text-base-content/50 hidden sm:block">Welder Assistant</div>
           </div>
           <div className="flex-1" />
 
@@ -607,7 +623,7 @@ function HomeInner() {
 
         {/* Input area */}
         <div
-          className="flex-shrink-0 px-5 pb-5 pt-3"
+          className="flex-shrink-0 px-3 sm:px-5 pb-5 pt-3"
           style={{ maxWidth: 800, width: '100%', margin: '0 auto' }}
         >
           <div className="input-glow">
