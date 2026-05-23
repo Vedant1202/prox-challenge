@@ -11,10 +11,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { anthropic, resolveModel } from '@/lib/anthropic'
 import { CACHED_SYSTEM, TOOLS, withHistoryCacheMarker } from '@/lib/prompt'
 import { handleToolCall, shouldShowByDefault, CollectedPageImage, CollectedChecklist, CollectedArtifact } from '@/lib/tools'
-import { getDb } from '@/lib/db'
 import { checkRateLimit } from '@/lib/rate-limit'
+<<<<<<< Updated upstream
 import { getClientKey } from '@/lib/client-key'
 import { persistChatTurn } from '@/lib/storage'
+=======
+<<<<<<< Updated upstream
+=======
+import { getClientKey } from '@/lib/client-key'
+import { persistChatTurn, StoredPageImage } from '@/lib/storage'
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 import Anthropic from '@anthropic-ai/sdk'
 
 export const runtime = 'nodejs'
@@ -27,79 +34,6 @@ type Message = {
   content: string | Anthropic.MessageParam['content']
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-/** Extracts the client IP from standard proxy headers, falling back to localhost. */
-function extractIp(req: NextRequest): string {
-  return (
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-    req.headers.get('x-real-ip') ||
-    '127.0.0.1'
-  )
-}
-
-/**
- * Persists a completed chat turn to SQLite.
- * Auto-creates or updates the chat row and inserts both user and assistant messages.
- * Wrapped in try/catch by the caller so DB failures don't abort the response.
- */
-function persistChatTurn(params: {
-  chatId: string
-  lastUserContent: string | undefined
-  fullText: string
-  pageImages: CollectedPageImage[]
-  artifact: CollectedArtifact | null
-  checklist: CollectedChecklist | null
-}): void {
-  const db = getDb()
-  const now = Date.now()
-  const fallbackTitle = (params.lastUserContent ?? 'New Chat').slice(0, 60) || 'New Chat'
-
-  // Upsert the chat row (auto-create if missing, update title if still default)
-  const existing = db
-    .prepare('SELECT id, title FROM chats WHERE id = ?')
-    .get(params.chatId) as { id: string; title: string } | undefined
-
-  if (!existing) {
-    db.prepare('INSERT INTO chats (id, title, created_at, updated_at) VALUES (?, ?, ?, ?)').run(
-      params.chatId, fallbackTitle, now, now
-    )
-  } else if (existing.title === 'New Chat' && params.lastUserContent) {
-    db.prepare('UPDATE chats SET title = ?, updated_at = ? WHERE id = ?').run(
-      fallbackTitle, now, params.chatId
-    )
-  } else {
-    db.prepare('UPDATE chats SET updated_at = ? WHERE id = ?').run(now, params.chatId)
-  }
-
-  // Save the user message (only the latest — prior turns were already persisted)
-  if (params.lastUserContent) {
-    db.prepare(
-      'INSERT OR IGNORE INTO messages (id, chat_id, role, content, created_at) VALUES (?, ?, ?, ?, ?)'
-    ).run(randomUUID(), params.chatId, 'user', params.lastUserContent, now - 1)
-  }
-
-  // Annotate page images with show_by_default based on final text references
-  const pageImagesWithDefault = params.pageImages.map(img => ({
-    ...img,
-    show_by_default: shouldShowByDefault(img.page_num, params.fullText),
-  }))
-
-  // Save the assistant message (with all rich content serialised as JSON columns)
-  db.prepare(
-    'INSERT INTO messages (id, chat_id, role, content, page_images, artifact_html, checklist, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-  ).run(
-    randomUUID(),
-    params.chatId,
-    'assistant',
-    params.fullText,
-    pageImagesWithDefault.length > 0 ? JSON.stringify(pageImagesWithDefault) : null,
-    params.artifact?.html ?? null,
-    params.checklist ? JSON.stringify(params.checklist) : null,
-    now,
-  )
-}
-
 // ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
@@ -108,10 +42,8 @@ export async function POST(req: NextRequest) {
   const requestedModel = body.model ?? null
 
   // ── Rate limiting ──────────────────────────────────────────────────────────
-  const ip = extractIp(req)
-  const fingerprint = req.headers.get('x-client-fingerprint') ?? 'unknown'
-  const clientKey = createHash('sha256').update(`${ip}:${fingerprint}`).digest('hex')
-  const rl = checkRateLimit(clientKey)
+  const clientKey = getClientKey(req)
+  const rl = await checkRateLimit(clientKey)
 
   if (!rl.allowed) {
     return NextResponse.json(
@@ -230,12 +162,12 @@ export async function POST(req: NextRequest) {
         }
 
         // Emit page_image events after full text is known (show_by_default needs final text)
-        for (const img of collectedPageImages) {
-          send({
-            type: 'page_image',
-            ...img,
-            show_by_default: shouldShowByDefault(img.page_num, fullText),
-          })
+        const annotatedPageImages: StoredPageImage[] = collectedPageImages.map(img => ({
+          ...img,
+          show_by_default: shouldShowByDefault(img.page_num, fullText),
+        }))
+        for (const img of annotatedPageImages) {
+          send({ type: 'page_image', ...img })
         }
 
         send({
@@ -248,18 +180,19 @@ export async function POST(req: NextRequest) {
           },
         })
 
-        // Persist to SQLite (failures are caught here so they don't abort the stream)
+        // Persist to Neon (failures are caught here so they don't abort the stream)
         if (chatId) {
           try {
-            persistChatTurn({
+            await persistChatTurn({
+              clientKey,
               chatId,
-              lastUserContent: typeof lastUserMessage?.content === 'string'
+              userContent: typeof lastUserMessage?.content === 'string'
                 ? lastUserMessage.content
                 : undefined,
-              fullText,
-              pageImages: collectedPageImages,
-              artifact: collectedArtifact,
+              assistantContent: fullText,
+              pageImages: annotatedPageImages,
               checklist: collectedChecklist,
+              artifactHtml: collectedArtifact?.html ?? null,
             })
           } catch (dbErr) {
             console.error('DB persist error:', dbErr)
