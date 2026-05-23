@@ -186,27 +186,35 @@ export default function ChatMessage({ message, messageIndex, checklistChecked, o
               </div>
             )}
 
-            {message.pageImages && message.pageImages.length > 0 && (
-              <div
-                className="mt-3"
-                style={{
-                  display: 'grid',
-                  gap: 8,
-                  gridTemplateColumns: message.pageImages.length > 1 ? '1fr 1fr' : '1fr',
-                }}
-              >
-                {message.pageImages.map(img => (
-                  <PageImage
-                    key={img.page_id}
-                    url={img.url}
-                    pageNum={img.page_num}
-                    source={img.source}
-                    summary={img.summary}
-                    defaultExpanded={img.show_by_default ?? false}
-                  />
-                ))}
-              </div>
-            )}
+            {(() => {
+              const checklistImageIds = new Set(
+                message.checklist?.items.map(i => i.image_id).filter(Boolean) ?? []
+              )
+              const visiblePageImages = (message.pageImages ?? []).filter(
+                img => !checklistImageIds.has(img.page_id)
+              )
+              return visiblePageImages.length > 0 ? (
+                <div
+                  className="mt-3"
+                  style={{
+                    display: 'grid',
+                    gap: 8,
+                    gridTemplateColumns: visiblePageImages.length > 1 ? '1fr 1fr' : '1fr',
+                  }}
+                >
+                  {visiblePageImages.map(img => (
+                    <PageImage
+                      key={img.page_id}
+                      url={img.url}
+                      pageNum={img.page_num}
+                      source={img.source}
+                      summary={img.summary}
+                      defaultExpanded={img.show_by_default ?? false}
+                    />
+                  ))}
+                </div>
+              ) : null
+            })()}
 
             {message.checklist && (
               <ChecklistCard
