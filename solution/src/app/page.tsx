@@ -74,6 +74,10 @@ function HomeInner() {
   const [view, setView] = useState<'chat' | 'diagram' | 'manual'>('chat')
   const [checklistState, setChecklistState] = useState<Map<string, boolean[]>>(new Map())
 
+  // Deep-link state — set when a diagram ref chip is clicked in a chat message
+  const [pendingDiagramHotspot, setPendingDiagramHotspot] = useState<string | null>(null)
+  const [diagramReturnMsgIndex, setDiagramReturnMsgIndex] = useState<number | null>(null)
+
   const [rateLimit, setRateLimit] = useState<RateLimitState | null>(null)
   const [windowMinutes, setWindowMinutes] = useState(60)
   const [model, setModel] = useState<Model>('claude-sonnet-4-6')
@@ -404,6 +408,34 @@ function HomeInner() {
     }
   }
 
+  // Clears deep-link state on normal (sidebar) view navigation
+  function handleViewChange(v: 'chat' | 'diagram' | 'manual') {
+    setPendingDiagramHotspot(null)
+    setDiagramReturnMsgIndex(null)
+    setView(v)
+  }
+
+  // Called when a diagram ref chip in a message is clicked
+  function handleDiagramChipClick(hotspotId: string, msgIndex: number) {
+    setPendingDiagramHotspot(hotspotId)
+    setDiagramReturnMsgIndex(msgIndex)
+    setView('diagram')
+  }
+
+  // Called when closing the diagram view (both normal close and deep-link return)
+  function handleDiagramClose() {
+    const returnIdx = diagramReturnMsgIndex
+    setPendingDiagramHotspot(null)
+    setDiagramReturnMsgIndex(null)
+    setView('chat')
+    if (returnIdx !== null) {
+      setTimeout(() => {
+        const el = document.querySelector(`[data-message-index="${returnIdx}"]`)
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 80)
+    }
+  }
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
@@ -427,12 +459,18 @@ function HomeInner() {
         onNewChat={handleNewChat}
         onDeleteChat={handleDeleteChat}
         view={view}
-        onViewChange={setView}
+        onViewChange={handleViewChange}
       />
 
       {/* Main column */}
       <div className="flex flex-col flex-1 overflow-hidden relative" style={{ zIndex: 1 }}>
-        {view === 'diagram' && <MachineDiagramPage onClose={() => setView('chat')} />}
+        {view === 'diagram' && (
+          <MachineDiagramPage
+            onClose={handleDiagramClose}
+            initialHotspotId={pendingDiagramHotspot ?? undefined}
+            onBackToMessage={diagramReturnMsgIndex !== null ? handleDiagramClose : undefined}
+          />
+        )}
         {view === 'manual' && <ManualViewer onClose={() => setView('chat')} />}
         {view !== 'chat' ? null : (<>
 
@@ -526,8 +564,10 @@ function HomeInner() {
                 <ChatMessage
                   key={i}
                   message={msg}
+                  messageIndex={i}
                   checklistChecked={activeChatId ? checklistState.get(`${activeChatId}:${i}`) : undefined}
                   onChecklistToggle={activeChatId ? (itemIdx) => handleChecklistToggle(activeChatId, i, itemIdx) : undefined}
+                  onDiagramRef={(hotspotId) => handleDiagramChipClick(hotspotId, i)}
                 />
               ))
             )}

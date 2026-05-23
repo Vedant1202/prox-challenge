@@ -611,7 +611,15 @@ export default function MachineDiagram({ highlight, initialTab = 'front' }: Mach
 
 // ─── Full-page wrapper for sidebar view ──────────────────────────────────────
 
-export function MachineDiagramPage({ onClose }: { onClose: () => void }) {
+export function MachineDiagramPage({
+  onClose,
+  initialHotspotId,
+  onBackToMessage,
+}: {
+  onClose: () => void
+  initialHotspotId?: string
+  onBackToMessage?: () => void
+}) {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Page header */}
@@ -630,10 +638,35 @@ export function MachineDiagramPage({ onClose }: { onClose: () => void }) {
         <span className="text-xs text-base-content/40">interactive diagram</span>
       </div>
 
+      {/* Deep-link return banner — only shown when navigated from a chat response */}
+      {onBackToMessage && (
+        <div
+          className="flex items-center justify-between px-5 py-2 flex-shrink-0"
+          style={{ background: 'rgba(129,140,248,0.04)', borderBottom: '1px solid rgba(129,140,248,0.08)' }}
+        >
+          <div className="flex items-center gap-1.5">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-primary/40">
+              <path d="M1 6h10M6 1l5 5-5 5" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[11px] text-base-content/40">Navigated here from your conversation</span>
+          </div>
+          <button
+            onClick={onBackToMessage}
+            className="flex items-center gap-1 text-[11px] transition-colors hover:opacity-80"
+            style={{ color: 'rgba(129,140,248,0.65)' }}
+          >
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M8 2.5L3.5 6 8 9.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Return to message
+          </button>
+        </div>
+      )}
+
       {/* Diagram — scrollable container */}
       <div className="flex-1 overflow-y-auto px-5 py-5">
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <MachineDiagram />
+          <MachineDiagram highlight={initialHotspotId} />
         </div>
       </div>
     </div>
