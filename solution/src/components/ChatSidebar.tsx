@@ -16,6 +16,8 @@ interface ChatSidebarProps {
   onDeleteChat: (id: string) => void
   view: View
   onViewChange: (v: View) => void
+  mobileOpen?: boolean
+  onMobileClose?: () => void
 }
 
 function DiagramIcon() {
@@ -48,15 +50,22 @@ export default function ChatSidebar({
   onDeleteChat,
   view,
   onViewChange,
+  mobileOpen,
+  onMobileClose,
 }: ChatSidebarProps) {
   function handleViewItem(v: View) {
     onViewChange(view === v ? 'chat' : v)
   }
 
   return (
+    <>
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <div className="fixed inset-0 bg-black/50 z-20 sm:hidden" onClick={onMobileClose} />
+      )}
     <div
-      className="glass border-r flex flex-col overflow-hidden flex-shrink-0"
-      style={{ width: 240, height: '100vh', zIndex: 2 }}
+      className={`glass border-r flex flex-col overflow-hidden flex-shrink-0 fixed inset-y-0 left-0 z-30 transition-transform duration-200 sm:static sm:translate-x-0 sm:z-auto ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      style={{ width: 240 }}
     >
       {/* New chat button */}
       <div className="p-3 border-b border-inherit flex-shrink-0">
@@ -98,7 +107,7 @@ export default function ChatSidebar({
               </span>
               <button
                 onClick={e => { e.stopPropagation(); onDeleteChat(chat.id) }}
-                className="opacity-0 group-hover:opacity-100 btn btn-ghost btn-xs btn-circle text-base-content/35 hover:text-error hover:bg-transparent transition-all flex-shrink-0"
+                className="opacity-25 group-hover:opacity-100 btn btn-ghost btn-xs btn-circle text-base-content/35 hover:text-error hover:bg-transparent transition-all flex-shrink-0"
                 aria-label="Delete chat"
               >
                 ×
@@ -149,5 +158,6 @@ export default function ChatSidebar({
         </button>
       </div>
     </div>
+    </>
   )
 }

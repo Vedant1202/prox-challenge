@@ -129,7 +129,7 @@ function ZoomModal({ index, onClose, onNavigate }: ZoomModalProps) {
         className="relative flex flex-col rounded-2xl overflow-hidden shadow-2xl"
         style={{
           maxWidth: 720,
-          width: 'calc(100vw - 48px)',
+          width: 'calc(100vw - 24px)',
           maxHeight: '92vh',
           background: 'rgba(10,10,20,0.96)',
           border: '1px solid rgba(129,140,248,0.2)',
@@ -175,7 +175,7 @@ function ZoomModal({ index, onClose, onNavigate }: ZoomModalProps) {
                 data-testid="prev-button"
                 aria-label="Previous page"
                 className="flex items-center justify-center rounded transition-colors disabled:opacity-20"
-                style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.07)' }}
+                style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.07)' }}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.8">
                   <path d="M7.5 2.5L3 6l4.5 3.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -187,7 +187,7 @@ function ZoomModal({ index, onClose, onNavigate }: ZoomModalProps) {
                 data-testid="next-button"
                 aria-label="Next page"
                 className="flex items-center justify-center rounded transition-colors disabled:opacity-20"
-                style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.07)' }}
+                style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.07)' }}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.8">
                   <path d="M4.5 2.5L9 6l-4.5 3.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -199,7 +199,7 @@ function ZoomModal({ index, onClose, onNavigate }: ZoomModalProps) {
               onClick={onClose}
               aria-label="Close"
               className="flex items-center justify-center rounded text-white/50 hover:text-white transition-colors"
-              style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.07)' }}
+              style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.07)' }}
             >
               <svg width="11" height="11" viewBox="0 0 11 11" stroke="currentColor" strokeWidth="1.8">
                 <path d="M1 1l9 9M10 1L1 10" strokeLinecap="round"/>
@@ -323,7 +323,7 @@ export default function ManualViewer({ onClose }: ManualViewerProps) {
 
       {/* Grid */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))' }}>
+        <div className="grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))' }}>
           {PAGES.map((page, i) => (
             <ThumbnailCard
               key={page.id}

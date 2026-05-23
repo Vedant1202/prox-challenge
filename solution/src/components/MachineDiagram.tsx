@@ -277,7 +277,7 @@ function popoverStyle(x: number, y: number): React.CSSProperties {
     top: above ? `calc(${y}% - 14px)` : `calc(${y}% + 14px)`,
     transform: above ? 'translate(-50%, -100%)' : 'translate(-50%, 0)',
     zIndex: 20,
-    width: 240,
+    width: 'min(240px, calc(100vw - 32px))',
     pointerEvents: 'auto',
   }
 }
@@ -328,7 +328,7 @@ function HotspotPopover({ hotspot, onClose }: { hotspot: Hotspot; onClose: () =>
           <button
             onClick={onClose}
             aria-label="Close"
-            className="flex-shrink-0 text-white/30 hover:text-white/70 transition-colors"
+            className="flex-shrink-0 text-white/30 hover:text-white/70 transition-colors p-1 -mr-1 -mt-0.5"
             style={{ lineHeight: 1 }}
           >
             <svg width="10" height="10" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="1.8">
@@ -394,8 +394,8 @@ function HotspotPin({ hotspot, active, onClick }: { hotspot: Hotspot; active: bo
         left: `${hotspot.x}%`,
         top: `${hotspot.y}%`,
         transform: 'translate(-50%, -50%)',
-        width: active ? 22 : 18,
-        height: active ? 22 : 18,
+        width: active ? 28 : 24,
+        height: active ? 28 : 24,
         borderRadius: '50%',
         background: active ? color : 'rgba(10,10,26,0.7)',
         border: `2px solid ${color}`,
@@ -407,7 +407,7 @@ function HotspotPin({ hotspot, active, onClick }: { hotspot: Hotspot; active: bo
         alignItems: 'center',
         justifyContent: 'center',
         color: active ? '#0a0a1a' : color,
-        fontSize: 8,
+        fontSize: 10,
         fontWeight: 700,
       }}
     >
@@ -443,7 +443,7 @@ function ZoomModal({ src, alt, onClose }: { src: string; alt: string; onClose: (
           onClick={onClose}
           aria-label="Close"
           className="absolute top-3 right-3 z-10 flex items-center justify-center rounded-full bg-black/60 text-white/70 hover:text-white transition-colors"
-          style={{ width: 28, height: 28 }}
+          style={{ width: 36, height: 36 }}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.8">
             <path d="M1 1l10 10M11 1L1 11" />
@@ -611,7 +611,15 @@ export default function MachineDiagram({ highlight, initialTab = 'front' }: Mach
 
 // ─── Full-page wrapper for sidebar view ──────────────────────────────────────
 
-export function MachineDiagramPage({ onClose }: { onClose: () => void }) {
+export function MachineDiagramPage({
+  onClose,
+  initialHotspotId,
+  onBackToMessage,
+}: {
+  onClose: () => void
+  initialHotspotId?: string
+  onBackToMessage?: () => void
+}) {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Page header */}
@@ -630,10 +638,35 @@ export function MachineDiagramPage({ onClose }: { onClose: () => void }) {
         <span className="text-xs text-base-content/40">interactive diagram</span>
       </div>
 
+      {/* Deep-link return banner — only shown when navigated from a chat response */}
+      {onBackToMessage && (
+        <div
+          className="flex items-center justify-between px-5 py-2 flex-shrink-0"
+          style={{ background: 'rgba(129,140,248,0.04)', borderBottom: '1px solid rgba(129,140,248,0.08)' }}
+        >
+          <div className="flex items-center gap-1.5">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-primary/40">
+              <path d="M1 6h10M6 1l5 5-5 5" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[11px] text-base-content/40">Navigated here from your conversation</span>
+          </div>
+          <button
+            onClick={onBackToMessage}
+            className="flex items-center gap-1 text-[11px] transition-colors hover:opacity-80"
+            style={{ color: 'rgba(129,140,248,0.65)' }}
+          >
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M8 2.5L3.5 6 8 9.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Return to message
+          </button>
+        </div>
+      )}
+
       {/* Diagram — scrollable container */}
       <div className="flex-1 overflow-y-auto px-5 py-5">
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <MachineDiagram />
+          <MachineDiagram highlight={initialHotspotId} />
         </div>
       </div>
     </div>
