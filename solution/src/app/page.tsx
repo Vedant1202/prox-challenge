@@ -341,6 +341,16 @@ function HomeInner() {
                 summary: event.summary,
                 show_by_default: event.show_by_default ?? false,
               })
+            } else if (event.type === 'artifact') {
+              applyChatUpdate(prev => {
+                const next = [...prev]
+                next[next.length - 1] = {
+                  ...next[next.length - 1],
+                  artifactHtml: event.html,
+                  artifactTitle: event.title,
+                }
+                return next
+              })
             } else if (event.type === 'checklist') {
               setChecklistState(prev => {
                 const key = `${chatId}:${assistantIdx}`

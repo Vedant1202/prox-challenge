@@ -27,43 +27,22 @@ When a visual would significantly help the user understand, generate an artifact
 - Troubleshooting flows or multi-step setup procedures → call \`show_checklist\` with title + ordered items. Do NOT generate HTML for checklists. After calling show_checklist, the checklist is displayed automatically in the chat — add only a short text follow-up. Include \`image_id\` on any step that has a relevant manual diagram (e.g. polarity diagram page, wiring schematic). Include \`tips\` (max 3) for practical shortcuts or warnings not already in the description.
 - Settings/configuration → formatted card with recommended settings
 
-**IMPORTANT**: Surface manual page images using get_page_image whenever the answer involves a diagram, schematic, or labeled figure.
+**IMPORTANT**: Surface manual page images using get_page_image whenever the answer involves a diagram, schematic, labeled figure, or technical table (like a duty cycle table or settings chart).
 
-## Artifact Format
-Emit artifacts inline in your response using this exact format:
+## Generating Artifacts
+When you need to render a visual component, call show_artifact with the complete HTML in the \`html\` parameter. Do NOT emit any <artifact> tags in your text — put the HTML directly in the tool call.
 
-<artifact type="html">
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-  /* ── Theme tokens — the host app overrides these for light/dark switching ── */
-  :root {
-    --color-bg:      #0a0a1a;
-    --color-surface: #1a1a2e;
-    --color-border:  rgba(129,140,248,0.15);
-    --color-text:    #e2e8f0;
-    --color-muted:   #94a3b8;
-    --color-accent:  #f59e0b;
-  }
-  /* ── Always use var(--color-*) — NEVER hardcode hex colors ── */
-  * { box-sizing: border-box; }
-  body { background: var(--color-bg); color: var(--color-text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 16px; }
-</style>
-</head>
-<body>
-  <!-- Self-contained interactive component. No external JS/CSS/image dependencies. -->
-</body>
-</html>
-</artifact>
-
-Artifact rules:
-- ALL CSS inline in <style> tags — never reference external stylesheets
-- No external JS libraries — use only vanilla JS
-- Only use data values confirmed in the manual (no invented specs)
-- ALWAYS use CSS custom properties (var(--color-bg), var(--color-text), var(--color-accent), var(--color-surface), var(--color-border), var(--color-muted)) for ALL color values — NEVER hardcode hex colors. The host app injects theme overrides.
-- Make it interactive where appropriate (clickable flowcharts, hover states, sliders)
-- The artifact replaces an explanation, not supplements it — make it self-explanatory
+Artifact HTML rules (all required — violations break the UI):
+- Must be a complete document: <!DOCTYPE html><html><head>...</head><body>...</body></html>
+- ALL CSS must be inline in <style> tags — no external stylesheets
+- No external JS libraries — vanilla JS only
+- Only use values confirmed in the corpus — no invented specifications
+- Use ONLY CSS custom properties for ALL colors — NEVER hardcode hex or rgb values:
+  var(--color-bg), var(--color-text), var(--color-accent), var(--color-surface), var(--color-border), var(--color-muted)
+  The host app injects dark/light theme overrides through these variables.
+- Make it interactive where appropriate (hover states, click, sliders)
+- The artifact replaces an explanation — make it self-explanatory
+- After calling show_artifact, add a short 1–2 sentence text summary of what it shows
 
 ## Conversational Follow-up
 After providing a diagnosis or fix:
@@ -148,21 +127,25 @@ const TOOLS: Anthropic.Tool[] = [
   },
   {
     name: 'show_artifact',
-    description: 'Signal to the frontend to render an interactive HTML artifact. Use this to trigger the display of a visual component like a polarity diagram, duty cycle gauge, or troubleshooting flowchart. The artifact HTML should also be emitted inline in your text response using <artifact> tags.',
+    description: 'Render an interactive HTML visual in the chat UI. Call this with the complete self-contained HTML for the component. The html is rendered in a sandboxed iframe — do NOT emit <artifact> tags in your text.',
     input_schema: {
       type: 'object' as const,
       properties: {
         type: {
           type: 'string',
           enum: ['polarity_diagram', 'duty_cycle', 'troubleshooting', 'settings', 'custom'],
-          description: 'The type of artifact being shown',
+          description: 'The kind of visual being rendered',
         },
         title: {
           type: 'string',
-          description: 'A short title for the artifact panel',
+          description: 'A short label for the artifact panel (e.g. "MIG Polarity Setup")',
+        },
+        html: {
+          type: 'string',
+          description: 'Complete self-contained HTML document. Must include <!DOCTYPE html>, <html>, <head> with <style> block, and <body>. Use var(--color-bg), var(--color-text), var(--color-accent), var(--color-surface), var(--color-border), var(--color-muted) for ALL colors — never hardcode hex values. No external JS or CSS.',
         },
       },
-      required: ['type', 'title'],
+      required: ['type', 'title', 'html'],
     },
     cache_control: { type: 'ephemeral' as const },
   },
@@ -316,7 +299,11 @@ export async function POST(req: NextRequest) {
 
         let fullText = ''
         const collectedPageImages: CollectedPageImage[] = []
-        let collectedChecklist: { title: string; items: Array<{ step: string; description: string }> } | null = null
+        let collectedChecklist: {
+          title: string
+          items: Array<{ step: string; description: string; image_id?: string; tips?: string[] }>
+        } | null = null
+        let collectedArtifact: { html: string; title: string } | null = null
 
         // Accumulate token usage across all agentic loop iterations
         let cacheCreationTokens = 0
@@ -377,6 +364,15 @@ export async function POST(req: NextRequest) {
               const inp = tool.input as any
               collectedChecklist = { title: inp.title, items: inp.items }
               send({ type: 'checklist', title: inp.title, items: inp.items })
+            }
+
+            if (tool.name === 'show_artifact') {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const inp = tool.input as any
+              if (inp.html) {
+                collectedArtifact = { html: inp.html, title: inp.title }
+                send({ type: 'artifact', html: inp.html, title: inp.title })
+              }
             }
 
             toolResults.push({
@@ -444,17 +440,15 @@ export async function POST(req: NextRequest) {
             ).run(
               randomUUID(),
               chatId,
-              'assistant',
-              fullText,
-              collectedPageImages.length > 0 ? JSON.stringify(
-                collectedPageImages.map(img => ({
-                  ...img,
-                  show_by_default: shouldShowByDefault(img.page_num, fullText),
-                }))
-              ) : null,
-              collectedChecklist ? JSON.stringify(collectedChecklist) : null,
-              now,
-            )
+              userContent: typeof lastUserMessage?.content === 'string' ? lastUserMessage.content : undefined,
+              assistantContent: fullText,
+              pageImages: collectedPageImages.map(img => ({
+                ...img,
+                show_by_default: shouldShowByDefault(img.page_num, fullText),
+              })),
+              checklist: collectedChecklist,
+              artifactHtml: collectedArtifact?.html ?? null,
+            })
           } catch (dbErr) {
             console.error('DB persist error:', dbErr)
           }
