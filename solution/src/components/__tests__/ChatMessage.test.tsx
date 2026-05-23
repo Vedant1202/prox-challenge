@@ -66,21 +66,28 @@ describe('ChatMessage — assistant messages', () => {
     expect(screen.queryByText('Thinking…')).not.toBeInTheDocument()
   })
 
-  it('renders an artifact frame when content has <artifact> tags', () => {
-    const content = `Here is a diagram.\n<artifact type="html"><h1>Test</h1></artifact>`
-    renderMsg({ role: 'assistant', content, isStreaming: false })
-    // The artifact tag text should be stripped; the ArtifactFrame header is shown
-    expect(screen.queryByText(/<artifact/)).not.toBeInTheDocument()
-    // ArtifactFrame renders a toggle header
-    expect(screen.getByText('Interactive Component')).toBeInTheDocument()
+  it('renders an artifact frame when message.artifactHtml is set', () => {
+    // The route uses the show_artifact tool call, which sets artifactHtml on the message.
+    // Legacy XML <artifact> tag parsing has been removed.
+    renderMsg({
+      role: 'assistant',
+      content: 'Here is a polarity diagram.',
+      isStreaming: false,
+      artifactHtml: '<html><body><h1>Test</h1></body></html>',
+      artifactTitle: 'MIG Polarity Setup',
+    })
+    // ArtifactFrame renders a toggle header with the provided title
+    expect(screen.getByText('MIG Polarity Setup')).toBeInTheDocument()
   })
 
-  it('strips artifact tags from visible markdown text', () => {
-    const content = `Answer here.\n<artifact type="html"><p>Visual</p></artifact>`
-    renderMsg({ role: 'assistant', content, isStreaming: false })
-    expect(screen.getByText('Answer here.')).toBeInTheDocument()
-    // Raw artifact markup should not be visible
-    expect(screen.queryByText(/type="html"/)).not.toBeInTheDocument()
+  it('renders artifact frame with default title when artifactTitle is omitted', () => {
+    renderMsg({
+      role: 'assistant',
+      content: 'Here is a visual.',
+      isStreaming: false,
+      artifactHtml: '<html><body><p>Visual</p></body></html>',
+    })
+    expect(screen.getByText('Interactive Visual')).toBeInTheDocument()
   })
 
   it('shows rate-limited error message when rateLimited is true', () => {

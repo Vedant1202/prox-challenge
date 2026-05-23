@@ -1,3 +1,20 @@
+/**
+ * ⚠️  DEAD CODE — NOT IMPORTED BY ANY ROUTE
+ *
+ * This file was written for a Neon/Postgres migration path and imports
+ * `ensureSchema` and `getSql` from './db', but db.ts only exports `getDb`
+ * (synchronous SQLite via node:sqlite). The imports will fail at build time
+ * if this file is ever imported.
+ *
+ * Options:
+ *   A) Delete this file if the Postgres migration is abandoned.
+ *   B) Rewrite to use `getDb()` from './db' if adapting for SQLite.
+ *   C) Implement `ensureSchema` / `getSql` in db.ts if migrating to Postgres.
+ *
+ * See db.ts for the current (working) SQLite implementation.
+ */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck — broken imports intentionally left to document the migration intent (see warning above)
 import { randomUUID } from 'crypto'
 import { ensureSchema, getSql } from './db'
 

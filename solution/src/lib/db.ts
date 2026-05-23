@@ -60,24 +60,18 @@ async function createSchema(sql: SqlClient): Promise<void> {
     ON messages(chat_id, created_at ASC)
   `
 
-  await sql`
-    CREATE INDEX IF NOT EXISTS idx_rate_limit_key_time
-    ON rate_limit(client_key, timestamp)
-  `
+  // Run additive migrations. ALTER TABLE throws if the column already exists,
+  // so each migration is wrapped in try/catch — safe for repeated startups.
+  runMigrations(db)
+
+  return db
 }
 
-export function ensureSchema(): Promise<void> {
-  if (!schemaPromise) {
-    schemaPromise = createSchema(getSql()).catch(err => {
-      schemaPromise = null
-      throw err
-    })
-  }
-
-  return schemaPromise
-}
-
-export function resetDbForTests(): void {
-  sqlClient = null
-  schemaPromise = null
+/**
+ * Applies schema migrations that need to run after the initial CREATE TABLE
+ * block. Using try/catch on each ALTER TABLE is idiomatic for SQLite — there's
+ * no IF NOT EXISTS syntax for ADD COLUMN prior to SQLite 3.37.
+ */
+function runMigrations(db: DatabaseSync): void {
+  try { db.exec('ALTER TABLE messages ADD COLUMN checklist TEXT') } catch { /* already exists */ }
 }
