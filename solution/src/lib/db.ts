@@ -41,7 +41,18 @@ export function getDb(): DatabaseSync {
     PRAGMA foreign_keys = ON;
   `)
 
-  try { db.exec('ALTER TABLE messages ADD COLUMN checklist TEXT') } catch { /* already exists */ }
+  // Run additive migrations. ALTER TABLE throws if the column already exists,
+  // so each migration is wrapped in try/catch — safe for repeated startups.
+  runMigrations(db)
 
   return db
+}
+
+/**
+ * Applies schema migrations that need to run after the initial CREATE TABLE
+ * block. Using try/catch on each ALTER TABLE is idiomatic for SQLite — there's
+ * no IF NOT EXISTS syntax for ADD COLUMN prior to SQLite 3.37.
+ */
+function runMigrations(db: DatabaseSync): void {
+  try { db.exec('ALTER TABLE messages ADD COLUMN checklist TEXT') } catch { /* already exists */ }
 }
