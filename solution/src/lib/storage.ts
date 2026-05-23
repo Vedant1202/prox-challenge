@@ -130,6 +130,7 @@ export async function persistChatTurn(input: {
   assistantContent: string
   pageImages: StoredPageImage[]
   checklist: StoredChecklist | null
+  artifactHtml?: string | null
 }): Promise<void> {
   await ensureSchema()
   const sql = getSql()
@@ -173,13 +174,14 @@ export async function persistChatTurn(input: {
   }
 
   await sql`
-    INSERT INTO messages (id, chat_id, role, content, page_images, checklist, created_at)
+    INSERT INTO messages (id, chat_id, role, content, page_images, artifact_html, checklist, created_at)
     VALUES (
       ${randomUUID()},
       ${input.chatId},
       'assistant',
       ${input.assistantContent},
       ${input.pageImages.length > 0 ? JSON.stringify(input.pageImages) : null},
+      ${input.artifactHtml ?? null},
       ${input.checklist ? JSON.stringify(input.checklist) : null},
       ${now}
     )
