@@ -1,6 +1,6 @@
 # Vulcan OmniPro 220 — Welder Assistant
 
-<img src="product.webp" alt="Vulcan OmniPro 220" width="400" /> <img src="product-inside.webp" alt="Vulcan OmniPro 220 — inside panel" width="400" />
+## Demo Link - [Google Drive](https://drive.google.com/file/d/19n66NVdR952EPOnlx22lm3z_zcFgsTg-/view?usp=sharing)
 
 A multimodal AI assistant for the Vulcan OmniPro 220 built for the Prox Founding Engineer Challenge. Ask it technical questions and it answers from the actual manual — with interactive diagrams, duty cycle gauges, and troubleshooting flowcharts generated on the fly.
 
