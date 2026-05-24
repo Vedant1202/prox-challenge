@@ -11,6 +11,7 @@ A multimodal AI assistant for the Vulcan OmniPro 220 built for the Prox Founding
 ```bash
 cd solution
 cp .env.example .env       # add your ANTHROPIC_API_KEY
+# Ensure node is v24 or over
 npm install
 npm run dev                # app runs at http://localhost:3000
 ```
